@@ -31,3 +31,29 @@ header > p {
 section#projects > div.container {
   text-align: center;
 }
+
+.feature-grid {
+  transform: translateX(5%);
+}
+
+.feature {
+  padding-bottom: 40px;
+  margin-bottom: 10px;
+}
+.feature-grid .feature {
+  width: 45%;
+}
+.feature h4 {
+  line-height: .5em;
+  max-height: 100px;
+}
+.feature h4 + p {
+  margin-bottom: .5em;
+}
+.feature .button {
+  transform: translateY(4px);
+}
+.feature p {
+  line-height: 1.6em;
+  margin-bottom: 0;
+}
