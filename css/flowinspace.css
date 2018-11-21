@@ -57,3 +57,22 @@ section#projects > div.container {
   line-height: 1.6em;
   margin-bottom: 0;
 }
+@media screen and (max-width: 600px) {
+  footer div.contact a {
+    font-size: 70%;
+  }
+}
+@media screen and (max-width: 300px) {
+  footer div.contact a {
+    font-size: 50%;
+  }
+}
+
+#footer {
+  width: 100%;
+  position: absolute;
+  transform: translateX(-5%);
+}
+footer div.contact a {
+  padding: 4px 18px;
+}
