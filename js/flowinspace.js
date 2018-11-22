@@ -87,4 +87,36 @@ document.addEventListener('DOMContentLoaded', function () {
         yPercent: 40,
 				ease: Bounce.easeOut
 			});
-});
+			
+			var showMore = TweenMax.fromTo($('#showMore'), 1.7, {
+				opacity: 0,
+        yPercent: 100,
+			}, {
+				delay: 2.6,
+				opacity: 1,
+        yPercent: 0,
+				ease: Elastic.easeOut
+			});
+			
+			// number of showmore idle animation
+			var count = 5;
+			window.setInterval( function(){
+				if (count) {
+					TweenMax.fromTo($('#showMore'), 1, {
+						yPercent: 10,
+					}, {
+						delay: 4,
+						yPercent: 0,
+						ease: Power2.easeOut
+					});
+					TweenMax.fromTo($('#showMore'), 1, {
+						yPercent: 0,
+					}, {
+						delay: 6,
+						yPercent: 10,
+						ease: Power2.easeOut
+					});
+					count-=1;
+				}
+			}, 3000);
+		});
