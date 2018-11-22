@@ -1,3 +1,11 @@
+      /*
+     /   /    __/ _   __   ___ _   _  ___________ _ _ _
+ ___/__ /__  / /  /  /_/  /__  \  /  /__
+   /   /    /_/  /  /_______/   \/  ___/  info[at]flowin[dot]space
+__/___/_________________________/
+ /  */
+
+
 * {
   transform-origin: 50% 50%;
 }
@@ -33,15 +41,18 @@ section#projects > div.container {
 }
 
 .feature-grid {
-  transform: translateX(5%);
+  /* transform: translateX(5%); */
+  width: 100%;
 }
 
 .feature {
-  padding-bottom: 40px;
-  margin-bottom: 10px;
+  padding-bottom: 20px;
+  margin: 20px;
 }
 .feature-grid .feature {
-  width: 45%;
+  width: 43%;
+  float: none;
+  display: inline-table;
 }
 .feature h4 {
   line-height: .5em;
@@ -57,16 +68,30 @@ section#projects > div.container {
   line-height: 1.6em;
   margin-bottom: 0;
 }
-@media screen and (max-width: 600px) {
+
+.feature-grid .feature .image {
+  min-height: 120px;
+  min-width: 120px;
+}
+
+
+
+@media screen and (max-width: 620px) {
   footer div.contact a {
     font-size: 70%;
   }
+
+  .button.small {
+    padding: 0 8px;
+  }
 }
-@media screen and (max-width: 300px) {
+@media screen and (max-width: 400px) {
   footer div.contact a {
     font-size: 50%;
   }
 }
+
+
 
 #footer {
   width: 100%;
