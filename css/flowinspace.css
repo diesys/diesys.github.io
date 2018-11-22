@@ -23,6 +23,17 @@ body {
   padding: 4px;
 }
 
+a.navPanelToggle span.fa-bars::before {
+  height: 40px;
+  width: 40px;
+  background: rgba(230, 230, 230, .5);
+  color: #666;
+  padding: 0px;
+  border-radius: 20px;
+  border: solid 3px rgba(0, 0, 0, .1);
+  /* position: fixed; */
+}
+
 #copyleft {
   transform-origin: 50% 47.5%;
   transform: rotate(180deg)
@@ -90,7 +101,6 @@ section#projects > div.container {
     font-size: 50%;
   }
 }
-
 
 
 #footer {
