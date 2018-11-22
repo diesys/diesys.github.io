@@ -39,12 +39,25 @@ a.navPanelToggle span.fa-bars::before {
   transform: rotate(180deg)
 }
 
-header > p {
-  text-transform: none;
+#stars {
+  background: url('images/starsTile.png');
+  background-repeat: repeat;
+  background-size: 15%;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+#about {
+  z-index: 1;
 }
 
 #about header.major {
   text-align: right;
+}
+
+header > p {
+  text-transform: none;
 }
 
 section#projects > div.container {
@@ -66,7 +79,7 @@ section#projects > div.container {
   display: inline-table;
 }
 .feature h4 {
-  line-height: .5em;
+  /* line-height: .5em; */
   max-height: 100px;
 }
 .feature h4 + p {

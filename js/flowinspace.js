@@ -35,34 +35,55 @@ document.addEventListener('DOMContentLoaded', function () {
 				opacity: 1,
 			}, .3);
 			
-			var starFlows = TweenMax.to($('#stars'), 5, {
+			var starFlows = TweenMax.from($('#stars'), 5, {
 				delay: .5,
-				scale: .9,
-				rotation: 5,
-				ease: Elastic.easeOut,
+				scale: 1.2,
+				rotation: 15,
+				ease: Power2.easeOut,
 				transformOrigin: "50% 50%",
 			});
 			
-			var spiralsAppear = TweenMax.staggerFrom([$('#spiral1'), $('#spiral2')], 1, {
-				delay: .3,
-				scale: 0,
-				ease: Elastic.easeOut,
+			var spiral2Appear = TweenMax.fromTo($('#spiral1'), 1.5, {
+				scale: .3,
 				transformOrigin: "50% 50%",
-			}, .4);
-
-			var logoAppear = TweenMax.to($('#logo'), 2, {
-				delay: 1.6,
+				rotation: -120,
+				opacity: 0
+			}, {
 				opacity: 1,
-				scale: 1.2,
+				scale: 1,
+				transformOrigin: "50% 50%",
+				ease: Power3.easeOut,
+				delay: 0,
+				rotation: 0
+			});
+			
+			var spiral2Appear = TweenMax.fromTo($('#spiral2'), 1.5, {
+				scale: .3,
+				transformOrigin: "50% 50%",
+				rotation: 120,
+				opacity: 0,
+			}, {
+				opacity: 1,
+				scale: 1,
+				transformOrigin: "50% 50%",
+				ease: Power2.easeOut,
+				delay: 0,
+				rotation: 0
+			});
+
+			var logoAppear = TweenMax.to($('#logo'), 1.9, {
+				delay: .8,
+				opacity: 1,
+				scale: 1.3,
 				ease: Elastic.easeOut
 			});
 			
-			var logoAppear = TweenMax.fromTo($('#write'), 1.4, {
+			var writeAppear = TweenMax.fromTo($('#write'), 1.4, {
 				opacity: 0,
         xPercent: -300,
         yPercent: 40,
 			}, {
-				delay: 2,
+				delay: .8,
 				opacity: 1,
 				xPercent: 0,
         yPercent: 40,
