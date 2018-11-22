@@ -3,10 +3,11 @@ viewport_w = $(window).width();
 
 if(viewport_h <= viewport_w) { 											// potrait
 	$('#banner').css("height", viewport_h);	
-	$('#stars').css("height", viewport_h/.999);
-} else {																						// landscape
-	$('#stars').css("height", $('#banner').height() / .9 * .76);
 }
+
+// adjust bg div stars and navpanel to the draw height
+$('#stars').css("height", $('#draw').height());
+$('#navPanel').css("height", $('#draw').height());
 
 
 // $('#banner').css("left", "5px");
