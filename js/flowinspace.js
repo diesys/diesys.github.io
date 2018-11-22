@@ -1,16 +1,13 @@
 viewport_h = $(window).height();
 viewport_w = $(window).width();
 
-if(viewport_h < viewport_w) {
-	new_height = viewport_h * 1;
-	$('#banner').css("height", new_height);
-
-	// $('#banner').css("transform", "5px");
-} else {
-	// new_width = viewport_w * 1;
-	// $('#banner').css("width", new_width);
-
+if(viewport_h <= viewport_w) { 											// potrait
+	$('#banner').css("height", viewport_h);	
+	$('#stars').css("height", viewport_h/.999);
+} else {																						// landscape
+	$('#stars').css("height", $('#banner').height() / .9 * .76);
 }
+
 
 // $('#banner').css("left", "5px");
 
