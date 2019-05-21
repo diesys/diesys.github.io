@@ -152,9 +152,18 @@ section#projects > div.container {
   }
 }
 
+/* ====== PORTFOLIO */
 .portfolioButton {
   cursor: pointer;
 }
+
+.portfolioButton > span.image > img {
+  max-width: 200px;
+  height: 200px;
+  object-fit: contain;
+  background: #f7f7f7;
+}
+
 
 #footer {
   width: 100%;
