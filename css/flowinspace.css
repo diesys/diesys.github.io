@@ -152,6 +152,9 @@ section#projects > div.container {
   }
 }
 
+.portfolioButton {
+  cursor: pointer;
+}
 
 #footer {
   width: 100%;

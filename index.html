@@ -10,8 +10,13 @@
 	<title>FlowIn.Space</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="css/main.css" />
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+	<!-- PhotoSwipe.com Core CSS file -->
+	<link rel="stylesheet" href="css/photoswipe/photoswipe.css">
+	<link rel="stylesheet" href="css/photoswipe/default-skin/default-skin.css">
+
+	<link rel="stylesheet" href="css/main.css" />
 
 	<meta name="description" content="Flow in space and get lost... Diego Turtulici personal website" />
 
@@ -21,18 +26,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="manifest" href="manifest.json">
 
-
-
 	<meta name="theme-color" content="#fff">
-
-
 	<meta name="msapplication-navbutton-color" content="#fff">
-
-
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
-
+	
 	<link rel="shortcut icon" href="#">
 
 	<link rel="icon" sizes="72x72" href="images/favicon72.png" type="image/x-icon">
@@ -45,7 +43,7 @@
 
 </head>
 	<body class="landing">
-
+		
 		<!-- Header -->
 			<header id="header" class="alt">
 				<h1><a href="index.html">Flow In Space</h1>
@@ -53,8 +51,8 @@
 					<ul>
 						<li><a href="#">Home</a></li>
 						<li><a href="#about">About</a></li>
-						<li><a href="#projects">Projects</a></li>
 						<li><a href="#portfolio">Portfolio</a></li>
+						<li><a href="#projects">Projects</a></li>
 					</ul>
 				</nav>
 			</header>
@@ -108,7 +106,7 @@
 									<h2>Hi, I'm Diego Turtulici</h2><br/>
 									<p>GRAPHIC/WEB DESIGN</p>
 									<p>DIGITAL ARTS &amp; PHOTOGRAPY</p>
-									<p>25 yo</p>
+									<p>26 yo</p>
 								</header>
 							</div>
 							<div class="6u$ 12u$(medium)">
@@ -121,6 +119,87 @@
 					</div>
 				</section>
 
+				<section id="portfolio" class="wrapper style1">
+					<div class="container">
+						<header class="major special">
+							<h2>Portfolio</h2>
+							<p>Those are some of the web-sites I've been working on.</p>
+							<p>Many other smaller works may be found in the internet.</p>
+						</header>
+						
+						<div class="box alt">
+							<div class="row 80% uniform">
+								<div class="3u portfolioButton" id="portfolioStickers">
+									<h3>Stickers</h3>
+									<span class="image fit">
+										<img src="images/portfolio/adesivi/eigenlab_circle.png" alt="stickers">
+									</span>
+								</div>
+								<div class="3u portfolioButton" id="portfolioAnimations">
+									<h3>animations</h3>
+									<span class="image fit">
+										<img src="images/portfolio/animazioni/flyfishLogoTransitionOPT.gif" alt="animations">
+									</span>
+								</div>
+								<div class="3u portfolioButton" id="portfolioBanners">
+									<h3>banners</h3>
+									<span class="image fit">
+										<img src="images/portfolio/banner/aperiborda.jpg" alt="banner">
+									</span>
+								</div>
+								<div class="3u portfolioButton" id="portfolioCovers">
+									<h3>covers</h3>
+									<span class="image fit">
+										<img src="images/portfolio/copertine/ateovirtuoso.png" alt="covers">
+									</span>
+								</div>
+								<div class="3u portfolioButton" id="portfolioDiffidente">
+									<h3>diffidente</h3>
+									<span class="image fit">
+										<img src="images/portfolio/diffidente/diffidente_banner.png" alt="diffidente">
+									</span>
+								</div>
+								<div class="3u portfolioButton" id="portfolioIcons">
+									<h3>icons</h3>
+									<span class="image fit">
+										<img src="images/portfolio/icone/conversations.jpg" alt="icons">
+									</span>
+								</div>
+								<div class="3u portfolioButton" id="portfolioPosters">
+									<h3>posters</h3>
+									<span class="image fit">
+										<img src="images/portfolio/locandine/endjamsession.jpg" alt="posters">
+									</span>
+								</div>
+								<div class="3u portfolioButton" id="portfolioLogos">
+									<h3>logos</h3>
+									<span class="image fit">
+										<img src="images/portfolio/loghi/eigenlab.jpg" alt="logo">
+									</span>
+								</div>
+								<div class="3u portfolioButton" id="portfolioShirts">
+									<h3>Shirts</h3>
+									<span class="image fit">
+										<img src="images/portfolio/magliette/hackmeeting_fronte.png" alt="shirts">
+									</span>
+								</div>
+								<div class="3u portfolioButton" id="portfolioBackgrounds">
+									<h3>backgrounds</h3>
+									<span class="image fit">
+										<img src="images/portfolio/sfondi/galaxy_blue.jpg" alt="backgrounds">
+									</span>
+								</div>
+								<div class="3u portfolioButton" id="portfolioStriker">
+									<h3>other</h3>
+									<span class="image fit">
+										<img src="images/portfolio/vario/grafico.png" alt="other">
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+				
 			<!-- projects -->
 				<section id="projects" class="wrapper style1">
 					<div class="container">
@@ -155,9 +234,9 @@
 										<br/>
 									<a href="cloch/" class="button small" target="_blank">what time is it?</a></p>
 								</div>
-              </div>
+              				</div>
               
-              <div id="diffidato" class="feature">
+             				<div id="diffidato" class="feature">
 								<div class="image "><img src="images/projects/diffidato.png" alt="" /></div>
 								<div class="content">
 									<header>
@@ -177,8 +256,8 @@
 										<h4>MinHex</h4>
 										<p>A revisited game</p>
 									</header>
-                  <p>A <i>Mines</i> spin-off with an hexagonal field, created by <a href="https://github.com/NuxTuxSux/MinHex">NuxTuxSux</a>, UI and images made by me.
-                    <br/>
+								<p>A <i>Mines</i> spin-off with an hexagonal field, created by <a href="https://github.com/NuxTuxSux/MinHex">NuxTuxSux</a>, UI and images made by me.
+									<br/>
 									<a href="minhex/" class="button small" target="_blank">play</a></p>
 								</div>
 							</div>
@@ -194,7 +273,7 @@
 										<br/>
 									<a href="qr/" class="button small" target="_blank">create</a></p>
 								</div>
-              </div>
+              				</div>
 
 							<div id="quite" class="feature">
 								<div class="image "><img src="images/projects/quite.png" alt="" /></div>
@@ -222,9 +301,9 @@
 										<br/>
 									<a href="https://git.eigenlab.org/sbiego/iblu" class="button small" target="_blank">see the code</a></p>
 								</div>
-              </div>
+              				</div>
               
-              <div id="jastersind" class="feature">
+              				<div id="jastersind" class="feature">
 								<div class="image "><img src="images/projects/jastersind.png" alt="" /></div>
 								<div class="content">
 									<header>
@@ -235,9 +314,9 @@
 										<br/>
 									<a href="jastersind/" class="button small" target="_blank">play</a></p>
 								</div>
-              </div>
+             				</div>
 
-              <div id="glock" class="feature">
+              				<div id="glock" class="feature">
 								<div class="image "><img src="images/projects/glock.png" alt="" /></div>
 								<div class="content">
 									<header>
@@ -248,7 +327,7 @@
 										<br/>
 									<a href="glock/" class="button small" target="_blank">what's the time?</a></p>
 								</div>
-              </div>
+              				</div>
               
 						</div>
 
@@ -338,6 +417,85 @@
 			<script src="js/templated.js"></script>
 			<!-- GREEN SOCK ANIMATION PLATFORM -->
 			<script type="text/javascript" src="js/TweenMax.min.js"></script>
+
+
+			<!-- PhotoSwipe JS file -->
+			<script src="js/photoswipe/photoswipe.min.js"></script>path/to
+			<script src="js/photoswipe/photoswipe-ui-default.min.js"></script>
+			
+			<!-- Root element of PhotoSwipe. Must have class pswp. -->
+			<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+				<!-- Background of PhotoSwipe. 
+         		It's a separate element as animating opacity is faster than rgba(). -->
+				<div class="pswp__bg"></div>
+
+				<!-- Slides wrapper with overflow:hidden. -->
+				<div class="pswp__scroll-wrap">
+
+					<!-- Container that holds slides. 
+					PhotoSwipe keeps only 3 of them in the DOM to save memory.
+					Don't modify these 3 pswp__item elements, data is added later on. -->
+					<div class="pswp__container">
+						<div class="pswp__item"></div>
+						<div class="pswp__item"></div>
+						<div class="pswp__item"></div>
+					</div>
+
+					<!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+					<div class="pswp__ui pswp__ui--hidden">
+
+						<div class="pswp__top-bar">
+
+							<!--  Controls are self-explanatory. Order can be changed. -->
+
+							<div class="pswp__counter"></div>
+
+							<button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+							<button class="pswp__button pswp__button--share" title="Share"></button>
+
+							<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+							<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+							<!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+							<!-- element will get class pswp__preloader--active when preloader is running -->
+							<div class="pswp__preloader">
+								<div class="pswp__preloader__icn">
+									<div class="pswp__preloader__cut">
+										<div class="pswp__preloader__donut"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+							<div class="pswp__share-tooltip"></div>
+						</div>
+
+						<button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+						</button>
+
+						<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+						</button>
+
+						<div class="pswp__caption">
+							<div class="pswp__caption__center"></div>
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+			<script>
+
+			</script>
+
+			<script src="js/gallery.js"></script>
+
 			<script src="js/flowinspace.js"></script>
 
 	</body>
