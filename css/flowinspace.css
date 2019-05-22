@@ -144,24 +144,20 @@ section#projects > div.container {
   .button.small {
     padding: 0 8px;
   }
-  .\33 u,
-  .\33 u\24 {
-    width: 40%;
-  }
 }
 @media screen and (max-width: 400px) {
   footer div.contact a {
     font-size: 50%;
-  }
-  .\33 u,
-  .\33 u\24 {
-    width: 80%;
   }
 }
 
 /* ====== PORTFOLIO */
 .portfolioButton {
   cursor: pointer;
+}
+.\33 u,
+.\33 u\24 {
+  width: 33%;
 }
 
 .portfolioButton > span.image > img {
@@ -205,6 +201,28 @@ section#projects > div.container {
   /* background: rgba(255, 255, 255, 0.4); */
   /* background: rgba(0, 0, 0, 0.5); */
 }
+
+@media screen and (max-width: 768px) {
+  .\33 u,
+  .\33 u\24 {
+    width: 40%;
+  }
+  .portfolioButton {
+    margin-left: 6.7%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .\33 u,
+  .\33 u\24 {
+    width: 80%;
+  }
+  .portfolioButton {
+    margin: 10px 5%;
+    width: 90%;
+  }
+}
+
 
 #footer {
   width: 100%;
