@@ -203,12 +203,37 @@ section#projects > div.container {
 }
 
 @media screen and (max-width: 768px) {
+  .container {
+    width: 100% !important;
+    margin: 0;
+    /* padding: 0 16px; */
+  }
+
+  #about {
+    padding: 50px;
+    /* color: red; */
+  }
+
   .\33 u,
   .\33 u\24 {
     width: 40%;
   }
   .portfolioButton {
     margin-left: 6.7%;
+  }
+
+  .feature-grid .feature {
+    /* width: 80%; */
+    width: 100%;
+    margin: 10px 0;
+    padding: 40px 20px;
+  }
+  #other_projects > div > header {
+    padding: 40px 20px 20px 20px;
+  }
+  .feature-grid>.feature:nth-child(even) {
+    background: hsl(0, 0%, 95%);
+    /* background: #eee; */
   }
 }
 
@@ -218,8 +243,15 @@ section#projects > div.container {
     width: 80%;
   }
   .portfolioButton {
-    margin: 10px 5%; 
-    width: 90%;
+    /* margin: 10px 5%;  */
+    margin: 0; 
+    /* width: 90%; */
+    width: 100%;
+    background: hsl(0, 0%, 98%);
+    /* box-shadow: 0 0 30px; */
+  }
+  .feature-grid .feature .image img {
+    max-height: 180px;
   }
 }
 
