@@ -259,7 +259,7 @@ section#projects > div.container {
 #footer {
   width: 100%;
   position: absolute;
-  transform: translateX(-5%);
+  /* transform: translateX(-5%); */
 }
 footer div.contact a {
   padding: 4px 18px;
