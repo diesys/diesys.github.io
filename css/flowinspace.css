@@ -255,6 +255,9 @@ section#projects > div.container {
   }
 }
 
+.talklist.past > li > a {
+  color: #444;
+}
 
 #footer {
   width: 100%;
