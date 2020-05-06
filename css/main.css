@@ -2914,7 +2914,8 @@
 		text-decoration: none;
 		text-decoration: none;
 		height: 100%;
-		left: 0;
+		/* left: 0; */
+		right: 0;
 		position: absolute;
 		top: 0;
 		width: 100%;
