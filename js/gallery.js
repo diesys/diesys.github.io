@@ -8,6 +8,10 @@ animazioni = [{
     src: 'images/portfolio/animazioni/flyfishLogoTransitionOPT_big.gif',
     w: 580,
     h: 380
+}, {
+    src: 'images/portfolio/animazioni/bioviiix.gif',
+    w: 540,
+    h: 380
 }]
 banners = [{
     src: 'images/portfolio/banner/aperiborda.jpg',
@@ -26,6 +30,10 @@ copertine = [{
     src: 'images/portfolio/copertine/cronache.jpg',
     w: 780,
     h: 380
+}, {
+    src: 'images/portfolio/copertine/ekekias.jpg',
+    w: 480,
+    h: 680
 }]
 locandine = [{
         src: 'images/portfolio/locandine/05-19_MostraSenzaParole.png',
@@ -203,6 +211,23 @@ icone = [{
     src: 'images/portfolio/icone/conversations.jpg',
     w: 400,
     h: 400
+}, {
+    src: 'images/portfolio/icone/bookit.png',
+    w: 400,
+    h: 400
+}]
+cards = [{
+    src: 'images/portfolio/cards/itertourcard.png',
+    w: 640,
+    h: 400
+}, {
+    src: 'images/portfolio/cards/1010card.png',
+    w: 640,
+    h: 400
+}, {
+    src: 'images/portfolio/cards/1010card_nome.png',
+    w: 640,
+    h: 400
 }]
 magliette = [{
     src: 'images/portfolio/magliette/eigen_fronte.png',
@@ -300,6 +325,18 @@ loghi = [{
     src: 'images/portfolio/loghi/eigenlab.jpg',
     h: 370,
     w: 640
+},  {
+    src: 'images/portfolio/loghi/=e.png',
+    h: 500,
+    w: 500
+}, {
+    src: 'images/portfolio/loghi/eyedye.png',
+    h: 500,
+    w: 500
+}, {
+    src: 'images/portfolio/loghi/gaiama.png',
+    h: 600,
+    w: 455
 }, {
     src: 'images/portfolio/loghi/eigennet.jpg',
     h: 370,
@@ -324,6 +361,14 @@ loghi = [{
     src: 'images/portfolio/loghi/itertour_bicolor_darkbg.png',
     h: 400,
     w: 400
+},  {
+    src: 'images/portfolio/loghi/itertour.png',
+    h: 340,
+    w: 400
+},  {
+    src: 'images/portfolio/loghi/itmenu.png',
+    h: 400,
+    w: 400
 }, {
     src: 'images/portfolio/loghi/jastersind.png',
     h: 400,
@@ -332,6 +377,10 @@ loghi = [{
     src: 'images/portfolio/loghi/kelevra.jpg',
     h: 200,
     w: 900
+}, {
+    src: 'images/portfolio/loghi/kinemate.png',
+    h: 100,
+    w: 400
 }, {
     src: 'images/portfolio/loghi/libersoft.png',
     h: 200,
@@ -345,6 +394,18 @@ loghi = [{
     h: 400,
     w: 400
 }, {
+    src: 'images/portfolio/loghi/mus_fil0.png',
+    h: 500,
+    w: 400
+}, {
+    src: 'images/portfolio/loghi/mus_fil1.png',
+    h: 400,
+    w: 400
+}, {
+    src: 'images/portfolio/loghi/mus_fil2.png',
+    h: 600,
+    w: 300
+}, {
     src: 'images/portfolio/loghi/nautilus.png',
     h: 400,
     w: 400
@@ -357,13 +418,13 @@ loghi = [{
     h: 400,
     w: 400
 }, {
-    src: 'images/portfolio/loghi/salvini.jpg',
-    h: 400,
-    w: 500
-}, {
     src: 'images/portfolio/loghi/subacquea.jpg',
     h: 400,
     w: 500
+}, {
+    src: 'images/portfolio/loghi/somec.png',
+    h: 400,
+    w: 600
 }, {
     src: 'images/portfolio/loghi/takeitisee.jpg',
     h: 400,
@@ -382,6 +443,10 @@ loghi = [{
     w: 700
 }, {
     src: 'images/portfolio/loghi/vision.png',
+    h: 400,
+    w: 400
+}, {
+    src: 'images/portfolio/loghi/vision_clr.png',
     h: 400,
     w: 400
 }]
@@ -441,5 +506,10 @@ document.getElementById('portfolioShirts').onclick = function () {
 
 document.getElementById('portfolioBackgrounds').onclick = function () {
     var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, sfondi, options);
+    gallery.init();
+}
+
+document.getElementById('portfolioCards').onclick = function () {
+    var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, cards, options);
     gallery.init();
 }
