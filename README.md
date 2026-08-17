@@ -61,7 +61,7 @@ This repo has a single entry point for everything it cares about: **`./portfolio
 ```bash
 ./portfolio-cli              # interactive menu (grouped by topic)
 ./portfolio-cli search <q>   # find commands matching <q> (label or description)
-./portfolio-cli <key>        # run a command directly, e.g. ./portfolio-cli build
+./portfolio-cli <key>        # run a command directly, e.g. ./portfolio-cli astro build
 ```
 
 Every command shows its equivalent direct invocation (`Equivalent:

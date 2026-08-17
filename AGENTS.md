@@ -58,7 +58,8 @@ These rules override convenience in every other section of this file.
 
 This repo has a single, unified command-line entry point: **`portfolio-cli`**, an
 executable at the repo root, backed by a **`cli-scripts/`** folder containing one script
-per action (modular — one file, one job).
+per cohesive job (modular — a script may expose closely-related subcommands via a
+`case` switch).
 
 ### Why this exists
 
@@ -75,11 +76,8 @@ cli-scripts/
   shared.sh                # shared logic: menu rendering, search/filter, gum/rtk
                             # detection, confirm() helper, "equivalent command" echo —
                             # ANY logic reused across scripts belongs here, not copied
-  dev.sh                   # start local dev server
-  build.sh                 # type-check + production build
-  preview.sh               # preview the production build
-  check.sh                 # astro check
-  format.sh                # run Prettier
+  astro.sh                 # local dev commands (dev/build/preview/check/format), one
+                            # `case` switch on a subcommand — they share scaffolding
   deploy.sh                # trigger/verify deploy (push to main, or check GH Actions status)
   upstream-sync.sh          # fetch upstream, fast-forward the upstream-sync branch
   upstream-status.sh        # show if upstream has new commits not yet synced
@@ -98,16 +96,20 @@ key, its short menu label, and its longer description shown in parentheses — a
 together and never duplicated elsewhere.
 
 ```bash
-# example shape — one line per command, "|"-delimited
-dev|Dev server|Start the local dev server on :4321
-build|Build|Type-check and build the site to ./dist/
+# example shape — one line per command, "|"-delimited.
+# The key's first word is the script name; the rest is an optional subcommand.
+astro dev|Dev server|Start the local dev server on :4321
+astro build|Build|Type-check and build the site to ./dist/
+deploy|Deploy|Run pre-deploy checks and push to main
 ```
 
 **The handler is never written down as a separate field.** It's found by convention:
-the key `dev` always maps to `cli-scripts/dev.sh`. Renaming a script means renaming its
-key to match — there is nothing else to keep in sync, and nothing to accidentally
-mismatch. Do not add a fourth "handler path" field to the registry; that would duplicate
-information already implied by the key.
+the key's first word is the script name and the rest is an optional subcommand, so
+`astro dev` maps to `cli-scripts/astro.sh` invoked as `astro.sh dev`, while `deploy`
+maps to `cli-scripts/deploy.sh`. Renaming a script means renaming its key to match —
+there is nothing else to keep in sync, and nothing to accidentally mismatch. Do not add
+a fourth "handler path" field to the registry; that would duplicate information already
+implied by the key.
 
 Because the registry is plain text (not bash arrays or functions), **searching/filtering
 by content is a plain `grep -i` over the registry lines** — matching against both the
@@ -122,7 +124,8 @@ menu-rendering function in `shared.sh` (no separate code path for "top-level men
 
 - Top-level menu shows grouped entries like "Local dev" and "Upstream", each of which
   opens its own submenu.
-- The "Local dev" submenu lists `dev`, `build`, `preview`, `check`, `format`.
+- The "Local dev" submenu lists `astro dev`, `astro build`, `astro preview`,
+  `astro check`, `astro format`.
 - The "Upstream" submenu lists `upstream-sync`, `upstream-status`, and any future
   upstream-related command — this submenu exists specifically so more upstream-related
   commands can be added later without cluttering the top-level menu (see Task for
@@ -139,8 +142,8 @@ passed directly as an argument), **print the equivalent direct invocation** befo
 running it, e.g.:
 
 ```
-$ ./portfolio-cli build
-Equivalent: ./portfolio-cli build
+$ ./portfolio-cli astro build
+Equivalent: ./portfolio-cli astro build
 ```
 
 The point is that navigating menus and running `./portfolio-cli <key>` directly are
@@ -177,8 +180,12 @@ a shared helper in `shared.sh`, called by the dispatch logic — not repeated pe
   remember as a separate command), **add a corresponding script to `cli-scripts/`, a
   registry line, and wire it into the right menu (top-level or submenu)** as part of
   that task, so the CLI stays the single source of truth over time.
-- Keep each script in `cli-scripts/` focused on one action — don't grow a script to do
-  multiple unrelated things; add a new script instead.
+- Keep each script in `cli-scripts/` focused on one **cohesive job**. Distinct,
+  unrelated actions still get their own script (`deploy.sh`, `new-project.sh`, …). But
+  a group of closely-related commands that share the same scaffolding — e.g. the
+  local-dev `pnpm run` wrappers — may live in one script as a `case` switch on a
+  subcommand (`astro.sh dev`, `astro.sh build`, …). Don't grow a script to cover
+  multiple _unrelated_ jobs.
 - Any logic that ends up needed by more than one script (menu rendering, search,
   confirm prompts, gum/rtk detection, the "equivalent command" echo, anything else)
   belongs in `shared.sh` — never copy it between scripts.
@@ -293,7 +300,7 @@ Beyond the pause between tasks, stop **during** a task and ask if:
   hardcoded in a `.astro` component.
 - Keep the Zod schema (`src/content.config.ts`) as the source of truth for required/
   optional frontmatter fields. If you add a field (e.g. `type: "commissioned" |
-  "personal" | "company"`), update the schema first, then existing files.
+"personal" | "company"`), update the schema first, then existing files.
 
 ## Formatting and linting
 
@@ -306,13 +313,13 @@ Prefer `portfolio-cli` (see "Orchestrator CLI" above) for these. Raw `pnpm` comm
 below are what the CLI scripts call under the hood, and remain valid for one-off use:
 
 ```bash
-./portfolio-cli dev            # → cli-scripts/dev.sh      → pnpm run dev
-./portfolio-cli build          # → cli-scripts/build.sh    → pnpm run build
-./portfolio-cli preview        # → cli-scripts/preview.sh  → pnpm run preview
-./portfolio-cli check          # → cli-scripts/check.sh    → pnpm run check
-./portfolio-cli format         # → cli-scripts/format.sh   → pnpm run format
-./portfolio-cli deploy         # → cli-scripts/deploy.sh
-./portfolio-cli upstream-sync  # → cli-scripts/upstream-sync.sh
+./portfolio-cli astro dev     # → cli-scripts/astro.sh dev     → pnpm run dev
+./portfolio-cli astro build   # → cli-scripts/astro.sh build   → pnpm run build
+./portfolio-cli astro preview # → cli-scripts/astro.sh preview → pnpm run preview
+./portfolio-cli astro check   # → cli-scripts/astro.sh check   → pnpm run check
+./portfolio-cli astro format  # → cli-scripts/astro.sh format  → pnpm run format
+./portfolio-cli deploy        # → cli-scripts/deploy.sh
+./portfolio-cli upstream-sync # → cli-scripts/upstream-sync.sh
 ```
 
 ```bash
@@ -361,7 +368,7 @@ pnpm run format        # Prettier
   `cli-scripts/` action — one code path, gum as an optional wrapper only.
 - Do not skip `rtk` when it's available and applicable — see "rtk" section above.
 - Do not add a "handler path" field to the command registry — the handler is always
-  `cli-scripts/<key>.sh` by convention, never written down separately.
+  `cli-scripts/<first-word-of-key>.sh` by convention, never written down separately.
 - Do not add abstraction, configuration, or new shared helpers "for the future" without
   a concrete current need — ask the user first if unsure (see "Don't over-engineer"
   golden rule).

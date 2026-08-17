@@ -100,6 +100,12 @@ as they go.
 > Two bugs caught during verification: `GROUPS` is a reserved bash variable (renamed to
 > `SUBMENUS`), and the numbered fallback was writing menu output to stdout instead of
 > stderr (fixed so `$(pick_from_menu ...)` only captures the chosen key).
+>
+> **Consolidation (follow-up)**: the five near-identical local-dev wrappers were merged
+> into one `cli-scripts/astro.sh` with a `case` switch on a subcommand, and the registry
+> keys became two-word (`astro dev`, `astro build`, …). Dispatch now derives the handler
+> from the key's first word and passes the rest as an argument. AGENTS.md "one file, one
+> job" rule and the "handler by convention" wording were updated to match.
 
 ---
 
