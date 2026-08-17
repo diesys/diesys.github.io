@@ -14,30 +14,36 @@ not the original repo, and **keeps the git history and fork relationship as-is**
 removing `.git`, no reinitializing).
 
 - [x] Clone the user's personal fork (ask for the exact URL if not yet known).
-- [ ] Add the original template as a second remote named `upstream` (see AGENTS.md →
+- [x] Add the original template as a second remote named `upstream` (see AGENTS.md →
       "Branching strategy"):
       `bash
     git remote add upstream https://github.com/BracoZS/astro-starter-portfolio.git
     git fetch upstream
     `
-- [ ] Create the `upstream-sync` branch tracking `upstream/main` (see AGENTS.md for the
+- [x] Create the `upstream-sync` branch tracking `upstream/main` (see AGENTS.md for the
       full workflow), for future potential upstream contributions.
-- [ ] Verify that the original `LICENSE` file (MIT) is present in the root and is not
+- [x] Verify that the original `LICENSE` file (MIT) is present in the root and is not
       removed.
-- [ ] Add/verify a credit line in `README.md` pointing to the original source, e.g.
+- [x] Add/verify a credit line in `README.md` pointing to the original source, e.g.
       _"Built on top of [astro-starter-portfolio](https://github.com/BracoZS/astro-starter-portfolio)
       by BracoZS, MIT licensed."_
-- [ ] Convert the project to **pnpm**:
+- [x] Convert the project to **pnpm**:
   - Remove any non-pnpm lockfiles.
   - Verify/create `pnpm-workspace.yaml` if needed.
   - `pnpm install` and verify it generates a clean `pnpm-lock.yaml`.
-- [ ] Verify that `pnpm run dev` works and the site is reachable locally.
-- [ ] Verify that `pnpm run build` completes without errors (including type-check).
-- [ ] Update `src/site.config.ts` with clearly marked placeholder data (name, tagline,
+- [x] Verify that `pnpm run dev` works and the site is reachable locally.
+- [x] Verify that `pnpm run build` completes without errors (including type-check).
+- [x] Update `src/site.config.ts` with clearly marked placeholder data (name, tagline,
       email, social links) to be replaced with the user's real data.
-- [ ] Update `astro.config.mjs`: set `site` to `https://<username>.github.io` (replace
+- [x] Update `astro.config.mjs`: set `site` to `https://<username>.github.io` (replace
       `<username>` with the user's real GitHub username — ask if not yet known), no
       `base`.
+
+> **Done 2026-08-17**: repo renamed to `diesys.github.io` on GitHub (user action);
+> `origin` remote URL updated locally; `upstream` remote added; `upstream-sync` branch
+> created tracking `upstream/main`; README credit line added; `site` set to
+> `https://diesys.github.io`. `site.config.ts` still holds John Doe placeholders (user
+> asked to defer personal data).
 
 ---
 
