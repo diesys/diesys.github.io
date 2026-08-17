@@ -177,18 +177,34 @@ type: z.enum(["commissioned", "personal", "company"])
 
 ## Task 5 — Add React as an islands framework
 
-- [ ] `pnpm dlx astro add react` (or pnpm equivalent) to integrate the official
+- [x] `pnpm dlx astro add react` (or pnpm equivalent) to integrate the official
       `@astrojs/react` integration.
-- [ ] Verify `astro.config.mjs` correctly includes the React integration.
-- [ ] Create the `src/components/react/` subfolder for islands (see conventions in
+- [x] Verify `astro.config.mjs` correctly includes the React integration.
+- [x] Create the `src/components/react/` subfolder for islands (see conventions in
       AGENTS.md).
-- [ ] Create a minimal test React component (e.g. a counter or hello-world) and mount it
+- [x] Create a minimal test React component (e.g. a counter or hello-world) and mount it
       on a page with `client:visible` to verify hydration works correctly in both build
       and dev.
-- [ ] Remove the test component once verified (or leave it as an example — decide with
+- [x] Remove the test component once verified (or leave it as an example — decide with
       the user at the end of the task).
-- [ ] `pnpm run build` to confirm there are no regressions on the rest of the site
+- [x] `pnpm run build` to confirm there are no regressions on the rest of the site
       (which should remain zero-JS where islands aren't needed).
+
+> **Done 2026-08-17**: ran `pnpm exec astro add react --yes` (used the locally pinned
+> Astro 7 instead of `pnpm dlx`, which would fetch a separate Astro and could drift;
+> `--yes` to skip the interactive prompt). Added `@astrojs/react@^6.0.2`, `react` +
+> `react-dom` 19 and `@types/*` (all landed in `dependencies` — as `astro add` placed
+> them), `react()` in `astro.config.mjs`, `jsx`/`jsxImportSource` in `tsconfig.json`.
+> Test island `src/components/react/Counter.tsx` mounted on the homepage hero with
+> `client:visible` (user's choice — keeps Task 6's LetterGlitch location in mind).
+> Verified hydration in **build** (homepage HTML has `<astro-island client="visible">`
+> wiring `Counter` + the React renderer chunk; `/about` and `/work` reference no React
+> chunks) and in **dev** (SSR serves the island, `/about` has none). Per the task's
+> final decision, **removed** the Counter afterward — homepage back to zero React JS.
+> Note: `dist/_astro/client.*.js` (the React hydration runtime, ~187K) is still emitted
+> as an **orphan chunk** (unreferenced by any page) because the integration is installed
+> but unused; harmless and unreferenced, and it becomes load-bearing once Task 6 mounts
+> a real island.
 
 ---
 

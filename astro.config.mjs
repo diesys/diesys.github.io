@@ -3,6 +3,8 @@ import { defineConfig, fontProviders } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
+import react from '@astrojs/react';
+
 // GitHub Pages user site (root domain, no `base`) — powers the sitemap and the
 // canonical / Open Graph URLs in BaseLayout.
 const SITE_URL = 'https://diesys.github.io';
@@ -10,7 +12,7 @@ const SITE_URL = 'https://diesys.github.io';
 export default defineConfig({
   site: SITE_URL,
 
-  integrations: [sitemap()],
+  integrations: [sitemap(), react()],
 
   // Prefetches internal links on hover/viewport entry for near-instant navigation.
   prefetch: true,
