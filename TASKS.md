@@ -41,7 +41,76 @@ removing `.git`, no reinitializing).
 
 ---
 
-## Task 2 — Content Collection: extend the schema for the 3 project categories
+## Task 2 — Orchestrator CLI (`portfolio-cli`)
+
+Set up the single-entry-point CLI described in `AGENTS.md` → "Orchestrator CLI", before
+building further features on top, so subsequent tasks can wire their own actions into it
+as they go.
+
+- [ ] Create `cli-scripts/shared.sh` first, with:
+  - `command -v gum` and `command -v rtk` detection (once, reused everywhere).
+  - `confirm()` — asks yes/no, `gum confirm` backed if available, `read -p` fallback
+    otherwise.
+  - A menu-rendering function that takes a list of registry lines (`key|label|desc`)
+    and prints them formatted (key, label, description in parentheses) — used for both
+    the top-level menu and any submenu, no separate code path per level.
+  - A search/filter function: given a query string, `grep -i` over the registry lines,
+    matching against label and description.
+  - The "print the equivalent direct command" helper (e.g. prints
+    `Equivalent: ./portfolio-cli <key>`), called once from the dispatch logic before
+    running any command.
+- [ ] Create the `portfolio-cli` executable at the repo root (`chmod +x`), containing:
+  - The command registry as plain text, one `key|label|description` line per command
+    (see AGENTS.md — no handler path field; the handler is always
+    `cli-scripts/<key>.sh` by convention).
+  - Grouping of the registry into the top-level menu ("Local dev", "Upstream", plus any
+    ungrouped top-level commands) and submenus (see Tasks below for what goes in each).
+  - Dispatch logic: given a key, print the equivalent direct command (via the
+    `shared.sh` helper), then run `cli-scripts/<key>.sh`.
+  - A no-argument case that shows the interactive top-level menu (gum-backed picker via
+    `gum choose` if available, plain numbered list otherwise — same single dispatch
+    logic underneath either way).
+  - A search case (e.g. `./portfolio-cli search <query>`) that filters across the whole
+    registry regardless of grouping.
+- [ ] Create `cli-scripts/dev.sh`, `build.sh`, `preview.sh`, `check.sh`, `format.sh` —
+      thin wrappers around the equivalent `pnpm run` commands, and add their
+      corresponding registry lines grouped under a "Local dev" submenu.
+- [ ] Verify every script and the menu/search logic run correctly **both with and
+      without `gum` installed** (test by temporarily shadowing `gum` out of `PATH`), and
+      confirm there's a single code path per action per the "bash is the engine, gum is
+      only a skin" rule in `AGENTS.md` — not two parallel implementations.
+- [ ] If `rtk` is present on this system, wire it into `shared.sh` so scripts can use it
+      wherever applicable (see AGENTS.md → "rtk"); if not present, leave the detection
+      in place but don't hard-fail.
+- [ ] Update `README.md` with a short "CLI" section pointing to `./portfolio-cli` (no
+      args, for the interactive menu) and `./portfolio-cli search <query>` as the main
+      ways to interact with the repo.
+
+---
+
+## Task 3 — CLI: "Upstream" submenu
+
+A dedicated submenu in `portfolio-cli` for anything related to the forked upstream
+template, separate from "Local dev" — so more upstream-related commands can be added
+later without cluttering the top-level menu (see AGENTS.md → "Branching strategy" for
+the underlying git workflow this wraps).
+
+- [ ] Create `cli-scripts/upstream-status.sh`: fetches `upstream` and reports whether
+      `upstream-sync` is behind `upstream/main` (i.e. whether there are new upstream
+      commits not yet synced) — read-only, makes no changes.
+- [ ] Create `cli-scripts/upstream-sync.sh`: fetches `upstream` and fast-forwards the
+      local `upstream-sync` branch to `upstream/main` (see AGENTS.md workflow) — asks
+      for confirmation (via the `shared.sh` `confirm()` helper) before switching
+      branches if the working tree isn't clean.
+- [ ] Add both as registry lines grouped under an "Upstream" submenu in `portfolio-cli`.
+- [ ] Leave room in this submenu for future related commands (e.g. a helper to branch
+      off `upstream-sync` for a new `feature/*`, once that workflow is actually used) —
+      don't build those yet, just confirm the submenu structure doesn't need rework to
+      add them later.
+
+---
+
+## Task 4 — Content Collection: extend the schema for the 3 project categories
 
 - [ ] Open `src/content.config.ts` and extend the `work` collection's Zod schema by
       adding a field like:
@@ -53,10 +122,14 @@ removing `.git`, no reinitializing).
 - [ ] Create 1 example project for each category in `src/content/work/` to verify the
       schema works and the build passes.
 - [ ] `pnpm run check` and `pnpm run build` to validate the schema.
+- [ ] Add a `cli-scripts/new-project.sh` script wired into `portfolio-cli` that scaffolds
+      a new Markdown file in `src/content/work/` with the correct frontmatter shape
+      (including `type`), so adding future projects doesn't require remembering the
+      schema by hand.
 
 ---
 
-## Task 3 — Automatic deploy to GitHub Pages (`username.github.io`)
+## Task 4 — Automatic deploy to GitHub Pages (`username.github.io`)
 
 - [ ] Verify/create the repo with the exact name `<username>.github.io` (GitHub Pages
       requirement for a root/user site) — confirm the correct username with the user.
@@ -70,10 +143,14 @@ removing `.git`, no reinitializing).
       personal domain of the user's can be redirected with a permanent 301 redirect to
       `https://<username>.github.io` at the DNS/provider level — the agent does not
       perform this part, it's left entirely to the user.
+- [ ] Add a `cli-scripts/deploy.sh` script wired into `portfolio-cli` (`./portfolio-cli
+      deploy`) that runs the pre-deploy checks (build + check) and pushes to `main`,
+      with a confirmation prompt before pushing (gum-backed if available, per
+      `AGENTS.md`).
 
 ---
 
-## Task 4 — Add React as an islands framework
+## Task 5 — Add React as an islands framework
 
 - [ ] `pnpm dlx astro add react` (or pnpm equivalent) to integrate the official
       `@astrojs/react` integration.
@@ -90,7 +167,7 @@ removing `.git`, no reinitializing).
 
 ---
 
-## Task 5 — Interactive Letter Glitch component
+## Task 6 — Interactive Letter Glitch component
 
 - [ ] Source/adapt the `LetterGlitch` component (inspired by
       [ReactBits.dev](https://www.reactbits.dev/)) as a React component in
@@ -108,7 +185,7 @@ removing `.git`, no reinitializing).
 
 ---
 
-## Task 6 — Contact form (open decision)
+## Task 7 — Contact form (open decision)
 
 The solution for the contact form hasn't been chosen yet. Before implementing,
 **present options and let the user choose** among things like:

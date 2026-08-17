@@ -3,6 +3,35 @@
 This file guides any agent (including Claude Code) working on this repository: a UI/UX
 developer & designer portfolio site, built with Astro.
 
+## Golden rules
+
+These rules override convenience in every other section of this file.
+
+- **DRY — Don't Repeat Yourself.** Never duplicate logic across two places (e.g. the
+  same command written once for a "gum path" and once for a "bash path", the same list
+  of steps copy-pasted into two scripts, the same value hardcoded in multiple files).
+  If two things need to happen the same way, write it once and call it from both places.
+  When editing `cli-scripts/`, check whether existing logic can be reused before writing
+  new logic.
+- **Don't edit or delete unless explicitly asked for.** Never modify, refactor, rename,
+  reorganize, or delete existing files, scripts, content, or configuration that isn't
+  part of the current task — even if it looks improvable, outdated, or redundant. Flag
+  it to the user instead of touching it. This applies to code, content, and to
+  `cli-scripts/` itself: don't "clean up" a script you weren't asked to touch.
+- **Don't over-engineer.** DRY and modularity are goals, not excuses to add abstraction,
+  configuration, or indirection beyond what the task actually needs. Prefer the simplest
+  structure that avoids real duplication over a more "flexible" one that solves problems
+  that don't exist yet. When it's genuinely unclear whether something warrants more
+  structure (a new shared helper, a new abstraction layer, splitting a script into
+  several) versus keeping it simple and direct, **stop and ask the user** rather than
+  guessing — this is exactly the kind of judgment call that's cheap to ask about and
+  expensive to get wrong.
+- **Comments and file content are always in English.** Every file written to the repo —
+  code, comments, scripts, commit messages, `README.md`, this file, `TASKS.md` — is
+  always in English, no exceptions. Code must be meaningfully commented (why, not just
+  what) in English. Conversation with the user can be in Italian or English, the user's
+  choice — this rule only applies to what gets written to files.
+
 ## Project stack
 
 - **Framework**: Astro (base: [BracoZS/astro-starter-portfolio](https://github.com/BracoZS/astro-starter-portfolio) template)
@@ -23,6 +52,159 @@ developer & designer portfolio site, built with Astro.
   The git history and fork relationship must be kept as-is — never reinitialize the git
   repo from scratch. The original `LICENSE` file (MIT) stays in the root; the README
   includes a credit line to the source.
+- **Orchestrator CLI**: `portfolio-cli` is the main entry point for working on this repo
+  — see "Orchestrator CLI" section below. Prefer it over raw commands whenever an action
+  it covers applies.
+
+## Orchestrator CLI
+
+This repo has a single, unified command-line entry point: **`portfolio-cli`**, an
+executable at the repo root, backed by a **`cli-scripts/`** folder containing one script
+per action (modular — one file, one job).
+
+### Why this exists
+
+A single interface for everything that matters for this repo (builds, deploy, upstream
+checks, formatting, and anything added later) so nothing gets forgotten and there's one
+place to look instead of having to remember a growing list of loose commands and tool
+invocations.
+
+### Structure
+
+```
+portfolio-cli              # executable entry point at repo root, dispatches to cli-scripts/
+cli-scripts/
+  shared.sh                # shared logic: menu rendering, search/filter, gum/rtk
+                            # detection, confirm() helper, "equivalent command" echo —
+                            # ANY logic reused across scripts belongs here, not copied
+  dev.sh                   # start local dev server
+  build.sh                 # type-check + production build
+  preview.sh               # preview the production build
+  check.sh                 # astro check
+  format.sh                # run Prettier
+  deploy.sh                # trigger/verify deploy (push to main, or check GH Actions status)
+  upstream-sync.sh          # fetch upstream, fast-forward the upstream-sync branch
+  upstream-status.sh        # show if upstream has new commits not yet synced
+  new-project.sh            # scaffold a new Markdown file in src/content/work/ with the
+                             # right frontmatter shape (see content collection schema)
+```
+
+This list is a starting point, not fixed — see "Keeping it up to date" below.
+
+### Command registry: key, label, description
+
+Every leaf command (an entry that maps to a real `cli-scripts/*.sh` file) is declared in
+**one place**, as one line of `key|label|description`, in a plain text registry variable
+in `portfolio-cli`. This keeps the three pieces of information about a command — its
+key, its short menu label, and its longer description shown in parentheses — always
+together and never duplicated elsewhere.
+
+```bash
+# example shape — one line per command, "|"-delimited
+dev|Dev server|Start the local dev server on :4321
+build|Build|Type-check and build the site to ./dist/
+```
+
+**The handler is never written down as a separate field.** It's found by convention:
+the key `dev` always maps to `cli-scripts/dev.sh`. Renaming a script means renaming its
+key to match — there is nothing else to keep in sync, and nothing to accidentally
+mismatch. Do not add a fourth "handler path" field to the registry; that would duplicate
+information already implied by the key.
+
+Because the registry is plain text (not bash arrays or functions), **searching/filtering
+by content is a plain `grep -i` over the registry lines** — matching against both the
+label and the description. Keep it this simple; don't reach for `fzf` or another
+dependency unless the user asks for it.
+
+### Nested menus / submenus
+
+A submenu is just another registry list, grouped logically, rendered by the exact same
+menu-rendering function in `shared.sh` (no separate code path for "top-level menu" vs
+"submenu" — that would violate DRY). For example:
+
+- Top-level menu shows grouped entries like "Local dev" and "Upstream", each of which
+  opens its own submenu.
+- The "Local dev" submenu lists `dev`, `build`, `preview`, `check`, `format`.
+- The "Upstream" submenu lists `upstream-sync`, `upstream-status`, and any future
+  upstream-related command — this submenu exists specifically so more upstream-related
+  commands can be added later without cluttering the top-level menu (see Task for
+  upstream tooling in TASKS.md).
+
+Keep nesting to a maximum of one level deep (top-level → submenu → command) unless the
+user explicitly asks for more — deeper nesting adds navigation friction for little
+benefit at this project's size (see "Don't over-engineer" golden rule).
+
+### Showing the equivalent direct command
+
+Every time a command is run through the CLI (whether picked from an interactive menu or
+passed directly as an argument), **print the equivalent direct invocation** before
+running it, e.g.:
+
+```
+$ ./portfolio-cli build
+Equivalent: ./portfolio-cli build
+```
+
+The point is that navigating menus and running `./portfolio-cli <key>` directly are
+always equivalent and the user learns the direct form over time. Implement this once as
+a shared helper in `shared.sh`, called by the dispatch logic — not repeated per script.
+
+### Design: bash is the engine, gum is only a skin
+
+- **The actual logic of every action is plain, portable `bash`/`sh`.** Every script must
+  work correctly with no dependencies beyond standard Unix tools, so the CLI is fully
+  usable in any environment (including inside an agent's sandboxed shell where `gum`
+  isn't installed).
+- **[gum](https://github.com/charmbracelet/gum) is used only to make the interactive,
+  human-facing experience nicer when it's available** — spinners around long-running
+  commands (`gum spin -- <command>`), styled confirmations before destructive actions
+  (`gum confirm`), styled output (`gum style`), and an interactive menu picker
+  (`gum choose`) when browsing commands instead of typing a key directly. Gum wraps a
+  command that already works on its own; it must never be the only place logic lives.
+- **Never duplicate logic into a "gum version" and a "bash version" of the same action**
+  (see DRY golden rule). Detect gum once in `shared.sh` (`command -v gum`), and have each
+  script's core logic be a single code path that optionally gets a gum wrapper around
+  output/prompts, not two parallel implementations.
+- Concretely: if a script needs to ask "proceed? y/n", write it as a small helper in
+  `shared.sh` that uses `gum confirm` when available and falls back to `read -p` when not
+  — one call site in the script, one helper, two possible backends.
+
+### Rules for the agent
+
+- **Prefer `portfolio-cli` over raw commands** for anything it already covers (builds,
+  deploy, checks, upstream sync, etc.). Use raw `pnpm`/`git` commands directly only for
+  one-off things genuinely outside the CLI's scope.
+- **When a task in `TASKS.md` introduces a new recurring action** (a new build step, a
+  new check, a new deploy variant, anything you'd otherwise expect the user to have to
+  remember as a separate command), **add a corresponding script to `cli-scripts/`, a
+  registry line, and wire it into the right menu (top-level or submenu)** as part of
+  that task, so the CLI stays the single source of truth over time.
+- Keep each script in `cli-scripts/` focused on one action — don't grow a script to do
+  multiple unrelated things; add a new script instead.
+- Any logic that ends up needed by more than one script (menu rendering, search,
+  confirm prompts, gum/rtk detection, the "equivalent command" echo, anything else)
+  belongs in `shared.sh` — never copy it between scripts.
+- Every script must support being run non-interactively (no hard dependency on a TTY or
+  on gum being present), since the agent itself may need to invoke these scripts.
+- Keep the registry and the submenu grouping as simple as the project actually needs
+  (see "Don't over-engineer" golden rule) — if unsure whether something warrants a new
+  submenu, a new shared helper, or more structure, ask the user first.
+
+### Keeping it up to date
+
+The CLI is meant to grow with the project. Whenever a new tool, workflow, or repeated
+manual step becomes useful (e.g. a new lint tool, a new deploy target, a Lighthouse
+check), evaluate whether it belongs in `portfolio-cli`/`cli-scripts/` rather than being a
+one-off command mentioned only in a task or in conversation. If it does, add it and
+update this section's script list above to reflect the new addition.
+
+### rtk (rust token killer)
+
+If **`rtk`** is present on the system (`command -v rtk`), it must **always** be used
+wherever it applies (e.g. reducing/processing token-heavy output, logs, or other places
+`rtk` is suited for) — this applies both inside `cli-scripts/` and in the agent's own
+direct shell usage outside the CLI. Do not skip it silently if it's available; if it's
+not installed, proceed without it.
 
 ## Branching strategy (for potential upstream contributions)
 
@@ -122,7 +304,20 @@ Beyond the pause between tasks, stop **during** a task and ask if:
 - **Biome**: evaluated and dropped — support for `.astro` files isn't mature enough. Do
   not re-propose the migration unless the user explicitly asks again in the future.
 
-## Useful commands (pnpm)
+## Useful commands
+
+Prefer `portfolio-cli` (see "Orchestrator CLI" above) for these. Raw `pnpm` commands
+below are what the CLI scripts call under the hood, and remain valid for one-off use:
+
+```bash
+./portfolio-cli dev            # → cli-scripts/dev.sh      → pnpm run dev
+./portfolio-cli build          # → cli-scripts/build.sh    → pnpm run build
+./portfolio-cli preview        # → cli-scripts/preview.sh  → pnpm run preview
+./portfolio-cli check          # → cli-scripts/check.sh    → pnpm run check
+./portfolio-cli format         # → cli-scripts/format.sh   → pnpm run format
+./portfolio-cli deploy         # → cli-scripts/deploy.sh
+./portfolio-cli upstream-sync  # → cli-scripts/upstream-sync.sh
+```
 
 ```bash
 pnpm install          # install dependencies
@@ -164,3 +359,17 @@ pnpm run format        # Prettier
   from `<username>.github.io`, not from a custom domain attached to the repo).
 - Do not edit `upstream-sync` by hand, and do not mix personal customizations into
   `feature/*` branches meant for potential upstream contribution.
+- Do not duplicate the same logic in multiple scripts or files (DRY golden rule) —
+  reuse `cli-scripts/shared.sh` helpers instead of re-implementing them.
+- Do not edit, refactor, rename, or delete existing files/scripts/content that aren't
+  part of the current task, even if they look improvable (see golden rules above).
+- Do not write a "gum version" and a separate "bash version" of the same
+  `cli-scripts/` action — one code path, gum as an optional wrapper only.
+- Do not skip `rtk` when it's available and applicable — see "rtk" section above.
+- Do not add a "handler path" field to the command registry — the handler is always
+  `cli-scripts/<key>.sh` by convention, never written down separately.
+- Do not add abstraction, configuration, or new shared helpers "for the future" without
+  a concrete current need — ask the user first if unsure (see "Don't over-engineer"
+  golden rule).
+- Do not write comments, scripts, or any committed file content in Italian — always
+  English (see golden rules above). This doesn't apply to conversation with the user.
