@@ -13,7 +13,7 @@ into their own personal account. The agent works by cloning/using **the user's f
 not the original repo, and **keeps the git history and fork relationship as-is** (no
 removing `.git`, no reinitializing).
 
-- [ ] Clone the user's personal fork (ask for the exact URL if not yet known).
+- [x] Clone the user's personal fork (ask for the exact URL if not yet known).
 - [ ] Add the original template as a second remote named `upstream` (see AGENTS.md →
       "Branching strategy"):
       ```bash
