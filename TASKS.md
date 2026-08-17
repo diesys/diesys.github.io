@@ -129,7 +129,7 @@ the underlying git workflow this wraps).
 
 ---
 
-## Task 4 — Automatic deploy to GitHub Pages (`username.github.io`)
+## Task 5 — Automatic deploy to GitHub Pages (`username.github.io`)
 
 - [ ] Verify/create the repo with the exact name `<username>.github.io` (GitHub Pages
       requirement for a root/user site) — confirm the correct username with the user.
@@ -150,7 +150,7 @@ the underlying git workflow this wraps).
 
 ---
 
-## Task 5 — Add React as an islands framework
+## Task 6 — Add React as an islands framework
 
 - [ ] `pnpm dlx astro add react` (or pnpm equivalent) to integrate the official
       `@astrojs/react` integration.
@@ -167,7 +167,7 @@ the underlying git workflow this wraps).
 
 ---
 
-## Task 6 — Interactive Letter Glitch component
+## Task 7 — Interactive Letter Glitch component
 
 - [ ] Source/adapt the `LetterGlitch` component (inspired by
       [ReactBits.dev](https://www.reactbits.dev/)) as a React component in
@@ -185,7 +185,7 @@ the underlying git workflow this wraps).
 
 ---
 
-## Task 7 — Contact form (open decision)
+## Task 8 — Contact form (open decision)
 
 The solution for the contact form hasn't been chosen yet. Before implementing,
 **present options and let the user choose** among things like:

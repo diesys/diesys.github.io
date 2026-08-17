@@ -3,9 +3,9 @@ import { defineConfig, fontProviders } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
-// Replace with your production URL after deploying to Vercel / Netlify.
-// It powers the sitemap and the canonical / Open Graph URLs in BaseLayout.
-const SITE_URL = 'https://astro-starter-portfolio.vercel.app';
+// GitHub Pages user site (root domain, no `base`) — powers the sitemap and the
+// canonical / Open Graph URLs in BaseLayout.
+const SITE_URL = 'https://diesys.github.io';
 
 export default defineConfig({
   site: SITE_URL,

@@ -39,8 +39,6 @@ These rules override convenience in every other section of this file.
   example, and instruction in the README must use `pnpm`.
 - **Styling**: Tailwind CSS v4 (CSS-first, `@theme` in `src/styles/global.css`) — **do
   not migrate to v3, do not introduce a `tailwind.config.js`**.
-- **Linting/Formatting**: Prettier, final choice — Biome was evaluated and dropped (see
-  "Formatting and linting" section below).
 - **TypeScript**: strict mode, as shipped by the template. Do not loosen `tsconfig.json`.
 - **Content**: Astro Content Collections (`src/content/work/*.md`) with a Zod schema in
   `src/content.config.ts`. Every project (commissioned, personal, company) is a Markdown
@@ -301,8 +299,6 @@ Beyond the pause between tasks, stop **during** a task and ask if:
 
 - **Prettier is the project's standard, final.** Run `pnpm run format` before every
   commit.
-- **Biome**: evaluated and dropped — support for `.astro` files isn't mature enough. Do
-  not re-propose the migration unless the user explicitly asks again in the future.
 
 ## Useful commands
 
@@ -353,8 +349,6 @@ pnpm run format        # Prettier
   (see TASKS.md — this task is open across multiple options).
 - Do not make automatic commits/pushes to `main` without the user explicitly requesting
   it for that task.
-- Do not re-propose Biome as a Prettier replacement (already evaluated and dropped for
-  insufficient `.astro` support).
 - Do not create `public/CNAME` or set `base` in `astro.config.mjs` (the site is served
   from `<username>.github.io`, not from a custom domain attached to the repo).
 - Do not edit `upstream-sync` by hand, and do not mix personal customizations into
