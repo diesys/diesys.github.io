@@ -150,7 +150,44 @@ type: z.enum(["commissioned", "personal", "company"])
 
 ---
 
-## Task 5 — Automatic deploy to GitHub Pages (`username.github.io`)
+## Task 5 — Add React as an islands framework
+
+- [ ] `pnpm dlx astro add react` (or pnpm equivalent) to integrate the official
+      `@astrojs/react` integration.
+- [ ] Verify `astro.config.mjs` correctly includes the React integration.
+- [ ] Create the `src/components/react/` subfolder for islands (see conventions in
+      AGENTS.md).
+- [ ] Create a minimal test React component (e.g. a counter or hello-world) and mount it
+      on a page with `client:visible` to verify hydration works correctly in both build
+      and dev.
+- [ ] Remove the test component once verified (or leave it as an example — decide with
+      the user at the end of the task).
+- [ ] `pnpm run build` to confirm there are no regressions on the rest of the site
+      (which should remain zero-JS where islands aren't needed).
+
+---
+
+## Task 6 — Interactive Letter Glitch component
+
+- [ ] Source/adapt the `LetterGlitch` component (inspired by
+      [ReactBits.dev](https://www.reactbits.dev/)) as a React component in
+      `src/components/react/LetterGlitch.tsx`.
+- [ ] Adapt styling/colors to the site's design tokens (`--paper`, `--ink`, `--ink-soft`,
+      `--signal`, `--line` in `src/styles/global.css`) — don't leave hardcoded colors
+      from the original component.
+- [ ] Mount it as an island (`client:visible` recommended, since immediate interactivity
+      on first paint likely isn't needed) in a position to be agreed on (e.g. homepage
+      hero).
+- [ ] Verify performance: the component must not noticeably degrade the homepage's
+      Lighthouse score. If it does, flag it before proceeding further.
+- [ ] Verify `prefers-reduced-motion`: the component must respect the user's preference
+      and disable/reduce the effect if reduced motion is requested.
+
+---
+
+---
+
+## Task 7 — Automatic deploy to GitHub Pages (`username.github.io`)
 
 - [ ] Verify/create the repo with the exact name `<username>.github.io` (GitHub Pages
       requirement for a root/user site) — confirm the correct username with the user.
@@ -168,43 +205,6 @@ type: z.enum(["commissioned", "personal", "company"])
 deploy`) that runs the pre-deploy checks (build + check) and pushes to `main`,
       with a confirmation prompt before pushing (gum-backed if available, per
       `AGENTS.md`).
-
----
-
-## Task 6 — Add React as an islands framework
-
-- [ ] `pnpm dlx astro add react` (or pnpm equivalent) to integrate the official
-      `@astrojs/react` integration.
-- [ ] Verify `astro.config.mjs` correctly includes the React integration.
-- [ ] Create the `src/components/react/` subfolder for islands (see conventions in
-      AGENTS.md).
-- [ ] Create a minimal test React component (e.g. a counter or hello-world) and mount it
-      on a page with `client:visible` to verify hydration works correctly in both build
-      and dev.
-- [ ] Remove the test component once verified (or leave it as an example — decide with
-      the user at the end of the task).
-- [ ] `pnpm run build` to confirm there are no regressions on the rest of the site
-      (which should remain zero-JS where islands aren't needed).
-
----
-
-## Task 7 — Interactive Letter Glitch component
-
-- [ ] Source/adapt the `LetterGlitch` component (inspired by
-      [ReactBits.dev](https://www.reactbits.dev/)) as a React component in
-      `src/components/react/LetterGlitch.tsx`.
-- [ ] Adapt styling/colors to the site's design tokens (`--paper`, `--ink`, `--ink-soft`,
-      `--signal`, `--line` in `src/styles/global.css`) — don't leave hardcoded colors
-      from the original component.
-- [ ] Mount it as an island (`client:visible` recommended, since immediate interactivity
-      on first paint likely isn't needed) in a position to be agreed on (e.g. homepage
-      hero).
-- [ ] Verify performance: the component must not noticeably degrade the homepage's
-      Lighthouse score. If it does, flag it before proceeding further.
-- [ ] Verify `prefers-reduced-motion`: the component must respect the user's preference
-      and disable/reduce the effect if reduced motion is requested.
-
----
 
 ## Task 8 — Contact form (open decision)
 
