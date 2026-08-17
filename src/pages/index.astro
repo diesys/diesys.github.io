@@ -4,6 +4,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import Button from '@/components/Button.astro';
 import WorkRow from '@/components/WorkRow.astro';
 import SectionHeading from '@/components/SectionHeading.astro';
+import LetterGlitch from '@/components/react/LetterGlitch';
 import { SITE } from '@/site.config';
 
 const allWork = await getCollection('work', ({ data }) => !data.draft);
@@ -14,23 +15,28 @@ const selected = [...featured, ...rest].slice(0, 5);
 ---
 
 <BaseLayout title={SITE.name}>
-  <section class="mx-auto max-w-3xl px-6 pt-16 pb-20 sm:pt-24">
-    <p class="text-ink-soft mb-6 inline-flex items-center gap-2 font-mono text-xs">
-      <span class="bg-signal h-1.5 w-1.5 rounded-full" aria-hidden="true"></span>
-      {SITE.status}
-    </p>
+  <section class="relative overflow-hidden">
+    <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+      <LetterGlitch client:visible />
+    </div>
+    <div class="relative mx-auto max-w-3xl px-6 pt-16 pb-20 sm:pt-24">
+      <p class="text-ink-soft mb-6 inline-flex items-center gap-2 font-mono text-xs">
+        <span class="bg-signal h-1.5 w-1.5 rounded-full" aria-hidden="true"></span>
+        {SITE.status}
+      </p>
 
-    <h1 class="font-display text-ink max-w-2xl text-4xl leading-[1.1] font-medium sm:text-5xl">
-      {SITE.tagline}
-    </h1>
+      <h1 class="font-display text-ink max-w-2xl text-4xl leading-[1.1] font-medium sm:text-5xl">
+        {SITE.tagline}
+      </h1>
 
-    <p class="text-ink-soft mt-6 max-w-md">
-      {SITE.role} — based on the work below, not a list of buzzwords.
-    </p>
+      <p class="text-ink-soft mt-6 max-w-md">
+        {SITE.role} — based on the work below, not a list of buzzwords.
+      </p>
 
-    <div class="mt-8 flex flex-wrap items-center gap-3">
-      <Button href="/work" variant="solid">View the work →</Button>
-      <Button href="#contact" variant="ghost">Say hello</Button>
+      <div class="mt-8 flex flex-wrap items-center gap-3">
+        <Button href="/work" variant="solid">View the work →</Button>
+        <Button href="#contact" variant="ghost">Say hello</Button>
+      </div>
     </div>
   </section>
 

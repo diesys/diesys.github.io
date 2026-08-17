@@ -210,19 +210,45 @@ type: z.enum(["commissioned", "personal", "company"])
 
 ## Task 6 — Interactive Letter Glitch component
 
-- [ ] Source/adapt the `LetterGlitch` component (inspired by
+- [x] Source/adapt the `LetterGlitch` component (inspired by
       [ReactBits.dev](https://www.reactbits.dev/)) as a React component in
       `src/components/react/LetterGlitch.tsx`.
-- [ ] Adapt styling/colors to the site's design tokens (`--paper`, `--ink`, `--ink-soft`,
+- [x] Adapt styling/colors to the site's design tokens (`--paper`, `--ink`, `--ink-soft`,
       `--signal`, `--line` in `src/styles/global.css`) — don't leave hardcoded colors
       from the original component.
-- [ ] Mount it as an island (`client:visible` recommended, since immediate interactivity
+- [x] Mount it as an island (`client:visible` recommended, since immediate interactivity
       on first paint likely isn't needed) in a position to be agreed on (e.g. homepage
       hero).
-- [ ] Verify performance: the component must not noticeably degrade the homepage's
+- [x] Verify performance: the component must not noticeably degrade the homepage's
       Lighthouse score. If it does, flag it before proceeding further.
-- [ ] Verify `prefers-reduced-motion`: the component must respect the user's preference
+- [x] Verify `prefers-reduced-motion`: the component must respect the user's preference
       and disable/reduce the effect if reduced motion is requested.
+
+> **Done 2026-08-17**: adapted the ReactBits `LetterGlitch` into
+> `src/components/react/LetterGlitch.tsx` (260-line canvas char-grid, adapted from the
+> `DavidHDev/react-bits` repo — reactbits.dev renders client-side and the `reactbits`
+> npm package doesn't exist). No hardcoded colors left: glitch palette
+> `[--ink-soft, --ink, --signal]` and the `--paper` background/vignettes are read live
+> via `getComputedStyle` (canvas fillStyle can't resolve `var()`), a `MutationObserver`
+> on `<html>`'s `class` re-reads the tokens and rebuilds the grid on the `.dark` theme
+> swap, the site's mono family (`--ff-mono`) is used instead of generic `monospace`,
+> `prefers-reduced-motion` renders a single static frame (with a `change` listener for
+> mid-session preference switches), and the canvas is `aria-hidden`. Mounted **hero
+> full-bleed** (user's choice) in `src/pages/index.astro`: hero section became
+> `relative overflow-hidden` with the island in an `absolute inset-0` wrapper behind the
+> existing `max-w-3xl` content (which is `relative` to stay above it). `client:visible`
+> (the previously-orphaned React runtime chunk is now loaded by the homepage).
+> **Lighthouse** (Chromium headless against the production preview): performance **94**
+> — LCP 2.6s (display font render delay), TBT 200ms, CLS 0.01, SI 1.3s; total transfer
+> ~279KB (fonts 193KB, script 71KB), no images/third-party. Earlier score 33 was a
+> mis-run against a leftover dev server on :4321 (dev-toolbar/vite deps ~5MB), not the
+> build. Reduced-motion verified end-to-end: two CDP screenshots 600ms apart from the
+> same page instance differ 18.7% with normal motion and 0.00% with
+> `--force-prefers-reduced-motion`. Flag: real Lighthouse should be re-run in the user's
+> own environment (numbers above are from this sandbox's headless Chromium). Also
+> flagged: 6 pre-existing files don't pass `prettier --check` (astro.config.mjs,
+> public/site.webmanifest, src/components/BaseHead.astro, src/site.config.ts,
+> src/utils/formatDate.ts, tsconfig.json) — left untouched per the golden rules.
 
 ---
 
