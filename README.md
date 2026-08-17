@@ -128,3 +128,7 @@ sitemap and canonical URLs.
 
 MIT — see [LICENSE](./LICENSE). Free to use for personal or commercial projects,
 attribution appreciated but not required.
+
+Built on top of
+[astro-starter-portfolio](https://github.com/BracoZS/astro-starter-portfolio) by
+BracoZS, MIT licensed.
