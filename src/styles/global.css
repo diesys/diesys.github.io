@@ -19,6 +19,8 @@
   --signal: #3d3dff; /* the one accent color */
   --line: #e4e2dc; /* borders, rules */
   --surface: #efeeea; /* cards, raised panels */
+
+  scroll-behavior: smooth;
 }
 
 .dark {
