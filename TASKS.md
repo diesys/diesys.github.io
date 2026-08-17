@@ -16,17 +16,17 @@ removing `.git`, no reinitializing).
 - [x] Clone the user's personal fork (ask for the exact URL if not yet known).
 - [ ] Add the original template as a second remote named `upstream` (see AGENTS.md →
       "Branching strategy"):
-      ```bash
-      git remote add upstream https://github.com/BracoZS/astro-starter-portfolio.git
-      git fetch upstream
-      ```
+      `bash
+    git remote add upstream https://github.com/BracoZS/astro-starter-portfolio.git
+    git fetch upstream
+    `
 - [ ] Create the `upstream-sync` branch tracking `upstream/main` (see AGENTS.md for the
       full workflow), for future potential upstream contributions.
 - [ ] Verify that the original `LICENSE` file (MIT) is present in the root and is not
       removed.
 - [ ] Add/verify a credit line in `README.md` pointing to the original source, e.g.
-      *"Built on top of [astro-starter-portfolio](https://github.com/BracoZS/astro-starter-portfolio)
-      by BracoZS, MIT licensed."*
+      _"Built on top of [astro-starter-portfolio](https://github.com/BracoZS/astro-starter-portfolio)
+      by BracoZS, MIT licensed."_
 - [ ] Convert the project to **pnpm**:
   - Remove any non-pnpm lockfiles.
   - Verify/create `pnpm-workspace.yaml` if needed.
@@ -114,9 +114,9 @@ the underlying git workflow this wraps).
 
 - [ ] Open `src/content.config.ts` and extend the `work` collection's Zod schema by
       adding a field like:
-      ```ts
-      type: z.enum(["commissioned", "personal", "company"])
-      ```
+      `ts
+    type: z.enum(["commissioned", "personal", "company"])
+    `
 - [ ] Update any components that list projects (`WorkRow.astro`, the `work/[id].astro`
       page, the homepage) to display/filter by `type` where relevant.
 - [ ] Create 1 example project for each category in `src/content/work/` to verify the
@@ -144,7 +144,7 @@ the underlying git workflow this wraps).
       `https://<username>.github.io` at the DNS/provider level — the agent does not
       perform this part, it's left entirely to the user.
 - [ ] Add a `cli-scripts/deploy.sh` script wired into `portfolio-cli` (`./portfolio-cli
-      deploy`) that runs the pre-deploy checks (build + check) and pushes to `main`,
+    deploy`) that runs the pre-deploy checks (build + check) and pushes to `main`,
       with a confirmation prompt before pushing (gum-backed if available, per
       `AGENTS.md`).
 
