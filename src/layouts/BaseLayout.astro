@@ -4,6 +4,7 @@ import Footer from '@/components/Footer.astro';
 import { SITE } from '@/site.config';
 import '@/styles/global.css';
 import BaseHead from '@/components/BaseHead.astro';
+import GradualBlur from '@/components/react/GradualBlur';
 
 interface Props {
   title: string;
@@ -19,11 +20,24 @@ const { title, description = SITE.description, image = '/og-image.png' } = Astro
   <head>
     <BaseHead title={title} description={description} image={image} />
   </head>
-  <body id="top" class="bg-paper text-ink">
+
+  <body id="top" class="bg-paper text-ink flex h-screen flex-col">
     <Header />
-    <main>
+
+    <main class="grow">
       <slot />
     </main>
+
     <Footer />
+
+    <GradualBlur
+      client:visible
+      aria-hidden="true"
+      target="page"
+      position="bottom"
+      height="8rem"
+      curve="bezier"
+      exponential={true}
+    />
   </body>
 </html>

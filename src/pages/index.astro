@@ -4,7 +4,6 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import Button from '@/components/Button.astro';
 import WorkRow from '@/components/WorkRow.astro';
 import SectionHeading from '@/components/SectionHeading.astro';
-import LetterGlitch from '@/components/react/LetterGlitch';
 import { SITE } from '@/site.config';
 
 const allWork = await getCollection('work', ({ data }) => !data.draft);
@@ -17,7 +16,7 @@ const selected = [...featured, ...rest].slice(0, 5);
 <BaseLayout title={SITE.name}>
   <section class="relative overflow-hidden">
     <div class="pointer-events-none absolute inset-0" aria-hidden="true">
-      <LetterGlitch client:visible />
+      <!-- <LetterGlitch client:visible /> -->
     </div>
     <div class="relative mx-auto max-w-3xl px-6 pt-16 pb-20 sm:pt-24">
       <p class="text-ink-soft mb-6 inline-flex items-center gap-2 font-mono text-xs">
