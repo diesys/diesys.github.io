@@ -116,18 +116,32 @@ template, separate from "Local dev" — so more upstream-related commands can be
 later without cluttering the top-level menu (see AGENTS.md → "Branching strategy" for
 the underlying git workflow this wraps).
 
-- [ ] Create `cli-scripts/upstream-status.sh`: fetches `upstream` and reports whether
+- [x] Create `cli-scripts/upstream-status.sh`: fetches `upstream` and reports whether
       `upstream-sync` is behind `upstream/main` (i.e. whether there are new upstream
       commits not yet synced) — read-only, makes no changes.
-- [ ] Create `cli-scripts/upstream-sync.sh`: fetches `upstream` and fast-forwards the
+- [x] Create `cli-scripts/upstream-sync.sh`: fetches `upstream` and fast-forwards the
       local `upstream-sync` branch to `upstream/main` (see AGENTS.md workflow) — asks
       for confirmation (via the `shared.sh` `confirm()` helper) before switching
       branches if the working tree isn't clean.
-- [ ] Add both as registry lines grouped under an "Upstream" submenu in `portfolio-cli`.
-- [ ] Leave room in this submenu for future related commands (e.g. a helper to branch
+- [x] Add both as registry lines grouped under an "Upstream" submenu in `portfolio-cli`.
+- [x] Leave room in this submenu for future related commands (e.g. a helper to branch
       off `upstream-sync` for a new `feature/*`, once that workflow is actually used) —
       don't build those yet, just confirm the submenu structure doesn't need rework to
       add them later.
+
+> **Done 2026-08-17**: created `cli-scripts/upstream-status.sh` (fetch + `git rev-list
+> --count` compare, reports up-to-date/behind/ahead-diverged, read-only) and
+> `cli-scripts/upstream-sync.sh` (fetch, confirm via `confirm()` if tree dirty,
+> checkout `upstream-sync`, `git merge --ff-only upstream/main`, restore previous
+> branch via an EXIT trap). Registered both under a new "Upstream" submenu — purely
+> data-driven, so future commands (e.g. a `feature/*` branch helper) just append one
+> member key + registry line, no rework. Verified end-to-end in a throwaway clone:
+> clean-tree fast-forward restores the original branch, dirty tree prompts
+> (gum-backed with TTY, `read -p` otherwise), and both work with gum shadowed out of
+> `PATH`. **Fixed `confirm()` in `cli-scripts/shared.sh`**: it previously called
+> `gum confirm` whenever gum was installed, which fails with no TTY (agent/pipe) —
+> now falls back to `read -p` when stdin isn't a terminal, per the AGENTS.md
+> non-interactive rule. `shellcheck` not installed on this system; `bash -n` passed.
 
 ---
 

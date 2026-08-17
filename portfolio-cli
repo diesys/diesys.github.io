@@ -24,6 +24,8 @@ astro build|Build|Type-check and build the site to ./dist/
 astro preview|Preview|Preview the production build
 astro check|Check|Run astro check
 astro format|Format|Run Prettier
+upstream status|Upstream status|Check for new upstream commits not yet synced
+upstream sync|Sync upstream|Fast-forward upstream-sync to upstream/main
 "
 
 # --- Menu grouping: one "group_key|group_label|member keys" line per submenu ---
@@ -31,6 +33,7 @@ astro format|Format|Run Prettier
 # Member keys are comma-separated because keys can contain spaces.
 SUBMENUS="
 local-dev|Local dev|astro dev,astro build,astro preview,astro check,astro format
+upstream|Upstream|upstream status,upstream sync
 "
 
 # is_group <key> — true if the key names a submenu group (not a leaf command).

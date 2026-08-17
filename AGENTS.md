@@ -79,8 +79,8 @@ cli-scripts/
   astro.sh                 # local dev commands (dev/build/preview/check/format), one
                             # `case` switch on a subcommand — they share scaffolding
   deploy.sh                # trigger/verify deploy (push to main, or check GH Actions status)
-  upstream-sync.sh          # fetch upstream, fast-forward the upstream-sync branch
-  upstream-status.sh        # show if upstream has new commits not yet synced
+  upstream.sh              # upstream template tooling (status/sync), one `case`
+                            # switch on a subcommand — they share scaffolding
   new-project.sh            # scaffold a new Markdown file in src/content/work/ with the
                              # right frontmatter shape (see content collection schema)
 ```
@@ -126,7 +126,7 @@ menu-rendering function in `shared.sh` (no separate code path for "top-level men
   opens its own submenu.
 - The "Local dev" submenu lists `astro dev`, `astro build`, `astro preview`,
   `astro check`, `astro format`.
-- The "Upstream" submenu lists `upstream-sync`, `upstream-status`, and any future
+- The "Upstream" submenu lists `upstream status`, `upstream sync`, and any future
   upstream-related command — this submenu exists specifically so more upstream-related
   commands can be added later without cluttering the top-level menu (see Task for
   upstream tooling in TASKS.md).
@@ -319,7 +319,8 @@ below are what the CLI scripts call under the hood, and remain valid for one-off
 ./portfolio-cli astro check   # → cli-scripts/astro.sh check   → pnpm run check
 ./portfolio-cli astro format  # → cli-scripts/astro.sh format  → pnpm run format
 ./portfolio-cli deploy        # → cli-scripts/deploy.sh
-./portfolio-cli upstream-sync # → cli-scripts/upstream-sync.sh
+./portfolio-cli upstream status # → cli-scripts/upstream.sh status
+./portfolio-cli upstream sync   # → cli-scripts/upstream.sh sync
 ```
 
 ```bash

@@ -14,7 +14,10 @@ command -v rtk >/dev/null 2>&1 && RTK_AVAILABLE=1 || RTK_AVAILABLE=0
 # backends: call sites never branch on gum themselves.
 confirm() {
   local prompt="$1" answer
-  if [ "$GUM_AVAILABLE" = "1" ]; then
+  # gum needs a real TTY; in a non-interactive shell (agent, pipes) it fails to
+  # open /dev/tty, so only use it when stdin is a terminal and fall back to
+  # read -p otherwise (see AGENTS.md — scripts must work non-interactively).
+  if [ "$GUM_AVAILABLE" = "1" ] && [ -t 0 ]; then
     gum confirm "$prompt"
     return $?
   fi
