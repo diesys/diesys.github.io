@@ -90,7 +90,7 @@ dispatch() {
   handler="${key%% *}"
   sub="${key#* }"
   [ "$sub" = "$key" ] && sub=''
-  print_equivalent "$key ${*}"
+  print_equivalent "$key${*:+ $*}"
   if [ -n "$sub" ]; then
     exec "$SCRIPT_DIR/cli-scripts/$handler.sh" "$sub" "$@"
   else
