@@ -1,6 +1,7 @@
 ---
 title: Studio OS
 summary: An internal tools platform that replaced six disconnected spreadsheets with one system the whole team trusted.
+type: company
 role: Lead Product Designer & Frontend Engineer
 date: 2026-04-01
 tags: [Product Design, Astro, TypeScript, Design Systems]

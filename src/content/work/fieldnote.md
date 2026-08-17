@@ -1,6 +1,7 @@
 ---
 title: Fieldnote
 summary: A minimal, offline-first notes app for researchers doing interviews away from reliable internet.
+type: personal
 role: Independent / Side Project
 date: 2025-06-20
 tags: [Svelte, PWA, IndexedDB]

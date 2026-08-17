@@ -321,6 +321,7 @@ below are what the CLI scripts call under the hood, and remain valid for one-off
 ./portfolio-cli deploy        # → cli-scripts/deploy.sh
 ./portfolio-cli upstream status # → cli-scripts/upstream.sh status
 ./portfolio-cli upstream sync   # → cli-scripts/upstream.sh sync
+./portfolio-cli new-project     # → cli-scripts/new-project.sh
 ```
 
 ```bash

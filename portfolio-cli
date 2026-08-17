@@ -26,6 +26,7 @@ astro check|Check|Run astro check
 astro format|Format|Run Prettier
 upstream status|Upstream status|Check for new upstream commits not yet synced
 upstream sync|Sync upstream|Fast-forward upstream-sync to upstream/main
+new-project|New project|Scaffold a new project Markdown file in src/content/work/
 "
 
 # --- Menu grouping: one "group_key|group_label|member keys" line per submenu ---
@@ -80,18 +81,20 @@ submenu_entries() {
   done < <(group_members "$1" | tr ',' '\n')
 }
 
-# dispatch <key> — print the equivalent direct command, then run the handler.
+# dispatch <key> [args...] — print the equivalent direct command, then run the
+# handler, forwarding any extra args (e.g. `./portfolio-cli new-project my-slug
+# --type commissioned` passes `my-slug --type commissioned` to the script).
 dispatch() {
-  local key handler sub
-  key="$1"
+  local key="$1" handler sub
+  shift
   handler="${key%% *}"
   sub="${key#* }"
   [ "$sub" = "$key" ] && sub=''
-  print_equivalent "$key"
+  print_equivalent "$key ${*}"
   if [ -n "$sub" ]; then
-    exec "$SCRIPT_DIR/cli-scripts/$handler.sh" "$sub"
+    exec "$SCRIPT_DIR/cli-scripts/$handler.sh" "$sub" "$@"
   else
-    exec "$SCRIPT_DIR/cli-scripts/$handler.sh"
+    exec "$SCRIPT_DIR/cli-scripts/$handler.sh" "$@"
   fi
 }
 
@@ -142,15 +145,17 @@ main() {
       usage
       ;;
     *)
-      local key="$1"
+      local key="$1" consumed=1
       if [ "$#" -ge 2 ] && registry_line "$1 $2" >/dev/null; then
         key="$1 $2"
+        consumed=2
       elif ! registry_line "$key" >/dev/null; then
         echo "Unknown command: $key" >&2
         usage >&2
         exit 1
       fi
-      dispatch "$key"
+      shift "$consumed"
+      dispatch "$key" "$@"
       ;;
   esac
 }

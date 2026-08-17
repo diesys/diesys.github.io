@@ -7,9 +7,9 @@ interface Props {
 }
 
 const { entry } = Astro.props;
-const { title, summary, date, tags } = entry.data;
+const { title, summary, date, tags, type } = entry.data;
 
-const stamp = formatDate(date, "compact");
+const stamp = formatDate(date, 'compact');
 ---
 
 <a
@@ -28,6 +28,9 @@ const stamp = formatDate(date, "compact");
   </span>
 
   <span class="flex items-center gap-4">
+    <span class="border-line text-ink-soft rounded-full border px-2 py-0.5 font-mono text-[10px]">
+      {type}
+    </span>
     <span class="text-ink-soft hidden font-mono text-[11px] md:block">
       {tags.slice(0, 2).join(' · ')}
     </span>

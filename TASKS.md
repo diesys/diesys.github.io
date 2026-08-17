@@ -130,7 +130,7 @@ the underlying git workflow this wraps).
       add them later.
 
 > **Done 2026-08-17**: created `cli-scripts/upstream-status.sh` (fetch + `git rev-list
-> --count` compare, reports up-to-date/behind/ahead-diverged, read-only) and
+--count` compare, reports up-to-date/behind/ahead-diverged, read-only) and
 > `cli-scripts/upstream-sync.sh` (fetch, confirm via `confirm()` if tree dirty,
 > checkout `upstream-sync`, `git merge --ff-only upstream/main`, restore previous
 > branch via an EXIT trap). Registered both under a new "Upstream" submenu — purely
@@ -147,20 +147,31 @@ the underlying git workflow this wraps).
 
 ## Task 4 — Content Collection: extend the schema for the 3 project categories
 
-- [ ] Open `src/content.config.ts` and extend the `work` collection's Zod schema by
+- [x] Open `src/content.config.ts` and extend the `work` collection's Zod schema by
       adding a field like:
       `ts
 type: z.enum(["commissioned", "personal", "company"])
 `
-- [ ] Update any components that list projects (`WorkRow.astro`, the `work/[id].astro`
+- [x] Update any components that list projects (`WorkRow.astro`, the `work/[id].astro`
       page, the homepage) to display/filter by `type` where relevant.
-- [ ] Create 1 example project for each category in `src/content/work/` to verify the
+- [x] Create 1 example project for each category in `src/content/work/` to verify the
       schema works and the build passes.
-- [ ] `pnpm run check` and `pnpm run build` to validate the schema.
-- [ ] Add a `cli-scripts/new-project.sh` script wired into `portfolio-cli` that scaffolds
+- [x] `pnpm run check` and `pnpm run build` to validate the schema.
+- [x] Add a `cli-scripts/new-project.sh` script wired into `portfolio-cli` that scaffolds
       a new Markdown file in `src/content/work/` with the correct frontmatter shape
       (including `type`), so adding future projects doesn't require remembering the
       schema by hand.
+
+> **Done 2026-08-17**: added required `type` enum to the `work` schema and assigned a
+> type to the 3 existing template projects — one per category — instead of creating 3
+> more placeholder files (studio-os → `company`, northwind-atlas → `commissioned`,
+> fieldnote → `personal`); flag if separate fresh examples are preferred. `type` is
+> surfaced in `WorkRow.astro` (border chip) and `work/[id].astro` (metadata row). Added
+> `cli-scripts/new-project.sh` (gum input / `read -p` when interactive, flags +
+> defaults when not) and extended `portfolio-cli` dispatch to forward extra args
+> (`./portfolio-cli new-project <slug> --type ...`); scaffolded projects default to
+> `draft: true` unless `--publish`. `pnpm run check` and `pnpm run build` pass, also
+> with a freshly scaffolded file.
 
 ---
 

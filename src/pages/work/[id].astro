@@ -17,7 +17,7 @@ interface Props {
 }
 
 const { entry } = Astro.props;
-const { title, summary, role, date, tags, url, repo } = entry.data;
+const { title, summary, type, role, date, tags, url, repo } = entry.data;
 const { Content } = await render(entry);
 
 const formattedDate = formatDate(date);
@@ -36,6 +36,7 @@ const formattedDate = formatDate(date);
     <dl
       class="border-line text-ink-soft mt-6 flex flex-wrap gap-x-8 gap-y-2 border-y py-4 font-mono text-xs"
     >
+      <div><dt class="inline">Type —</dt><dd class="inline">{type}</dd></div>
       <div><dt class="inline">Role —</dt><dd class="inline">{role}</dd></div>
       <div><dt class="inline">Date —</dt><dd class="inline">{formattedDate}</dd></div>
       {
