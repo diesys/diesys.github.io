@@ -17,9 +17,9 @@ removing `.git`, no reinitializing).
 - [x] Add the original template as a second remote named `upstream` (see AGENTS.md →
       "Branching strategy"):
       `bash
-    git remote add upstream https://github.com/BracoZS/astro-starter-portfolio.git
-    git fetch upstream
-    `
+git remote add upstream https://github.com/BracoZS/astro-starter-portfolio.git
+git fetch upstream
+`
 - [x] Create the `upstream-sync` branch tracking `upstream/main` (see AGENTS.md for the
       full workflow), for future potential upstream contributions.
 - [x] Verify that the original `LICENSE` file (MIT) is present in the root and is not
@@ -53,7 +53,7 @@ Set up the single-entry-point CLI described in `AGENTS.md` → "Orchestrator CLI
 building further features on top, so subsequent tasks can wire their own actions into it
 as they go.
 
-- [ ] Create `cli-scripts/shared.sh` first, with:
+- [x] Create `cli-scripts/shared.sh` first, with:
   - `command -v gum` and `command -v rtk` detection (once, reused everywhere).
   - `confirm()` — asks yes/no, `gum confirm` backed if available, `read -p` fallback
     otherwise.
@@ -65,7 +65,7 @@ as they go.
   - The "print the equivalent direct command" helper (e.g. prints
     `Equivalent: ./portfolio-cli <key>`), called once from the dispatch logic before
     running any command.
-- [ ] Create the `portfolio-cli` executable at the repo root (`chmod +x`), containing:
+- [x] Create the `portfolio-cli` executable at the repo root (`chmod +x`), containing:
   - The command registry as plain text, one `key|label|description` line per command
     (see AGENTS.md — no handler path field; the handler is always
     `cli-scripts/<key>.sh` by convention).
@@ -78,19 +78,28 @@ as they go.
     logic underneath either way).
   - A search case (e.g. `./portfolio-cli search <query>`) that filters across the whole
     registry regardless of grouping.
-- [ ] Create `cli-scripts/dev.sh`, `build.sh`, `preview.sh`, `check.sh`, `format.sh` —
+- [x] Create `cli-scripts/dev.sh`, `build.sh`, `preview.sh`, `check.sh`, `format.sh` —
       thin wrappers around the equivalent `pnpm run` commands, and add their
       corresponding registry lines grouped under a "Local dev" submenu.
-- [ ] Verify every script and the menu/search logic run correctly **both with and
+- [x] Verify every script and the menu/search logic run correctly **both with and
       without `gum` installed** (test by temporarily shadowing `gum` out of `PATH`), and
       confirm there's a single code path per action per the "bash is the engine, gum is
       only a skin" rule in `AGENTS.md` — not two parallel implementations.
-- [ ] If `rtk` is present on this system, wire it into `shared.sh` so scripts can use it
+- [x] If `rtk` is present on this system, wire it into `shared.sh` so scripts can use it
       wherever applicable (see AGENTS.md → "rtk"); if not present, leave the detection
       in place but don't hard-fail.
-- [ ] Update `README.md` with a short "CLI" section pointing to `./portfolio-cli` (no
+- [x] Update `README.md` with a short "CLI" section pointing to `./portfolio-cli` (no
       args, for the interactive menu) and `./portfolio-cli search <query>` as the main
       ways to interact with the repo.
+
+> **Done 2026-08-17**: created `cli-scripts/shared.sh` (gum/rtk detection, `confirm`,
+> `render_menu`, `pick_from_menu`, `search_commands`, `rtk_filter`, `print_equivalent`)
+> and the `portfolio-cli` dispatcher with a plain-text registry + `SUBMENUS` grouping,
+> plus the five Local dev wrapper scripts. Verified search, direct dispatch, and the
+> interactive menu both with gum and with gum shadowed out of `PATH` (numbered fallback).
+> Two bugs caught during verification: `GROUPS` is a reserved bash variable (renamed to
+> `SUBMENUS`), and the numbered fallback was writing menu output to stdout instead of
+> stderr (fixed so `$(pick_from_menu ...)` only captures the chosen key).
 
 ---
 
@@ -121,8 +130,8 @@ the underlying git workflow this wraps).
 - [ ] Open `src/content.config.ts` and extend the `work` collection's Zod schema by
       adding a field like:
       `ts
-    type: z.enum(["commissioned", "personal", "company"])
-    `
+type: z.enum(["commissioned", "personal", "company"])
+`
 - [ ] Update any components that list projects (`WorkRow.astro`, the `work/[id].astro`
       page, the homepage) to display/filter by `type` where relevant.
 - [ ] Create 1 example project for each category in `src/content/work/` to verify the
@@ -150,7 +159,7 @@ the underlying git workflow this wraps).
       `https://<username>.github.io` at the DNS/provider level — the agent does not
       perform this part, it's left entirely to the user.
 - [ ] Add a `cli-scripts/deploy.sh` script wired into `portfolio-cli` (`./portfolio-cli
-    deploy`) that runs the pre-deploy checks (build + check) and pushes to `main`,
+deploy`) that runs the pre-deploy checks (build + check) and pushes to `main`,
       with a confirmation prompt before pushing (gum-backed if available, per
       `AGENTS.md`).
 

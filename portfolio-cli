@@ -1,0 +1,142 @@
+#!/usr/bin/env bash
+# portfolio-cli — single entry point for working on this repo.
+# Dispatch convention: a command `key` always maps to cli-scripts/<key>.sh;
+# the handler is never written down (see AGENTS.md → "Command registry").
+#
+#   ./portfolio-cli              interactive top-level menu
+#   ./portfolio-cli <key>        run a command directly
+#   ./portfolio-cli search Q     find commands matching Q
+#   ./portfolio-cli help         show usage
+
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# shellcheck source=cli-scripts/shared.sh
+source "$SCRIPT_DIR/cli-scripts/shared.sh"
+
+# --- Command registry: one "key|label|description" line per command ---
+# The single source of truth for commands. Search/filter greps these lines.
+REGISTRY="
+dev|Dev server|Start the local dev server on :4321
+build|Build|Type-check and build the site to ./dist/
+preview|Preview|Preview the production build
+check|Check|Run astro check
+format|Format|Run Prettier
+"
+
+# --- Menu grouping: one "group_key|group_label|member keys" line per submenu ---
+# Top-level menu shows each group as a selectable entry that opens its submenu.
+SUBMENUS="
+local-dev|Local dev|dev build preview check format
+"
+
+# is_group <key> — true if the key names a submenu group (not a leaf command).
+is_group() {
+  local key="$1"
+  awk -F'|' -v k="$key" '$1==k{found=1} END{exit !found}' <<<"$SUBMENUS"
+}
+
+# group_members <key> — print the space-separated member keys of a submenu.
+group_members() {
+  local key="$1"
+  awk -F'|' -v k="$key" '$1==k{print $3}' <<<"$SUBMENUS"
+}
+
+# registry_line <key> — print the full registry line for a leaf command.
+# Exits non-zero when no such command exists (awk alone always returns 0).
+registry_line() {
+  local key="$1"
+  awk -F'|' -v k="$key" '$1==k{found=1; print} END{exit !found}' <<<"$REGISTRY"
+}
+
+# top_level_entries — group entries plus ungrouped top-level commands.
+top_level_entries() {
+  local group_key group_label members key
+  while IFS='|' read -r group_key group_label members; do
+    [ -z "$group_key" ] && continue
+    printf '%s|%s|Open the %s submenu\n' "$group_key" "$group_label" "$group_label"
+  done <<<"$SUBMENUS"
+
+  # Ungrouped commands: registry keys that are not a member of any group.
+  while IFS='|' read -r key _; do
+    [ -z "$key" ] && continue
+    if ! printf '%s\n' "$(awk -F'|' '{print $3}' <<<"$SUBMENUS")" | tr ' ' '\n' | grep -qx "$key"; then
+      registry_line "$key"
+    fi
+  done <<<"$REGISTRY"
+}
+
+# submenu_entries <group_key> — the registry lines for a group's member keys.
+submenu_entries() {
+  local key
+  for key in $(group_members "$1"); do
+    registry_line "$key"
+  done
+}
+
+# dispatch <key> — print the equivalent direct command, then run the handler.
+dispatch() {
+  local key="$1"
+  print_equivalent "$key"
+  exec "$SCRIPT_DIR/cli-scripts/$key.sh"
+}
+
+# interactive_menu — top-level picker; group choices open their submenu.
+interactive_menu() {
+  local chosen
+  chosen="$(pick_from_menu "$(top_level_entries)")" || { echo 'Aborted.'; exit 0; }
+  if is_group "$chosen"; then
+    chosen="$(pick_from_menu "$(submenu_entries "$chosen")")" || { echo 'Aborted.'; exit 0; }
+  fi
+  dispatch "$chosen"
+}
+
+usage() {
+  cat <<'EOF'
+Usage: ./portfolio-cli [command]
+       ./portfolio-cli search <query>
+       ./portfolio-cli help
+
+Commands:
+  (no args)      interactive top-level menu
+  search <query> find commands matching <query> across the whole registry
+  help           show this help
+
+Run ./portfolio-cli search <query> to find commands by label or description.
+EOF
+}
+
+main() {
+  case "${1:-}" in
+    '')
+      interactive_menu
+      ;;
+    search)
+      if [ "$#" -lt 2 ]; then
+        echo 'Usage: ./portfolio-cli search <query>' >&2
+        exit 1
+      fi
+      local query="$2" results
+      results="$(printf '%s\n' "$REGISTRY" | search_commands "$query")"
+      if [ -z "$results" ]; then
+        echo "No commands match '$query'."
+      else
+        printf '%s\n' "$results" | render_menu
+      fi
+      ;;
+    help | -h | --help)
+      usage
+      ;;
+    *)
+      if registry_line "$1" >/dev/null; then
+        dispatch "$1"
+      else
+        echo "Unknown command: $1" >&2
+        usage >&2
+        exit 1
+      fi
+      ;;
+  esac
+}
+
+main "$@"

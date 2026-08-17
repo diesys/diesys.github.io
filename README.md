@@ -54,6 +54,20 @@ Open `http://localhost:4321`.
 | `pnpm check`   | Run `astro check` only                             |
 | `pnpm format`  | Format the project with Prettier                   |
 
+## CLI
+
+This repo has a single entry point for everything it cares about: **`./portfolio-cli`**.
+
+```bash
+./portfolio-cli              # interactive menu (grouped by topic)
+./portfolio-cli search <q>   # find commands matching <q> (label or description)
+./portfolio-cli <key>        # run a command directly, e.g. ./portfolio-cli build
+```
+
+Every command shows its equivalent direct invocation (`Equivalent:
+./portfolio-cli <key>`) before running, so menu navigation and direct use are
+always the same thing.
+
 ## Project structure
 
 ```text
