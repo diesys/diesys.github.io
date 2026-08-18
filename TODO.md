@@ -1,3 +1,5 @@
+- usare i `Button` di astro ovunque al posto dei bottoni
+
 - slider morph
 - galaxy in hero home FARE PIU ALTO, COME UN VERO HERO (usare react-bits per lo scrolling stagged)
   - possibilmente con scroll-expand ? https://www.reactbits.dev/animations/scroll-expand

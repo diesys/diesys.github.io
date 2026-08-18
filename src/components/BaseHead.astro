@@ -90,5 +90,37 @@ const socialImage = new URL(image || '/og-image.png', Astro.site);
   });
 </script>
 
+{/* Reduced-motion freeze for animated icons */}
+<script is:inline>
+  // LineMD icons animate via SMIL, which cannot be stopped with CSS (so
+  // Tailwind's motion-reduce: variant is useless here). Under
+  // 'prefers-reduced-motion: reduce' every inline <svg> is seeked past its
+  // animations (they use fill="freeze", so the end state stays drawn) and
+  // paused. A MutationObserver also freezes icons injected later by React
+  // islands, which hydrate after astro:page-load and appear on open/close.
+  (function () {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const freeze = (svg) => {
+      svg.setCurrentTime(60);
+      svg.pauseAnimations();
+    };
+    const freezeAll = () => document.querySelectorAll('svg').forEach(freeze);
+    const observer = new MutationObserver((mutations) => {
+      if (!mq.matches) return;
+      mutations.forEach((m) =>
+        m.addedNodes.forEach((node) => {
+          if (node instanceof SVGSVGElement) freeze(node);
+          else if (node instanceof Element) node.querySelectorAll('svg').forEach(freeze);
+        }),
+      );
+    });
+    if (mq.matches) freezeAll();
+    mq.addEventListener('change', () => {
+      if (mq.matches) freezeAll();
+    });
+    observer.observe(document.documentElement, { childList: true, subtree: true });
+  })();
+</script>
+
 {/* View Transition API */}
 <ClientRouter />

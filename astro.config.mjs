@@ -2,6 +2,7 @@
 import { defineConfig, fontProviders } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
+import Icons from 'unplugin-icons/vite';
 
 import react from '@astrojs/react';
 
@@ -18,7 +19,7 @@ export default defineConfig({
   prefetch: true,
 
   vite: {
-    plugins: [tailwindcss()],
+    plugins: [Icons({ compiler: 'astro' }), tailwindcss()],
   },
 
   // Astro's built-in Fonts API: self-hosts and optimizes these at build time

@@ -130,6 +130,18 @@ Full write-up in Markdown.
 
 **Open Graph image.** Replace `public/og-image.png` with your own 1200×630 image.
 
+## Additions
+
+On top of the original
+[astro-starter-portfolio](https://github.com/BracoZS/astro-starter-portfolio)
+template, this repo adds:
+
+- **`portfolio-cli`** — a single CLI entry point for builds, deploy, and upstream sync (see [CLI](#cli)).
+- **Content schema `type` field** — `commissioned | personal | company`, plus a `new-project` scaffolding command.
+- **React islands** — `LetterGlitch`, `GradualBlur`, and an `OptionWheel`-based menu.
+- **Three-mode theme toggle** — light / auto / dark.
+- **Icon system** — LineMD animated icons via `unplugin-icons` (see [docs/icons.md](docs/icons.md)).
+
 ## Deploying
 
 This is a static site — it deploys anywhere that serves static files. See Astro's

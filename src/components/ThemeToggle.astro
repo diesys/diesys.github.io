@@ -6,68 +6,59 @@
 // interaction (light → dark → auto) after that, then re-applies via the
 // shared helper. Icon visibility is driven by html[data-theme] (the .dark
 // class alone cannot distinguish 'light' from 'auto').
+//
+// Icons are LineMD animated SVGs (see docs/icons.md). `moon-to-sunny-outline-transition`
+// morphs moon → sunny outline on mount (used for light), while `moon` is a
+// one-shot draw-in (used for dark). In 'auto' the icon shown is the one matching
+// the currently resolved OS theme (sun on a light system, moon on a dark one),
+// plus a small "A" badge (signal circle, paper letter) marking that the OS is
+// being followed rather than a forced mode.
+import IconMoonMorph from '~icons/line-md/moon-to-sunny-outline-transition';
+import IconMoon from '~icons/line-md/moon';
 ---
 
 <button
   type="button"
   data-theme-toggle
   aria-label="Switch theme"
-  class="text-ink-soft hover:border-signal hover:text-signal border-line flex h-9 w-9 shrink-0 items-center justify-center rounded-full border transition-colors"
+  class="text-ink-soft hover:border-signal hover:text-signal border-line relative flex h-9 w-9 shrink-0 items-center justify-center rounded-full border transition-colors"
 >
-  <svg
-    class="icon icon-sun h-4 w-4"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    stroke-width="1.75"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-    aria-hidden="true"
-  >
-    <circle cx="12" cy="12" r="4"></circle>
-    <path
-      d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"
-    ></path>
-  </svg>
-  <svg
-    class="icon icon-moon h-4 w-4"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    stroke-width="1.75"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-    aria-hidden="true"
-  >
-    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"></path>
-  </svg>
-  <svg
-    class="icon icon-auto h-4 w-4"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    stroke-width="1.75"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-    aria-hidden="true"
-  >
-    <circle cx="12" cy="12" r="9"></circle>
-    <path d="M12 3a9 9 0 1 1 0 18z" fill="currentColor" stroke="none"></path>
-  </svg>
+  <IconMoonMorph class="icon icon-sun h-4 w-4" />
+  <IconMoon class="icon icon-moon h-4 w-4" />
+  <span class="icon-badge" aria-hidden="true">A</span>
 </button>
 
 <style>
   .icon {
     display: none;
   }
-  :global(html[data-theme='light']) .icon-sun {
+  :global(html[data-theme='light']) .icon-sun,
+  :global(html[data-theme='auto']:not(.dark)) .icon-sun {
     display: block;
   }
-  :global(html[data-theme='dark']) .icon-moon {
+  :global(html[data-theme='dark']) .icon-moon,
+  :global(html[data-theme='auto'].dark) .icon-moon {
     display: block;
   }
-  :global(html[data-theme='auto']) .icon-auto {
-    display: block;
+
+  .icon-badge {
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 14px;
+    height: 14px;
+    border-radius: 9999px;
+    background-color: var(--signal);
+    color: var(--paper);
+    font-size: 9px;
+    font-weight: 700;
+    line-height: 1;
+  }
+  :global(html[data-theme='auto']) .icon-badge {
+    display: flex;
   }
 </style>
 
@@ -98,6 +89,25 @@
       button.setAttribute('aria-label', NEXT_LABEL[mode]);
     }
 
+    // LineMD SVGs animate only when (re)mounted. On a mode change the CSS swap
+    // just reveals a hidden <svg> without re-running its SMIL timeline, so the
+    // icon now shown is explicitly rewound to its start and unpaused.
+    function replayIcon(selector: string) {
+      requestAnimationFrame(() => {
+        const icon = button.querySelector<SVGSVGElement>(selector);
+        icon?.setCurrentTime(0);
+        icon?.unpauseAnimations();
+      });
+    }
+
+    // In 'auto' the visible icon follows the resolved OS theme: sun on a light
+    // system, moon on a dark one (the .dark class on <html> carries that).
+    function visibleIcon(mode: (typeof MODES)[number]): string {
+      if (mode === 'light') return '.icon-sun';
+      if (mode === 'dark') return '.icon-moon';
+      return document.documentElement.classList.contains('dark') ? '.icon-moon' : '.icon-sun';
+    }
+
     updateButton();
 
     button.addEventListener('click', () => {
@@ -107,6 +117,7 @@
       localStorage.setItem(STORAGE_KEY, next);
       window.__applyTheme?.();
       updateButton();
+      replayIcon(visibleIcon(next));
     });
   }
 

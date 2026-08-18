@@ -292,6 +292,40 @@ The solution for the contact form hasn't been chosen yet. Before implementing,
 
 ---
 
+## Task 9 — Icon system (LineMD via `unplugin-icons`)
+
+The site builds in animated icons from the LineMD set (MIT) with `unplugin-icons`
+(`compiler: 'astro'`), replacing the hand-drawn SVGs of the theme toggle and the
+menu button, plus a global `prefers-reduced-motion` freeze (SMIL cannot be stopped
+via CSS). See `docs/icons.md` for usage.
+
+- [x] Install `unplugin-icons` + `@iconify-json/line-md` (devDependencies).
+- [x] Register `Icons({ compiler: 'astro' })` in `astro.config.mjs` → `vite.plugins`.
+- [x] Create `src/env.d.ts` with the `unplugin-icons/types/astro` reference and exact
+      declarations for the `?raw` icons used in React.
+- [x] Migrate `ThemeToggle.astro` icons: `moon-to-sunny-outline-transition` for light
+      (morph, re-triggered on every switch into light via `setCurrentTime(0)`),
+      `moon` draw-in for dark; in auto the icon follows the resolved OS theme and a
+      small "A" badge (signal circle, paper letter) marks the auto mode.
+- [x] Migrate `MenuWheel.tsx` hamburger to LineMD raw SVGs (`menu` when closed,
+      `menu-to-close-alt-transition` when open, remounted via `key`).
+- [x] Add the reduce-motion freeze script (seeks + pauses all SMIL, MutationObserver
+      covers React-injected icons) in `BaseHead.astro`.
+- [x] Write `docs/icons.md` and link it from a new "Additions" section in `README.md`.
+- [x] Verified with `astro check` and `astro build`.
+
+> **Done.** Icon migration complete and verified. Decisions: global JS freeze (not
+> `motion-reduce:`) because SMIL can't be disabled via CSS; theme toggle morphs
+> `moon-to-sunny-outline-transition` on dark→light only (light→dark shows a `moon`
+> draw-in, asymmetric by design); in auto mode the icon reflects the resolved OS
+> theme and a small "A" badge marks that the OS is being followed; menu uses the
+> hamburger→X morph on open only.
+> Files touched: `astro.config.mjs`, `src/env.d.ts`,
+> `src/components/BaseHead.astro`, `src/components/ThemeToggle.astro`,
+> `src/components/react/MenuWheel.tsx`, `docs/icons.md`, `README.md`.
+
+---
+
 ## Backlog (unordered / to be turned into tasks when needed)
 
 Ideas collected but not yet turned into concrete tasks — to be discussed when this point

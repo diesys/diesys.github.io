@@ -1,5 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import OptionWheel from './OptionWheel';
+import rawMenu from '~icons/line-md/menu?raw';
+import rawMenuToClose from '~icons/line-md/menu-to-close-alt-transition?raw';
 
 interface MenuItem {
   label: string;
@@ -71,25 +73,21 @@ export default function MenuWheel({ items, defaultSelected = 0 }: MenuWheelProps
         onClick={() => setOpen((v) => !v)}
         className="border-line text-ink-soft hover:border-signal hover:text-signal flex h-9 w-9 shrink-0 items-center justify-center rounded-full border transition-colors"
       >
-        <svg
-          className="h-4 w-4"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="1.75"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          aria-hidden="true"
-        >
-          <path d="M3 6h18M3 12h18M3 18h18"></path>
-        </svg>
+        {/* LineMD raw SVGs (see docs/icons.md). The `key` forces a remount on
+            open/close so the menu→X morph replays; closed shows a one-shot
+            hamburger draw-in, open shows the morph frozen as X. */}
+        <span
+          key={open ? 'open' : 'closed'}
+          className="block h-4 w-4 [&>svg]:h-full [&>svg]:w-full"
+          dangerouslySetInnerHTML={{ __html: open ? rawMenuToClose : rawMenu }}
+        />
       </button>
 
       {open && (
         <div
           ref={overlayRef}
           id="option-wheel-menu"
-          className="bg-paper/80 fixed inset-0 z-50 h-dvh flex items-center justify-center backdrop-blur-xl"
+          className="bg-paper/80 fixed inset-0 z-50 flex h-dvh items-center justify-center backdrop-blur-xl"
           onClick={close}
         >
           <div className="size-full" onClick={(e) => e.stopPropagation()}>
