@@ -5,6 +5,7 @@ import Button from '@/components/Button.astro';
 import WorkRow from '@/components/WorkRow.astro';
 import SectionHeading from '@/components/SectionHeading.astro';
 import { SITE } from '@/site.config';
+import Galaxy from '@/components/react/Galaxy';
 
 const allWork = await getCollection('work', ({ data }) => !data.draft);
 const sorted = [...allWork].sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
@@ -14,10 +15,11 @@ const selected = [...featured, ...rest].slice(0, 5);
 ---
 
 <BaseLayout title={SITE.name}>
-  <section class="relative overflow-hidden">
-    <div class="pointer-events-none absolute inset-0" aria-hidden="true">
-      <!-- <LetterGlitch client:visible /> -->
+  <section class="relative overflow-hidden select-none">
+    <div class="absolute inset-0" aria-hidden="true">
+      <Galaxy client:visible mouseInteraction={true} />
     </div>
+
     <div class="relative mx-auto max-w-3xl px-6 pt-16 pb-20 sm:pt-24">
       <p class="text-ink-soft mb-6 inline-flex items-center gap-2 font-mono text-xs">
         <span class="bg-signal h-1.5 w-1.5 rounded-full" aria-hidden="true"></span>
