@@ -1,17 +1,21 @@
 ---
-// Pairs with the no-FOUC inline script in BaseLayout's <head>, which sets
-// the initial .dark class before first paint. This component only handles
-// the click-to-toggle interaction after that.
+// Pairs with the no-FOUC inline script in BaseLayout's <head>: that script
+// resolves the stored mode ('light' | 'dark' | 'auto', default 'auto') into
+// the .dark class and the html[data-theme] attribute before first paint, and
+// exposes window.__applyTheme. This component only handles the click-to-cycle
+// interaction (light → dark → auto) after that, then re-applies via the
+// shared helper. Icon visibility is driven by html[data-theme] (the .dark
+// class alone cannot distinguish 'light' from 'auto').
 ---
 
 <button
   type="button"
   data-theme-toggle
-  aria-label="Switch between light and dark theme"
+  aria-label="Switch theme"
   class="text-ink-soft hover:border-signal hover:text-signal border-line flex h-9 w-9 shrink-0 items-center justify-center rounded-full border transition-colors"
 >
   <svg
-    class="h-4 w-4 dark:hidden"
+    class="icon icon-sun h-4 w-4"
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
@@ -26,7 +30,7 @@
     ></path>
   </svg>
   <svg
-    class="hidden h-4 w-4 dark:block"
+    class="icon icon-moon h-4 w-4"
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
@@ -37,17 +41,72 @@
   >
     <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"></path>
   </svg>
+  <svg
+    class="icon icon-auto h-4 w-4"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.75"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+  >
+    <circle cx="12" cy="12" r="9"></circle>
+    <path d="M12 3a9 9 0 1 1 0 18z" fill="currentColor" stroke="none"></path>
+  </svg>
 </button>
 
+<style>
+  .icon {
+    display: none;
+  }
+  :global(html[data-theme='light']) .icon-sun {
+    display: block;
+  }
+  :global(html[data-theme='dark']) .icon-moon {
+    display: block;
+  }
+  :global(html[data-theme='auto']) .icon-auto {
+    display: block;
+  }
+</style>
+
 <script>
+  declare global {
+    interface Window {
+      __applyTheme?: () => void;
+    }
+  }
+
   function initThemeToggle() {
-    const button = document.querySelector<HTMLButtonElement>('[data-theme-toggle]');
-    if (!button || button.dataset.bound) return;
-    button.dataset.bound = 'true';
+    const toggle = document.querySelector<HTMLButtonElement>('[data-theme-toggle]');
+    if (!toggle || toggle.dataset.bound) return;
+    toggle.dataset.bound = 'true';
+    const button = toggle;
+
+    const STORAGE_KEY = 'theme';
+    const MODES = ['light', 'dark', 'auto'] as const;
+    const NEXT_LABEL: Record<(typeof MODES)[number], string> = {
+      light: 'Switch to dark theme',
+      dark: 'Switch to auto theme',
+      auto: 'Switch to light theme',
+    };
+
+    function updateButton() {
+      const mode =
+        (document.documentElement.dataset.theme as (typeof MODES)[number] | undefined) ?? 'auto';
+      button.setAttribute('aria-label', NEXT_LABEL[mode]);
+    }
+
+    updateButton();
 
     button.addEventListener('click', () => {
-      const isDark = document.documentElement.classList.toggle('dark');
-      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      const current =
+        (document.documentElement.dataset.theme as (typeof MODES)[number] | undefined) ?? 'auto';
+      const next = MODES[(MODES.indexOf(current) + 1) % MODES.length];
+      localStorage.setItem(STORAGE_KEY, next);
+      window.__applyTheme?.();
+      updateButton();
     });
   }
 

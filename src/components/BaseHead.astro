@@ -11,9 +11,7 @@ interface Props {
 
 const { title: pageTitle, description: pageDescription, image } = Astro.props;
 
-const fullTitle = pageTitle.includes(SITE.name)
-  ? pageTitle
-  : `${pageTitle} · ${SITE.name}`;
+const fullTitle = pageTitle.includes(SITE.name) ? pageTitle : `${pageTitle} · ${SITE.name}`;
 const description = pageDescription || SITE.description;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const socialImage = new URL(image || '/og-image.png', Astro.site);
@@ -65,20 +63,31 @@ const socialImage = new URL(image || '/og-image.png', Astro.site);
 
 {/* Theme Toggle Script */}
 <script is:inline>
-    // Runs before first paint to avoid a flash of the wrong theme.
-    // Kept in sync by ThemeToggle.astro and re-applied after every
-    // view-transition navigation below.
-    (function () {
-    const stored = localStorage.getItem('theme');
-    const theme =
-        stored ?? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-    document.documentElement.classList.toggle('dark', theme === 'dark');
-    })();
-    document.addEventListener('astro:after-swap', () => {
-        const stored = localStorage.getItem('theme');
-        const theme = stored ?? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-        document.documentElement.classList.toggle('dark', theme === 'dark');
+  // Runs before first paint to avoid a flash of the wrong theme.
+  // Resolves the stored mode ('light' | 'dark' | 'auto', default 'auto'),
+  // applies the .dark class accordingly and keeps 'auto' in sync with the
+  // OS via matchMedia. Exposed as window.__applyTheme so ThemeToggle can
+  // re-apply after storing a new mode without duplicating this logic.
+  (function () {
+    const STORAGE_KEY = 'theme';
+    const darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+    function applyTheme() {
+      const mode = localStorage.getItem(STORAGE_KEY) || 'auto';
+      const dark = mode === 'dark' || (mode === 'auto' && darkQuery.matches);
+      document.documentElement.classList.toggle('dark', dark);
+      document.documentElement.dataset.theme = mode;
+    }
+
+    applyTheme();
+    darkQuery.addEventListener('change', () => {
+      if ((localStorage.getItem(STORAGE_KEY) || 'auto') === 'auto') applyTheme();
     });
+    window.__applyTheme = applyTheme;
+  })();
+  document.addEventListener('astro:after-swap', () => {
+    window.__applyTheme();
+  });
 </script>
 
 {/* View Transition API */}

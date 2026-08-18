@@ -23,13 +23,17 @@
   scroll-behavior: smooth;
 }
 
+/* The .dark class is the single source of truth for dark tokens. It is set by
+   the no-FOUC script in BaseHead, which resolves the stored mode ('light' |
+   'dark' | 'auto') — 'auto' follows the OS via matchMedia — so forced light
+   can always win over a dark OS. */
 .dark {
   color-scheme: dark;
 
   --paper: #101114;
   --ink: #f2f1ed;
   --ink-soft: #9a9ca6;
-  --signal: #7b7bff;
+  --signal: #b922d5;
   --line: #26272c;
   --surface: #1a1b20;
 }
