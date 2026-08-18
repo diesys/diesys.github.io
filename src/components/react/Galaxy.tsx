@@ -347,5 +347,6 @@ export default function Galaxy({
     transparent
   ]);
 
-  return <div ref={ctnDom} className="w-full h-full relative z-20 [mask:linear-gradient(white_50%,transparent)]" {...rest} />;
+  // return <div ref={ctnDom} className="w-full h-full relative z-20 -top-10 [mask:linear-gradient(white_50%,transparent)]" {...rest} />;
+  return <div ref={ctnDom} className="w-full h-full relative -top-10 [mask:radial-gradient(ellipse,black,transparent_75%)]" {...rest} />;
 }
