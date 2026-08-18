@@ -16,12 +16,13 @@ const selected = [...featured, ...rest].slice(0, 5);
 
 <BaseLayout title={SITE.name}>
   <section class="relative -top-14 overflow-hidden select-none">
-    <div class="absolute inset-0 z-30" aria-hidden="true">
+    <div class="absolute inset-0" aria-hidden="true">
       <Galaxy client:visible mouseInteraction={true} />
     </div>
-
     <div class="relative mx-auto max-w-3xl px-6 pt-16 pb-20 sm:pt-24">
-      <p class="text-ink-soft mb-6 inline-flex items-center gap-2 font-mono text-xs">
+      <p
+        class="text-ink-soft pointer-events-none mb-6 inline-flex items-center gap-2 font-mono text-xs"
+      >
         <span class="relative flex items-center gap-3">
           <span
             class="bg-signal/50 relative h-1.5 w-1.5 animate-ping rounded-full"
@@ -31,11 +32,13 @@ const selected = [...featured, ...rest].slice(0, 5);
         </span>
       </p>
 
-      <h1 class="font-display text-ink max-w-2xl text-4xl leading-[1.1] font-medium sm:text-5xl">
+      <h1
+        class="font-display text-ink pointer-events-none max-w-2xl text-4xl leading-[1.1] font-medium sm:text-5xl"
+      >
         {SITE.tagline}
       </h1>
 
-      <p class="text-ink-soft mt-6 max-w-md">
+      <p class="text-ink-soft pointer-events-none mt-6 max-w-md">
         {SITE.role} — based on the work below, not a list of buzzwords.
       </p>
 

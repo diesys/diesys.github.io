@@ -193,16 +193,17 @@ export default function Galaxy({
   rotation = [1.0, 0.0],
   starSpeed = 0.5,
   density = 1,
-  hueShift = 140,
+  hueShift = 0,
   disableAnimation = false,
-  speed = 1.0,
+  speed = 0.15,
   mouseInteraction = true,
   glowIntensity = 0.3,
-  saturation = 0.0,
+  // saturation = 0,
+  saturation = 0.4,
   mouseRepulsion = true,
-  repulsionStrength = 2,
-  twinkleIntensity = 0.3,
-  rotationSpeed = 0.1,
+  repulsionStrength = -3,
+  twinkleIntensity = 0.5,
+  rotationSpeed = 0.03,
   autoCenterRepulsion = 0,
   transparent = true,
   ...rest
@@ -348,5 +349,5 @@ export default function Galaxy({
   ]);
 
   // return <div ref={ctnDom} className="w-full h-full relative z-20 -top-10 [mask:linear-gradient(white_50%,transparent)]" {...rest} />;
-  return <div ref={ctnDom} className="w-full h-full relative -top-10 [mask:radial-gradient(ellipse,black,transparent_75%)]" {...rest} />;
+  return <div ref={ctnDom} className="w-full h-full relative -top-10 [mask:radial-gradient(ellipse,black,transparent_75%)] bg-[radial-gradient(ellipse,#0008,transparent_70%)]" {...rest} />;
 }
