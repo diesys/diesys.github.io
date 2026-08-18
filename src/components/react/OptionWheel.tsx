@@ -6,6 +6,10 @@ export interface OptionWheelProps {
   items?: string[];
   defaultSelected?: number;
   onChange?: (index: number, item: string) => void;
+  // Fired on an explicit commit (click on an item, or Enter while the
+  // listbox is focused) — distinct from onChange, which also fires while
+  // scrolling. Menus navigate on commit, never on scroll.
+  onSelect?: (index: number, item: string) => void;
   textColor?: string;
   activeColor?: string;
   side?: Side;
@@ -54,13 +58,14 @@ const DEFAULT_ITEMS = [
   'Disco',
   'Hip-Hop',
   'Chillwave',
-  'Drum & Bass'
+  'Drum & Bass',
 ];
 
 const OptionWheel = ({
   items = DEFAULT_ITEMS,
   defaultSelected = 3,
   onChange,
+  onSelect,
   textColor = '#a6a6a6',
   activeColor = '#ffffff',
   side = 'left',
@@ -77,7 +82,7 @@ const OptionWheel = ({
   draggable = true,
   soundUrl = '',
   soundVolume = 0.5,
-  className = ''
+  className = '',
 }: OptionWheelProps) => {
   const rootRef = useRef<HTMLDivElement>(null);
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -87,6 +92,7 @@ const OptionWheel = ({
   const lastRef = useRef(0);
   const cfgRef = useRef<WheelConfig>({} as WheelConfig);
   const onChangeRef = useRef(onChange);
+  const onSelectRef = useRef(onSelect);
   const selectedRef = useRef(defaultSelected);
   const wheelTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const dragRef = useRef<{ y: number; start: number; id: number } | null>(null);
@@ -97,9 +103,13 @@ const OptionWheel = ({
   const [selectedIndex, setSelectedIndex] = useState(defaultSelected);
   const [isDragging, setIsDragging] = useState(false);
 
-  const remPx = typeof window !== 'undefined' ? parseFloat(getComputedStyle(document.documentElement).fontSize) || 16 : 16;
+  const remPx =
+    typeof window !== 'undefined'
+      ? parseFloat(getComputedStyle(document.documentElement).fontSize) || 16
+      : 16;
 
   onChangeRef.current = onChange;
+  onSelectRef.current = onSelect;
   cfgRef.current = {
     count: items.length,
     items,
@@ -114,7 +124,7 @@ const OptionWheel = ({
     smoothing,
     draggable,
     soundUrl,
-    soundVolume
+    soundVolume,
   };
 
   // Single rAF loop that eases the wheel position toward its target with
@@ -211,7 +221,7 @@ const OptionWheel = ({
       }
       startLoop();
     },
-    [startLoop, playTick]
+    [startLoop, playTick],
   );
 
   // Wheel / touchpad scrolling, registered manually so it can be non-passive.
@@ -256,7 +266,7 @@ const OptionWheel = ({
       }
       if (dragMovedRef.current) applyTarget(drag.start - dy / cfgRef.current.rowH, false);
     },
-    [applyTarget]
+    [applyTarget],
   );
 
   const handlePointerEnd = useCallback(() => {
@@ -277,12 +287,18 @@ const OptionWheel = ({
         else if (d < -cfg.count / 2) d += cfg.count;
       }
       applyTarget(cur + d, true);
+      onSelectRef.current?.(index, cfg.items[index]);
     },
-    [applyTarget]
+    [applyTarget],
   );
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent<HTMLDivElement>) => {
+      if (e.key === 'Enter') {
+        const cfg = cfgRef.current;
+        onSelectRef.current?.(selectedRef.current, cfg.items[selectedRef.current]);
+        return;
+      }
       let delta: number | null = null;
       if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') delta = -1;
       else if (e.key === 'ArrowDown' || e.key === 'ArrowRight') delta = 1;
@@ -290,12 +306,25 @@ const OptionWheel = ({
       e.preventDefault();
       applyTarget(Math.round(targetRef.current) + delta, true);
     },
-    [applyTarget]
+    [applyTarget],
   );
 
   useEffect(() => {
     applyTarget(targetRef.current, false);
-  }, [items, fontSize, spacing, curve, tilt, blur, fade, minOpacity, side, loop, smoothing, applyTarget]);
+  }, [
+    items,
+    fontSize,
+    spacing,
+    curve,
+    tilt,
+    blur,
+    fade,
+    minOpacity,
+    side,
+    loop,
+    smoothing,
+    applyTarget,
+  ]);
 
   useEffect(
     () => () => {
@@ -303,7 +332,7 @@ const OptionWheel = ({
       rafRef.current = null;
       audioRef.current?.pause();
     },
-    []
+    [],
   );
 
   return (
@@ -312,13 +341,13 @@ const OptionWheel = ({
       role="listbox"
       tabIndex={0}
       aria-label="Option wheel"
-      className={`relative h-full w-full select-none overflow-hidden outline-none touch-none ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}${className ? ` ${className}` : ''}`}
+      className={`relative h-full w-full touch-none overflow-hidden outline-none select-none ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}${className ? ` ${className}` : ''}`}
       style={
         {
           '--ow-text-color': textColor,
           '--ow-active-color': activeColor,
           '--ow-font-size': `${fontSize}rem`,
-          '--ow-inset': `${inset}px`
+          '--ow-inset': `${inset}px`,
         } as CSSProperties
       }
       onPointerDown={handlePointerDown}
@@ -330,12 +359,12 @@ const OptionWheel = ({
       {items.map((label, index) => (
         <div
           key={`${label}-${index}`}
-          ref={el => {
+          ref={(el) => {
             itemRefs.current[index] = el;
           }}
           role="option"
           aria-selected={selectedIndex === index}
-          className={`absolute top-1/2 cursor-pointer whitespace-nowrap leading-none will-change-[transform,opacity,filter] [font-size:var(--ow-font-size)] text-[color-mix(in_srgb,var(--ow-active-color)_calc(var(--ow-p,0)*100%),var(--ow-text-color))] ${
+          className={`absolute top-1/2 cursor-pointer [font-size:var(--ow-font-size)] leading-none whitespace-nowrap text-[color-mix(in_srgb,var(--ow-active-color)_calc(var(--ow-p,0)*100%),var(--ow-text-color))] will-change-[transform,opacity,filter] ${
             side === 'right' ? 'right-(--ow-inset) origin-right' : 'left-(--ow-inset) origin-left'
           } ${selectedIndex === index ? 'font-medium' : 'font-extralight'}`}
           onClick={() => handleItemClick(index)}
