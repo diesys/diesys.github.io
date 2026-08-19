@@ -15,7 +15,7 @@ const categories = (await getCollection('gallery')).map((entry) => ({
   title="Gallery"
   description="Visual work, grouped by category — explore the sphere, then open a category to browse it full-screen."
 >
-  <section class="relative h-[70vh] overflow-hidden">
+  <section class="relative -top-14 h-[70vh] overflow-hidden">
     <Gallery categories={categories} client:visible />
   </section>
 </BaseLayout>

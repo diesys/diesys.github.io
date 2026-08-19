@@ -1146,7 +1146,7 @@ const InfiniteMenu: FC<InfiniteMenuProps> = ({ items = [], onSelect, scale = 1.6
   };
 
   return (
-    <div className="relative h-full w-full">
+    <div className="relative h-full w-full [mask:radial-gradient(ellipse_at_50%_25%,black_60%,transparent_69%)]">
       <canvas
         ref={canvasRef}
         className="relative h-full w-full cursor-grab overflow-hidden outline-none active:cursor-grabbing"
@@ -1155,7 +1155,7 @@ const InfiniteMenu: FC<InfiniteMenuProps> = ({ items = [], onSelect, scale = 1.6
       {activeItem && (
         <>
           <h2
-            className={`absolute top-1/2 left-[1em] translate-x-[10%] -translate-y-1/2 transform text-[3.4rem] font-black font-display text-shadow-lg capitalize transition-all ease-[cubic-bezier(0.25,0.1,0.25,1.0)] select-none ${
+            className={`font-display absolute top-1/2 left-[2em] translate-x-[10%] -translate-y-1/2 transform text-[3.4rem] font-black capitalize transition-all ease-[cubic-bezier(0.25,0.1,0.25,1.0)] select-none text-shadow-lg ${
               isMoving
                 ? 'pointer-events-none opacity-0 duration-[100ms]'
                 : 'pointer-events-auto opacity-100 duration-[500ms]'
@@ -1165,7 +1165,7 @@ const InfiniteMenu: FC<InfiniteMenuProps> = ({ items = [], onSelect, scale = 1.6
           </h2>
 
           <p
-            className={`absolute top-1/2 right-[1%] max-w-[10ch] text-[1.5rem] transition-all text-shadow-lg ease-[cubic-bezier(0.25,0.1,0.25,1.0)] select-none ${
+            className={`absolute top-1/2 right-[1%] max-w-[10ch] text-[1.5rem] transition-all ease-[cubic-bezier(0.25,0.1,0.25,1.0)] select-none text-shadow-lg ${
               isMoving
                 ? 'pointer-events-none translate-x-[-60%] -translate-y-1/2 opacity-0 duration-[100ms]'
                 : 'pointer-events-auto translate-x-[-90%] -translate-y-1/2 opacity-100 duration-[500ms]'
