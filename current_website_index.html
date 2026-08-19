@@ -1,0 +1,753 @@
+<!DOCTYPE HTML>
+<!--
+	Spatial by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+
+<head>
+	<meta name="generator" content="Hugo 0.37.1" />
+	<title>FlowIn.Space</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+		integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+	<!-- PhotoSwipe.com Core CSS file -->
+	<link rel="stylesheet" href="css/photoswipe/photoswipe.css">
+	<link rel="stylesheet" href="css/photoswipe/default-skin/default-skin.css">
+
+	<!-- <link rel="stylesheet" href="css/main.css" /> -->
+	<link rel="stylesheet" href="css/main.min.css" />
+
+	<meta name="description" content="Flow in space and get lost... Diego Turtulici personal website" />
+
+	<meta name="HandheldFriendly" content="true" />
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="MobileOptimized" content="320" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<meta name="theme-color" content="#fff">
+	<meta name="msapplication-navbutton-color" content="#fff">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+	<link rel="shortcut icon" href="#">
+
+	<link rel="icon" sizes="72x72" href="images/favicon72.png" type="image/x-icon">
+	<link rel="icon" sizes="114x114" href="images/favicon114.png" type="image/x-icon">
+	<link rel="icon" sizes="144x144" href="images/favicon144.png" type="image/x-icon">
+	<link rel="icon" sizes="256x256" href="images/favicon256.png" type="image/x-icon">
+
+	<script src="js/jquery.min.js" defer></script>
+	<script src="js/skel.min.js" defer></script>
+	<script src="js/util.js" defer></script>
+	<script src="js/templated.js" defer></script>
+	<!-- GREEN SOCK ANIMATION PLATFORM -->
+	<script type="text/javascript" src="js/TweenMax.min.js" defer></script>
+
+	<!-- PhotoSwipe JS file -->
+	<script src="js/photoswipe/photoswipe.min.js" defer></script>
+	<script src="js/photoswipe/photoswipe-ui-default.min.js" defer></script>
+	<script src="js/gallery.js" defer></script>
+	<script src="js/flowinspace.js" defer></script>
+
+	<link rel="stylesheet" href="css/flowinspace.css" />
+	<!--<link rel="stylesheet" href="css/font-awesome/all.min.css" /> -->
+
+	<style>
+		@keyframes marquee {
+			0% {
+				transform: translateX(0%);
+			}
+			
+			100% {
+				transform: translateX(-100%);
+			}
+		}
+		
+		body {
+			margin-top: 50px;
+		}
+
+		#marquee-container {
+			z-index: 600000;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			position: fixed;
+			overflow: hidden;
+			background: #ffd80088;
+			height: 40px;
+			top: 0;
+			left: 0;
+			right: 0;
+			width: 100%;
+			backdrop-filter: blur(.5rem);
+			mask-image: linear-gradient(to bottom, #fffd 50%, transparent 100%);
+			-webkit-mask-image: linear-gradient(to bottom, #fffd 50%, transparent 100%);
+		}
+		
+		#marquee {
+			display: inline-block;
+			font-size: 1rem;
+			font-weight: 600;
+			white-space: nowrap;
+			padding-left: 100%;
+			animation: marquee 12s linear infinite;
+			color: black;
+
+		}
+		#marquee small {
+			font-size: .75rem;
+		}
+	</style>
+</head>
+
+<body class="landing">
+	<div id="marquee-container">
+		<div id="marquee">
+			📣 NEWS: A new website will be released during 2026 — stay tuned! 😎
+		</div>
+	</div>
+
+	<!-- Header -->
+	<header id="header" class="alt">
+		<h1>Flow In Space</h1>
+		<nav id="nav">
+			<ul>
+				<!-- <li><a href="#">Home</a></li> -->
+				<li><a href="#about">About</a></li>
+				<li><a href="#portfolio">Portfolio</a></li>
+				<li><a href="#projects">Projects</a></li>
+				<li><a href="/cv">CV</a></li>
+			</ul>
+		</nav>
+	</header>
+
+
+	<a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+	<!-- <a href="https://flowin.space/covid" target="_blank" id="covid-kit" style="top:0;right:0;position:fixed;opacity:.9;cursor:pointer;z-index:200;background:url('images/covid_banner_tr.png');height:68px;width:110px;"></a> -->
+
+	<!-- landing -->
+	<section id="banner">
+		<div id="stars"></div>
+
+		<!-- DRAW -->
+		<svg id="draw" width="100%" height="100%" version="1.1" viewBox="0 0 90 68.79" xmlns="http://www.w3.org/2000/svg" >
+			<defs>
+				<radialGradient id="b" cx="44.94" cy="54.62" r="45.67"
+					gradientTransform="matrix(1.205 -.0202 .01302 .7761 -9.909 -6.653)" gradientUnits="userSpaceOnUse">
+					<stop stop-opacity=".1739" offset="0" />
+					<stop stop-opacity=".08333" offset=".8367" />
+					<stop stop-opacity="0" offset="1" />
+				</radialGradient>
+				<radialGradient id="a" cx="45.94" cy="54.62" r="43.81"
+					gradientTransform="matrix(1.295 -.0207 .01293 .809 -14.26 -8.408)" gradientUnits="userSpaceOnUse">
+					<stop stop-opacity=".1739" offset="0" />
+					<stop stop-opacity=".08333" offset=".8367" />
+					<stop stop-opacity="0" offset="1" />
+				</radialGradient>
+			</defs>
+
+			<path id="logo"
+				d="m44.92 24.02c-1.736 0.04385-3.5 0.5031-4.95 1.479-0.04031 0.2849 0.3919 0.2034 0.5235 0.08474 1.244-0.5572 2.538-1.067 3.918-1.122 1.697-0.1365 3.415 0.2399 4.94 0.9672 0.1813 0.07994 0.5137 0.3845 0.7117 0.1296 0.1374-0.1767-0.5335-0.4708-0.8202-0.6104-1.284-0.6258-2.843-0.9458-4.323-0.9286zm-1.988 2.037v2.36e-4c-1.931 0.0051-3.825 0.2083-5.531 1.23-3.085 1.915-3.166 6.803-0.5713 9.15 0.5313-0.0297 1.1-0.9654 0.4184-1.141-1.691-1.713-1.623-4.75-0.1023-6.542 1.215-1.291 3.104-1.524 4.782-1.607v7.852c-0.4732 0.2453-1.986-0.4629-1.924 0.2834 0.1131 1.086 1.626 0.1845 1.924 0.7254-0.1315 1.701 0.2675 3.486-0.2152 5.142-0.05074 0.4436-0.8871 0.2452-0.3435 0.7722 0.6139 0.595 1.383 0.2958 1.41-0.4713 0.3344-1.895 0.07704-3.838 0.1579-5.751 0.7858-0.0502 1.943 0.2084 2.786 0.08018-0.02119 0.09222-0.04108 0.1853-0.05788 0.2781-0.3547 2.095 1.21 3.848 2.925 4.788 1.234 0.7331 2.813 1.892 2.412 3.547-0.2993 1.546-2.504 1.847-3.441 0.7331-0.5226 0.3763-0.5883 1.12 0.08211 1.33 1.853 0.9695 4.544-0.2486 4.531-2.494 0.1172-2.375-2.398-3.312-3.929-4.579-1.448-0.9873-1.927-3.024-1.042-4.54 0.9215-1.645 2.757-3.101 4.726-2.902 1.3 0.2154 1.358 1.937 0.7591 2.842-0.6774 1.186-1.893 2.391-3.331 2.361 0.2906 1.103 1.605 0.7331 2.244 0.189 1.659-1.074 3.262-3.351 1.978-5.296-0.571-0.8226-1.631-1.074-2.587-1.127 0.01524-0.8587 0.08384-1.729-0.08604-2.56-0.1171-0.159-0.3219-0.2384-0.5171-0.2306-0.1659 0.0035-0.2571 0.1034-0.3003 0.2366-0.04324 0.133-0.03482 0.299 0.0058 0.4241 4.07e-4 1e-3 7.11e-4 0.0019 8.3e-4 0.0036 0.01805 0.7461-0.0039 1.492-0.0129 2.237-1.86 0.4781-3.362 2.034-4.07 3.826-0.03068-8.3e-4 -0.06045-0.0029-0.0942-0.0015-0.8818 0.01617-3.191 0.6335-2.964-0.6957v-7.135c1.6-0.05434 4.429 0.1996 6.003-0.01155 0.2923-0.1895 0.4228-0.6382 0.3201-0.9434-1.555 0.132-4.352 0.01262-5.956-5.5e-4v-1.53e-4c-0.129-8.3e-4 -0.258-8.3e-4 -0.3867-8.3e-4zm7.585 0.03615c-0.1402 0.0042-0.2552 0.06436-0.3438 0.1523-0.1012 0.1012-0.1671 0.243-0.1921 0.3927-0.02489 0.1497-0.0083 0.307 0.05261 0.4388 0.06144 0.1319 0.1675 0.2383 0.3248 0.2887 5.24e-4 1.53e-4 1e-3 3.36e-4 0.0013 5.49e-4 0.5812 0.2746 1.169-0.5413 0.7686-1.025-2.42e-4 -1.83e-4 -4.78e-4 -3.71e-4 -7.09e-4 -5.68e-4 -0.1255-0.1673-0.3413-0.2552-0.5488-0.2474-4.19e-4 -5.5e-5 -8.31e-4 -1.29e-4 -1e-3 -2.2e-4 -0.02106-8.3e-4 -0.04155-8.3e-4 -0.06149-5.33e-4v-1.44e-4zm1.429 0.7485c-0.3219 0.2012 0.07783 0.6003 0.2562 0.7894 2.236 2.364 2.978 5.98 2 9.085-0.4753 1.618-1.41 3.089-2.633 4.241-0.05961 0.2864 0.3984 0.3225 0.4972 0.08102 2.807-2.689 3.726-7.082 2.291-10.7-0.5513-1.303-1.292-2.607-2.392-3.503-0.0051-0.0043-0.01353 0.0017-0.01919 0.0054zm-16.39 9.15c-0.2683 0 0.0014 0.6951 0.08426 0.9855 1.175 4.135 5.483 7.141 9.802 6.904 1.511-0.0651 3.089-0.4096 4.361-1.265 0.04332-0.2912-0.3534-0.2436-0.5571-0.1306-3.22 1.786-7.52 1.136-10.29-1.266-1.518-1.271-2.61-3.029-3.113-4.939-0.05554-0.125-0.1473-0.2923-0.2894-0.2923z" />
+			<path id="spiral2"
+				d="m13.23-0.6149c-13.83 16.14-15.55 51.88-0.5204 68.54 0.4015 0.4975 1.373 1.882 1.789 2.349h2.954c-4.215-4.151-11.25-15.16-13.01-21.48-5.157-15.24 0.7162-37.91 11.33-49.4zm24.39 5.14c-22.76 4.376-32.49 40.75-11.65 54.55 3.784 3.038 8.386 5.732 12.94 6.434 2.545 0.6276 5.989 0.3561 9.517 0 14.74-2.163 28.91-15.11 27.18-31.41-0.6139-13.21-10.42-26.37-23.31-29.43-4.652-1.54-9.887-1.067-14.68-0.1455zm36.65-4.611c14.46 15.5 19.22 46.51 3.644 62.76-0.573 0.6718-4.323 4.865-4.927 5.478h3.332c3.04-3.424 8.787-11.12 10.47-15.84 6.511-15.98 1.723-39.58-9.03-52.41zm-30.36 5.683c0.7336 0.01069 1.473 0.05609 2.217 0.138 25.51-0.8683 38.28 38.3 16.77 52.41-17.76 13.78-49.2-0.7618-47.07-24.14 0.7182-14.47 13.17-28.63 28.09-28.42zm1.926 6.578c-0.5 0.0099-1.004 0.03956-1.512 0.09021-21.22-1.477-30.7 33.94-10.06 41.73-17.02-9.661-11.08-40.91 9.37-41.19 16.89-3.145 24.61 21.21 22.54 29.62 5.394-13.51-5.613-30.54-20.34-30.25zm20.34 30.25c-0.2807 0.7032-0.6047 1.397-0.976 2.078 0.4345-0.4821 0.7589-1.192 0.976-2.078z"
+				fill="url(#a)" />
+			<path id="spiral1"
+				d="m11.59-0.6149c-5.936 6.896-11.08 20.71-12.32 29.65v11.37c0.03438 0.2401 0.06648 0.4802 0.1054 0.7201 1.055 8.828 8.834 22.71 14.52 29.15h3.087c-6.316-6.626-14.41-21.08-15.1-30.53-1.66-12.6 3.776-31.08 12.34-40.36zm24.25 5.291c-8.883 2.803-16.36 9.997-19.84 18.64-2.941 6.912-3.069 14.89-0.3983 21.9 3.108 9.651 11.85 17.61 21.3 20.29 5.188 1.166 10.79 1.401 17.12 0 5.438-1.668 10.68-5.973 14.57-10.21 10.67-12.14 9.964-32.86-2.356-43.62-3.612-3.216-7.924-5.639-12.55-6.998-5.949-1.624-11.9-1.909-17.85-2e-3zm40-4.762c9.215 9.827 14.85 28.42 12.37 41.81-1.201 8.794-8.721 20.35-14.72 26.44h3.413c3.298-3.837 9.228-11.93 10.95-16.87 5.671-15.4 2.405-38.9-8.258-51.37zm-29.67 5.095c11.88 0.03639 22.64 8.738 26.69 19.69 2.574 6.512 2.445 13.9-0.08044 20.41-5.079 14.85-23.38 22.83-37.92 17.5-7.421-2.871-13.98-8.523-16.96-16.02-4.921-11.63-2.176-26.64 7.994-34.59 5.331-4.428 12.18-6.994 19.12-6.959 0.3853-0.01704 0.77-0.02502 1.153-0.02388zm-1.849 6.695c-14.54-0.04406-26.05 15.91-21.21 29.72 2.56 9.82 13.99 17.48 23.25 15.8-0.574-2.155-4.1-0.03986-5.663-1.255-13.93-2.28-22-19.64-14.77-31.76 6.296-12.63 25.26-15.22 34.7-4.725 8.728 8.354 7.592 23.28-0.5858 31.29 0.2727 0.9912-0.205 3.045 1.775-0.5505 10.38-10.37 6.903-29.85-6.399-36.01-3.206-1.635-6.801-2.497-10.4-2.494-0.2323-0.0084-0.4642-0.01346-0.6951-0.01409z"
+				fill="url(#b)" />
+			<text id="write" x="24.575647" y="49.074505" fill="#000000" font-family="Oswald" font-size="3.544px"
+				letter-spacing="0px">FLOW IN SPACE</text>
+		</svg>
+
+		<a id="showMore" href="#about" style="top: 95vh;">
+			Show more <br />
+			<i class="fas fa-2x fa-arrow-circle-down"></i>
+		</a>
+
+		<a id="mainButton" class="button" href="https://www.youtube.com/watch?v=1GCf29FPM4k">and get lost...</a>
+	</section>
+
+	<!-- about -->
+	<section id="about" class="wrapper style1">
+		<div class="container 75%">
+			<div class="row 200%">
+				<div class="6u 12u$(medium)">
+					<header class="major">
+						<h2>Hi, I'm Diego Turtulici</h2><br />
+						<p>Web and Front-end Developer, UI/UX and Graphics Designer</p>
+						<p>Digital Arts &amp; Photography</p>
+						<p id="years"></p>
+					</header>
+				</div>
+				<div class="6u$ 12u$(medium)">
+					<p>Born near the <a href="https://en.wikipedia.org/wiki/Hyblaean_Mountains"><i>Iblei</i></a> mountains. I
+						spent my early life between Comiso and Vittoria. Now based in Pisa, Toscana. Full-time employed at <a
+							href="https://www.geckosoft.it/">Geckosoft</a>. <br>
+						<a href="http://www.fileli.unipi.it/infouma/">Digital Humanities</a> student, former <a
+							href="http://www.di.unipi.it">Computer Science</a> student.
+					</p>
+					<p>I'm also a photographer, former <a href="https://www.facebook.com/pg/asa25circolo">Asa25</a> member and
+						music passionate, with guitar as my main instrument.<br>I took part and played with <a
+							href="https://www.facebook.com/labpermanentetda/">laboratorio permanente del teatro
+							dell&rsquo;assedio</a>. and a play by <a href="https://www.facebook.com/vocisbagliate/">Voci Sbagliate</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- portfolio -->
+	<section id="portfolio" class="wrapper style1">
+		<center>
+			<div class="container">
+				<header class="major special">
+					<h2>Portfolio</h2>
+					<p>Those are some of the web-sites I've been working on.</p>
+					<p>Many other smaller works may be found in the internet.</p>
+				</header>
+
+				<div class="box alt">
+					<div class="row">
+						<div class="3u portfolioButton" id="portfolioStickers">
+							<span class="image fit">
+								<h3 class="hoverTitle">Stickers</h3>
+								<img src="images/portfolio/adesivi/eigenlab_circle.png" alt="stickers">
+							</span>
+						</div>
+						<div class="3u portfolioButton" id="portfolioAnimations">
+							<span class="image fit">
+								<h3 class="hoverTitle">animations</h3>
+								<img src="images/portfolio/animazioni/flyfishLogoTransitionOPT.gif" alt="animations">
+							</span>
+						</div>
+						<div class="3u portfolioButton" id="portfolioBanners">
+							<span class="image fit">
+								<h3 class="hoverTitle">banners</h3>
+								<img src="images/portfolio/banner/aperiborda.jpg" alt="banner">
+							</span>
+						</div>
+						<div class="3u portfolioButton" id="portfolioCovers">
+							<span class="image fit">
+								<h3 class="hoverTitle">covers</h3>
+								<img src="images/portfolio/copertine/ateovirtuoso.png" alt="covers">
+							</span>
+						</div>
+						<div class="3u portfolioButton" id="portfolioDiffidente">
+							<span class="image fit">
+								<h3 class="hoverTitle">diffidente</h3>
+								<img src="images/portfolio/diffidente/diffidente_banner.png" alt="diffidente">
+							</span>
+						</div>
+						<div class="3u portfolioButton" id="portfolioIcons">
+							<span class="image fit">
+								<h3 class="hoverTitle">icons</h3>
+								<img src="images/portfolio/icone/conversations.jpg" alt="icons">
+							</span>
+						</div>
+						<div class="3u portfolioButton" id="portfolioPosters">
+							<span class="image fit">
+								<h3 class="hoverTitle">posters</h3>
+								<img src="images/portfolio/locandine/endjamsession.jpg" alt="posters">
+							</span>
+						</div>
+						<div class="3u portfolioButton" id="portfolioLogos">
+							<span class="image fit">
+								<h3 class="hoverTitle">logos</h3>
+								<img src="images/portfolio/loghi/eigenlab.jpg" alt="logo">
+							</span>
+						</div>
+						<div class="3u portfolioButton" id="portfolioShirts">
+							<span class="image fit">
+								<h3 class="hoverTitle">Shirts</h3>
+								<img src="images/portfolio/magliette/hackmeeting_fronte.png" alt="shirts">
+							</span>
+						</div>
+						<div class="3u portfolioButton" id="portfolioBackgrounds">
+							<span class="image fit">
+								<h3 class="hoverTitle">backgrounds</h3>
+								<img src="images/portfolio/sfondi/galaxy_blue.jpg" alt="backgrounds">
+							</span>
+						</div>
+						<div class="3u portfolioButton" id="portfolioStriker">
+							<span class="image fit">
+								<h3 class="hoverTitle">strickers</h3>
+								<img src="images/portfolio/vario/grafico.png" alt="other">
+							</span>
+						</div>
+						<div class="3u portfolioButton" id="portfolioCards">
+							<span class="image fit">
+								<h3 class="hoverTitle">cards</h3>
+								<img src="images/portfolio/cards/1010card.png" alt="cards">
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</center>
+	</section>
+
+	<!-- projects -->
+	<section id="projects" class="wrapper style1">
+		<div class="container">
+			<header class="major special">
+				<h2>Projects</h2>
+				<p>Those are some of the web-sites I've been working on.</p>
+				<p>Many other smaller works may be found in the internet.</p>
+			</header>
+
+			<div class="feature-grid">
+				<div id="vision" class="feature">
+					<div class="image "><img src="images/projects/vision.png" alt="vision" /></div>
+					<div class="content">
+						<header>
+							<h4>Point of Vision</h4>
+							<p>Digital Arts</p>
+						</header>
+						<p>Some personal artistic works.
+							<i>SenzaParole</i> (SpeachLess) is a digital illustration series inspired by untranslatable words and
+							neologism.
+							<br />
+							<a href="/vision/" class="button small" target="_blank">take a look</a>
+						</p>
+					</div>
+				</div>
+
+				<div id="cloch" class="feature">
+					<div class="image "><img src="images/projects/cloch.png" alt="cloch" /></div>
+					<div class="content">
+						<header>
+							<h4>Cloch</h4>
+							<p>The modern clock</p>
+						</header>
+						<p>A new graphical and beautiful clock on hexagon. Based on <a href="#glock">Glock</a> but more intuitive,
+							cleaner and it is even more precise then an regular analog watch.
+							<br />
+							<a href="/cloch/" class="button small" target="_blank">what time is it?</a>
+						</p>
+					</div>
+				</div>
+
+				<div id="cloch" class="feature">
+					<div class="image "><img src="images/projects/itmenu.png" alt="itmenu" /></div>
+					<div class="content">
+						<header>
+							<h4>ITMenu</h4>
+							<p>An online menu</p>
+						</header>
+						<p>Due to COVID-19 restriction every restaurant needs an online menu's software, here is ITMenu!
+							<br />
+							<a href="https://itertour.eu/itmenu/" class="button small" target="_blank">order now</a>
+						</p>
+					</div>
+				</div>
+
+				<div id="cloch" class="feature">
+					<div class="image "><img src="images/projects/damare.png" alt="damare" /></div>
+					<div class="content">
+						<header>
+							<h4>Palinuro d'amare</h4>
+							<p>Find free beaches</p>
+						</header>
+						<p>Due to COVID-19 restriction, an online app to check free beaches avaiability!
+							<br />
+							<a href="https://itertour.eu/damare/loc/palinuro" class="button small" target="_blank">check out</a>
+						</p>
+					</div>
+				</div>
+
+				<div id="minhex" class="feature">
+					<div class="image "><img src="images/projects/minhex.png" alt="" /></div>
+					<div class="content">
+						<header>
+							<h4>MinHex</h4>
+							<p>A revisited game</p>
+						</header>
+						<p>A <i>Mines</i> spin-off with an hexagonal field, created by <a
+								href="https://github.com/NuxTuxSux ">NuxTuxSux</a>, UI and images made by me.
+							<br />
+							<a href="/minhex/" class="button small" target="_blank">play</a>
+						</p>
+					</div>
+				</div>
+
+				<div id="jastersind" class="feature">
+					<div class="image "><img src="images/projects/jastersind.png" alt="" /></div>
+					<div class="content">
+						<header>
+							<h4>JasterSind</h4>
+							<p>Master Mind game</p>
+						</header>
+						<p>JavaScript adaptation of the famous Master Mind game.
+							<br />
+							<a href="/jastersind/" class="button small" target="_blank">play</a>
+						</p>
+					</div>
+				</div>
+
+				<div id="qr" class="feature">
+					<div class="image "><img src="images/projects/qr.png" alt="" /></div>
+					<div class="content">
+						<header>
+							<h4>QR generator</h4>
+							<p>an on/offline barcode creator</p>
+						</header>
+						<p>A QR-code generator using <a href="https://larsjung.de/kjua/">kuja</a> with a custom, cleaner and mobile
+							friendly UI (user interface).
+							<br />
+							<a href="/qr/" class="button small" target="_blank">create</a>
+						</p>
+					</div>
+				</div>
+
+				<div id="qr" class="feature">
+					<div class="image "><img src="images/projects/pomelo.png" alt="" /></div>
+					<div class="content">
+						<header>
+							<h4>Pomelo</h4>
+							<p>A tournament creator</p>
+						</header>
+						<p>Tournament local and selfhosted web app using Elo ranking written in <a href="https://python.org"
+								target="_blank">python</a>.
+							<br />
+							<a href="https://github.com/diesys/pomelo" class="button small" target="_blank"><span target="_blank"
+									class="fab fa-github"></span> github</a>
+							<a href="https://git.eigenlab.org/sbiego/pomelo" class="button small" target="_blank"><span
+									target="_blank" class="fab fa-gitlab"></span> gitlab</a>
+						</p>
+					</div>
+				</div>
+
+				<div id="diffidato" class="feature">
+					<div class="image "><img src="images/projects/wastecopter.png" alt="" /></div>
+					<div class="content">
+						<header>
+							<h4>WasteCopter</h4>
+							<p>A drone game for <i>NASA Space Apps Challenge</i></p>
+						</header>
+						<p>A drone web game (CAPTCHA-like) for neural
+							network trainining to find garbage in the
+							oceans.
+							<br />
+							<a href="/wastecopter" target="_blank" class="button small" target="_blank">Play</a>
+						</p>
+					</div>
+				</div>
+
+				<div id="diffidato" class="feature">
+					<div class="image "><img src="images/projects/diffidato.png" alt="" /></div>
+					<div class="content">
+						<header>
+							<h4>Corriere del Diffidato</h4>
+							<p>A student newspaper</p>
+						</header>
+						<p>Articles, poetry and comics about the current situation in <a href="https://unipi.it">University</a>
+							management against self-organized students' initiative.
+							<br />
+							<a href="http://flowin.space/diffidato" target="_blank" class="button small" target="_blank">read</a>
+						</p>
+					</div>
+				</div>
+
+				<div id="quite" class="feature">
+					<div class="image "><img src="images/projects/quite.png" alt="" /></div>
+					<div class="content">
+						<header>
+							<h4>Quite</h4>
+							<p>a personal notebook</p>
+						</header>
+						<p><em>Quite</em> derives from <strong>qui</strong>ck no<strong>te</strong>, it's a <i>quite</i> decent
+							place/way of keeping some notes from some <a href="https://fileli.unipi.it/infouma">lessons</a> I attend.
+							<br />
+							<!-- <a href="/quite/" class="button small" target="_blank">read</a> -->
+						</p>
+					</div>
+				</div>
+
+				<div id="iblu" class="feature">
+					<div class="image "><img src="images/projects/iblu.png" alt="" /></div>
+					<div class="content">
+						<header>
+							<h4>iblu</h4>
+							<p>linux cli utility</p>
+						</header>
+						<p><b>I</b>ntel <b>b</b>lack <b>l</b>ight <b>u</b>tility allows you to have control over the screen
+							brightness, via command line interface.
+							<br />
+							<a href="https://aur.archlinux.org/packages/iblu-git/">AUR package</a>
+							<br />
+							<a href="https://github.com/diesys/iblu" class="button small" target="_blank"><span target="_blank"
+									class="fab fa-github"></span> github</a>
+							<a href="https://git.eigenlab.org/sbiego/iblu" class="button small" target="_blank"><span target="_blank"
+									class="fab fa-gitlab"></span> gitlab</a>
+						</p>
+					</div>
+				</div>
+
+				<div id="glock" class="feature">
+					<div class="image "><img src="images/projects/transmission.png" alt="" /></div>
+					<div class="content">
+						<header>
+							<h4>Transmission UI</h4>
+							<p>A web theme</p>
+						</header>
+						<p>A web interface theme in two variants for the famous torrent client Transmission.
+							<br />
+							<a href="https://git.eigenlab.org/sbiego/transmission-web-soft-theme" class="button small"
+								target="_blank"><span target="_blank" class="fab fa-github"></span> github</a>
+							<a href="https://github.com/diesys/transmission-web-soft-theme" class="button small" target="_blank"><span
+									target="_blank" class="fab fa-gitlab"></span> gitlab</a>
+						</p>
+					</div>
+				</div>
+
+				<div id="storiedoo" class="feature">
+					<div class="image "><img src="images/projects/storiedoo.png" alt="" /></div>
+					<div class="content">
+						<header>
+							<h4>Storie di Ordinaria Ordinaria</h4>
+							<p>A web radio program</p>
+						</header>
+						<a href="/storiedoo/" class="button small" target="_blank">listen</a></p>
+					</div>
+				</div>
+
+				<div id="glock" class="feature">
+					<div class="image "><img src="images/projects/glock.png" alt="" /></div>
+					<div class="content">
+						<header>
+							<h4>Glock</h4>
+							<p>A modern clock</p>
+						</header>
+						<p>A new graphical and beautiful clock, written with SVG, <a href="http://snapsvg.io/">Snap.svg</a>,
+							JavaScript, HTML5 and CSS3.
+							<br />
+							<a href="/glock/" class="button small" target="_blank">what's the time?</a>
+						</p>
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+	</section>
+
+	<!-- talks -->
+	<section id="talks">
+		<center>
+			<div class="center container 75%">
+				<h2>Talks</h2>
+				<!-- <ol id="talklist"> -->
+				<!-- </ol> -->
+				<h4>Past</h4>
+				<ol class="talklist past">
+					<li><a href="https://facebook.com/events/s/diotisalvi-times-is-coming-cic/537340940164923/">Diotisalvi Times -
+							Oltre PhotoShop (basi di grafica opensource) - Mar 19/11/19</a></li>
+					<li><a href="https://facebook.com/events/503027800202785/">Nautilus, festival dei saperi '18 - Editoria
+							digitale opensource</a></li>
+					<li><a href="https://www.hackmeeting.org/hackit16/">HackMeeting '16 - Arti Digitali</a></li>
+				</ol>
+
+			</div>
+		</center>
+	</section>
+
+	<!-- other projects -->
+	<section id="other_projects" class="wrapper style1">
+		<div class="container">
+			<header class="major special" style="text-align: center;">
+				<h2>other Projects</h2>
+				<p>Those are only some works I had commited and projects in wich I took part, still am or just helped with
+					something.</p>
+				<p>Mainly here just to let you know them!</p>
+			</header>
+
+			<div class="feature-grid">
+
+				<div id="eigenLab_jabber" class="feature">
+					<div class="image "><img src="images/projects/jabber.png" alt="" /></div>
+					<div class="content">
+						<header>
+							<h4>Jabber!</h4>
+							<p>Instant messaging with eigenLab</p>
+						</header>
+						<p>HTML, CSS from scratch, images made by me, anything else by <a href="https://eigenlab.org">eigenLab</a>.
+							<br />
+							<a href="https://jabber.eigenlab.org/" class="button small" target="_blank">visit</a>
+						</p>
+					</div>
+				</div>
+
+				<div id="eigenLab_org" class="feature">
+					<div class="image "><img src="images/projects/eigen.png" alt="" /></div>
+					<div class="content">
+						<header>
+							<h4>eigenLab</h4>
+							<p>official website</p>
+						</header>
+						<p>The website of the best hacklab in Pisa.
+							Some customization of a WordPress theme.
+							<br />
+							<a href="https://eigenlab.org" class="button small" target="_blank">visit</a>
+						</p>
+					</div>
+				</div>
+
+				<div id="symclock" class="feature">
+					<div class="image "><img src="images/projects/symclock.png" alt="" /></div>
+					<div class="content">
+						<header>
+							<h4>SymClock</h4>
+							<p>An universal clock</p>
+						</header>
+						<p>Ideated and created by <a href="https://github.com/NuxTuxSux">NuxTuxSux</a>.
+							<br />
+							<a href="symclock/" class="button small" target="_blank">visit</a>
+						</p>
+					</div>
+				</div>
+
+				<!-- <div id="flyfish" class="feature">
+						<div class="image "><img src="https://flyfishsportswear.com/_files/200000328-f28d2f3903/200/rect917.png" alt="" /></div>
+						<div class="content">
+							<header>
+								<h4>FlyFish Sportswear</h4>
+							</header>
+							<a href="https://www.flyfishsportswear.com/" class="button small" target="_blank">visit</a></p>
+						</div>
+					</div> -->
+
+				<div id="libersoft" class="feature">
+					<div class="image "><img src="https://www.libersoft.it/src/images/logo.png" alt="" /></div>
+					<div class="content">
+						<header>
+							<h4>Libersoft</h4>
+						</header>
+						<a href="https://www.libersoft.it/site/" class="button small" target="_blank">visit</a></p>
+					</div>
+				</div>
+
+				<div id="imparaora" class="feature">
+					<div class="image "><img src="images/portfolio/loghi/imparaora.png" alt="" /></div>
+					<div class="content">
+						<header>
+							<h4>Imparaora</h4>
+						</header>
+						<a href="https://www.imparaora.it/" class="button small" target="_blank">visit</a></p>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+	</section>
+
+	<!-- Footer -->
+	<footer id="footer">
+		<div class="container contact">
+			<!-- <a href="https://mastodon.social/@diesys"><span target="_blank" class="fab fa-3x fa-mastodon"></span></a> -->
+			<a href="https://github.com/diesys?tab=repositories"><span target="_blank" class="fab fa-3x fa-github"></span></a>
+			<a href="https://git.eigenlab.org/sbiego"><span target="_blank" class="fab fa-3x fa-gitlab"></span></a>
+			<a href="mailto:turingsbite [[at]] gmail [[.]] com?subject=I just saw your site!"><i
+					class="fas fa-3x fa-envelope"></i></a>
+			<!-- <a href="https://www.facebook.com/diegusophus"><span target="_blank" class="fab fa-3x fa-facebook"></span></a> -->
+			<!-- <a href="#" class="icon fa-twitter"></a> -->
+			<a href="https://www.instagram.com/diegoturtu/"><span target="_blank" class="fab fa-3x fa-instagram"></span></a>
+			<a href="https://www.flickr.com/photos/diesys/"><span target="_blank" class="fab fa-3x fa-flickr"></span></a>
+			<!-- <a href="https://t.me/diesys"><span target="_blank" class="fab fa-3x fa-telegram"></span></a> -->
+			<!-- <a href="xmpp/jabber:diesys@eigenlab.org"><span target="_blank" class="fas fa-3x fa-comment"></span></a> -->
+		</div>
+		<ul class="copyright">
+			<li>
+				<span id="copyleft">&copy;</span><a href="https://www.gnu.org/licenses/agpl-3.0.html">AGPL v3</a>
+			</li>
+			<li><a href="http://templated.co">Template</a></li>
+			<li><a href="https://git.eigenlab.org/sbiego/flowin-white-space">Customization</a></li>
+		</ul>
+	</footer>
+
+	<!-- Root element of PhotoSwipe -->
+	<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+		<!-- Background of PhotoSwipe. 
+					It's a separate element as animating opacity is faster than rgba(). -->
+		<div class="pswp__bg"></div>
+
+		<!-- Slides wrapper with overflow:hidden. -->
+		<div class="pswp__scroll-wrap">
+
+			<!-- Container that holds slides. 
+				PhotoSwipe keeps only 3 of them in the DOM to save memory.
+				Don't modify these 3 pswp__item elements, data is added later on. -->
+			<div class="pswp__container">
+				<div class="pswp__item"></div>
+				<div class="pswp__item"></div>
+				<div class="pswp__item"></div>
+			</div>
+
+			<!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+			<div class="pswp__ui pswp__ui--hidden">
+
+				<div class="pswp__top-bar">
+
+					<!--  Controls are self-explanatory. Order can be changed. -->
+
+					<div class="pswp__counter"></div>
+
+					<button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+					<button class="pswp__button pswp__button--share" title="Share"></button>
+
+					<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+					<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+					<!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+					<!-- element will get class pswp__preloader--active when preloader is running -->
+					<div class="pswp__preloader">
+						<div class="pswp__preloader__icn">
+							<div class="pswp__preloader__cut">
+								<div class="pswp__preloader__donut"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+					<div class="pswp__share-tooltip"></div>
+				</div>
+
+				<button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+				</button>
+
+				<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+				</button>
+
+				<div class="pswp__caption">
+					<div class="pswp__caption__center"></div>
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+	<script>
+		function getYearsSinceDate(dateString) {
+			const referenceDate = new Date(dateString);
+			referenceDate.setFullYear(referenceDate.getFullYear() + 1);
+			const yearsDifference = (new Date() - referenceDate) / (1000 * 60 * 60 * 24 * 365);
+
+			return Math.ceil(yearsDifference);
+		}
+
+		today_yo = getYearsSinceDate("1993-02-26");
+		document.querySelector('#years').innerHTML = today_yo + ' yo';
+	</script>
+</body>
+
+</html>
