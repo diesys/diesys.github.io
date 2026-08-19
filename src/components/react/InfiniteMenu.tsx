@@ -71,16 +71,16 @@ void main() {
     ivec2 texSize = textureSize(uTex, 0);
     float imageAspect = float(texSize.x) / float(texSize.y);
     float containerAspect = 1.0;
-    
-    float scale = max(imageAspect / containerAspect, 
+
+    float scale = max(imageAspect / containerAspect,
                      containerAspect / imageAspect);
-    
+
     vec2 st = vec2(vUvs.x, 1.0 - vUvs.y);
     st = (st - 0.5) * scale + 0.5;
-    
+
     st = clamp(st, 0.0, 1.0);
     st = st * cellSize + cellOffset;
-    
+
     outColor = texture(uTex, st);
     outColor.a *= vAlpha;
 }
@@ -924,7 +924,7 @@ class InfiniteGridMenu {
       vec3.transformQuat(vec3.create(), p, this.control.orientation),
     );
     const scale = 0.25;
-    const SCALE_INTENSITY = 0.6;
+    const SCALE_INTENSITY = 1;
 
     positions.forEach((p, ndx) => {
       const s = (Math.abs(p[2]) / this.SPHERE_RADIUS) * SCALE_INTENSITY + (1 - SCALE_INTENSITY);
@@ -1096,7 +1096,7 @@ interface InfiniteMenuProps {
   scale?: number;
 }
 
-const InfiniteMenu: FC<InfiniteMenuProps> = ({ items = [], onSelect, scale = 1.0 }) => {
+const InfiniteMenu: FC<InfiniteMenuProps> = ({ items = [], onSelect, scale = 1.6 }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(
     null,
   ) as MutableRefObject<HTMLCanvasElement | null>;
@@ -1155,7 +1155,7 @@ const InfiniteMenu: FC<InfiniteMenuProps> = ({ items = [], onSelect, scale = 1.0
       {activeItem && (
         <>
           <h2
-            className={`absolute top-1/2 left-[1.6em] translate-x-[20%] -translate-y-1/2 transform [font-size:4rem] font-black transition-all ease-[cubic-bezier(0.25,0.1,0.25,1.0)] select-none ${
+            className={`absolute top-1/2 left-[1em] translate-x-[10%] -translate-y-1/2 transform text-[3.4rem] font-black font-display text-shadow-lg capitalize transition-all ease-[cubic-bezier(0.25,0.1,0.25,1.0)] select-none ${
               isMoving
                 ? 'pointer-events-none opacity-0 duration-[100ms]'
                 : 'pointer-events-auto opacity-100 duration-[500ms]'
@@ -1165,7 +1165,7 @@ const InfiniteMenu: FC<InfiniteMenuProps> = ({ items = [], onSelect, scale = 1.0
           </h2>
 
           <p
-            className={`absolute top-1/2 right-[1%] max-w-[10ch] text-[1.5rem] transition-all ease-[cubic-bezier(0.25,0.1,0.25,1.0)] select-none ${
+            className={`absolute top-1/2 right-[1%] max-w-[10ch] text-[1.5rem] transition-all text-shadow-lg ease-[cubic-bezier(0.25,0.1,0.25,1.0)] select-none ${
               isMoving
                 ? 'pointer-events-none translate-x-[-60%] -translate-y-1/2 opacity-0 duration-[100ms]'
                 : 'pointer-events-auto translate-x-[-90%] -translate-y-1/2 opacity-100 duration-[500ms]'
@@ -1178,7 +1178,7 @@ const InfiniteMenu: FC<InfiniteMenuProps> = ({ items = [], onSelect, scale = 1.0
             type="button"
             onClick={handleButtonClick}
             aria-label={`Open ${activeItem.title || 'gallery'} category`}
-            className={`bg-signal border-ink absolute left-1/2 z-10 grid h-[60px] w-[60px] cursor-pointer place-items-center rounded-full border-[5px] transition-all ease-[cubic-bezier(0.25,0.1,0.25,1.0)] ${
+            className={`bg-signal border-ink absolute left-1/2 z-10 grid h-15 w-15 cursor-pointer place-items-center rounded-full border-[5px] transition-all ease-[cubic-bezier(0.25,0.1,0.25,1.0)] ${
               isMoving
                 ? 'pointer-events-none bottom-[-80px] -translate-x-1/2 scale-0 opacity-0 duration-[100ms]'
                 : 'pointer-events-auto bottom-[3.8em] -translate-x-1/2 scale-100 opacity-100 duration-[500ms]'
