@@ -4,6 +4,8 @@
 
 - Logo FiS ma solo FS forse? con effetto sul bordo o simile o al mouse -> https://www.reactbits.dev/animations/shape-blur
 
+- GALLERIA -> farla piatta e non divisa per categoria ma per progetto e la categoria viene messa come tag tipo, cosi e' piu' pieno e meno macchinoso forse
+
 - slider morph
 - galaxy in hero home FARE PIU ALTO, COME UN VERO HERO (usare react-bits per lo scrolling stagged)
   - possibilmente con scroll-expand ? https://www.reactbits.dev/animations/scroll-expand
