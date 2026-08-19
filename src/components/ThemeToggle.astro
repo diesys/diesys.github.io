@@ -11,8 +11,8 @@
 // morphs moon → sunny outline on mount (used for light), while `moon` is a
 // one-shot draw-in (used for dark). In 'auto' the icon shown is the one matching
 // the currently resolved OS theme (sun on a light system, moon on a dark one),
-// plus a small "A" badge (signal circle, paper letter) marking that the OS is
-// being followed rather than a forced mode.
+// tinted with --signal to mark that the OS is being followed rather than a
+// forced mode.
 import IconMoonMorph from '~icons/line-md/moon-to-sunny-outline-transition';
 import IconMoon from '~icons/line-md/moon';
 ---
@@ -25,7 +25,6 @@ import IconMoon from '~icons/line-md/moon';
 >
   <IconMoonMorph class="icon icon-sun h-4 w-4" />
   <IconMoon class="icon icon-moon h-4 w-4" />
-  <span class="icon-badge" aria-hidden="true">A</span>
 </button>
 
 <style>
@@ -41,24 +40,10 @@ import IconMoon from '~icons/line-md/moon';
     display: block;
   }
 
-  .icon-badge {
-    position: absolute;
-    top: 1px;
-    right: 1px;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    width: 14px;
-    height: 14px;
-    border-radius: 9999px;
-    background-color: var(--signal);
-    color: var(--paper);
-    font-size: 9px;
-    font-weight: 700;
-    line-height: 1;
-  }
-  :global(html[data-theme='auto']) .icon-badge {
-    display: flex;
+  /* In 'auto' the currently visible icon follows the OS theme, so tint it with
+     --signal to signal that the mode is not forced. */
+  :global(html[data-theme='auto']) .icon {
+    color: var(--signal);
   }
 </style>
 

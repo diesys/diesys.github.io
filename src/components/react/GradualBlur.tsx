@@ -1,4 +1,11 @@
-import React, { type CSSProperties, useEffect, useRef, useState, useMemo, type PropsWithChildren } from 'react';
+import React, {
+  type CSSProperties,
+  useEffect,
+  useRef,
+  useState,
+  useMemo,
+  type PropsWithChildren,
+} from 'react';
 
 type GradualBlurProps = PropsWithChildren<{
   position?: 'top' | 'bottom' | 'left' | 'right';
@@ -59,7 +66,7 @@ const DEFAULT_CONFIG: Partial<GradualBlurProps> = {
   responsive: false,
   target: 'parent',
   className: '',
-  style: {}
+  style: {},
 };
 
 const PRESETS: Record<string, Partial<GradualBlurProps>> = {
@@ -82,22 +89,22 @@ const PRESETS: Record<string, Partial<GradualBlurProps>> = {
     position: 'top',
     height: '10rem',
     target: 'page',
-    strength: 3
+    strength: 3,
   },
   'page-footer': {
     position: 'bottom',
     height: '10rem',
     target: 'page',
-    strength: 3
-  }
+    strength: 3,
+  },
 };
 
 const CURVE_FUNCTIONS: Record<string, (p: number) => number> = {
-  linear: p => p,
-  bezier: p => p * p * (3 - 2 * p),
-  'ease-in': p => p * p,
-  'ease-out': p => 1 - Math.pow(1 - p, 2),
-  'ease-in-out': p => (p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2)
+  linear: (p) => p,
+  bezier: (p) => p * p * (3 - 2 * p),
+  'ease-in': (p) => p * p,
+  'ease-out': (p) => 1 - Math.pow(1 - p, 2),
+  'ease-in-out': (p) => (p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2),
 };
 
 const mergeConfigs = (...configs: Partial<GradualBlurProps>[]): Partial<GradualBlurProps> => {
@@ -109,7 +116,7 @@ const getGradientDirection = (position: string): string => {
     top: 'to top',
     bottom: 'to bottom',
     left: 'to left',
-    right: 'to right'
+    right: 'to right',
   };
   return directions[position] || 'to bottom';
 };
@@ -124,7 +131,7 @@ const debounce = <T extends (...a: any[]) => void>(fn: T, wait: number) => {
 const useResponsiveDimension = (
   responsive: boolean | undefined,
   config: Partial<GradualBlurProps>,
-  key: keyof GradualBlurProps
+  key: keyof GradualBlurProps,
 ) => {
   const [val, setVal] = useState<any>(config[key]);
   useEffect(() => {
@@ -147,13 +154,18 @@ const useResponsiveDimension = (
   return responsive ? val : (config as any)[key];
 };
 
-const useIntersectionObserver = (ref: React.RefObject<HTMLDivElement>, shouldObserve: boolean = false) => {
+const useIntersectionObserver = (
+  ref: React.RefObject<HTMLDivElement>,
+  shouldObserve: boolean = false,
+) => {
   const [isVisible, setIsVisible] = useState(!shouldObserve);
 
   useEffect(() => {
     if (!shouldObserve || !ref.current) return;
 
-    const observer = new IntersectionObserver(([entry]) => setIsVisible(entry.isIntersecting), { threshold: 0.1 });
+    const observer = new IntersectionObserver(([entry]) => setIsVisible(entry.isIntersecting), {
+      threshold: 0.1,
+    });
 
     observer.observe(ref.current);
     return () => observer.disconnect();
@@ -162,7 +174,7 @@ const useIntersectionObserver = (ref: React.RefObject<HTMLDivElement>, shouldObs
   return isVisible;
 };
 
-const GradualBlur: React.FC<GradualBlurProps> = props => {
+const GradualBlur: React.FC<GradualBlurProps> = (props) => {
   const containerRef = useRef<HTMLDivElement>(null) as React.RefObject<HTMLDivElement>;
   const [isHovered, setIsHovered] = useState(false);
 
@@ -180,7 +192,9 @@ const GradualBlur: React.FC<GradualBlurProps> = props => {
     const divs: React.ReactNode[] = [];
     const increment = 100 / config.divCount;
     const currentStrength =
-      isHovered && config.hoverIntensity ? config.strength * config.hoverIntensity : config.strength;
+      isHovered && config.hoverIntensity
+        ? config.strength * config.hoverIntensity
+        : config.strength;
 
     const curveFunc = CURVE_FUNCTIONS[config.curve] || CURVE_FUNCTIONS.linear;
 
@@ -214,7 +228,7 @@ const GradualBlur: React.FC<GradualBlurProps> = props => {
         transition:
           config.animated && config.animated !== 'scroll'
             ? `backdrop-filter ${config.duration} ${config.easing}`
-            : undefined
+            : undefined,
       };
 
       divs.push(<div key={i} className="absolute inset-0" style={divStyle} />);
@@ -234,7 +248,7 @@ const GradualBlur: React.FC<GradualBlurProps> = props => {
       opacity: isVisible ? 1 : 0,
       transition: config.animated ? `opacity ${config.duration} ${config.easing}` : undefined,
       zIndex: isPageTarget ? config.zIndex + 100 : config.zIndex,
-      ...config.style
+      ...config.style,
     };
 
     if (isVertical) {
@@ -270,7 +284,7 @@ const GradualBlur: React.FC<GradualBlurProps> = props => {
       onMouseEnter={hoverIntensity ? () => setIsHovered(true) : undefined}
       onMouseLeave={hoverIntensity ? () => setIsHovered(false) : undefined}
     >
-      <div className="relative w-full h-full">{blurDivs}</div>
+      <div className="relative h-full w-full">{blurDivs}</div>
       {props.children && <div className="relative">{props.children}</div>}
     </div>
   );
