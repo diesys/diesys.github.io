@@ -5,7 +5,9 @@ type: personal
 role: Design & development # TODO: real role
 date: 2020-01-01 # TODO: real date
 tags: []
-cover: https://flowin.space/images/projects/wastecopter.png
+cover: /images/work/wastecopter.png
+images:
+  - /images/work/wastecopter.png
 url: https://flowin.space/wastecopter
 featured: false
 draft: false

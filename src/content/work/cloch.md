@@ -5,7 +5,9 @@ type: personal
 role: Design & development # TODO: real role
 date: 2020-01-01 # TODO: real date
 tags: []
-cover: https://flowin.space/images/projects/cloch.png
+cover: /images/work/cloch.png
+images:
+  - /images/work/cloch.png
 url: https://flowin.space/cloch/
 featured: false
 draft: false

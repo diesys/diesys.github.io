@@ -2,6 +2,7 @@
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Button from '@/components/Button.astro';
+import BounceCards from '@/components/react/BounceCards';
 import { formatDate } from '@/utils/formatDate';
 
 export async function getStaticPaths() {
@@ -17,7 +18,7 @@ interface Props {
 }
 
 const { entry } = Astro.props;
-const { title, summary, type, role, date, tags, url, repo } = entry.data;
+const { title, summary, type, role, date, tags, url, repo, images } = entry.data;
 const { Content } = await render(entry);
 
 const formattedDate = formatDate(date);
@@ -48,6 +49,12 @@ const formattedDate = formatDate(date);
         )
       }
     </dl>
+
+    {
+      images.length > 0 && (
+        <BounceCards client:visible images={images} alt={title} className="mt-10" />
+      )
+    }
 
     <div class="prose prose-sm sm:prose-base mt-10 max-w-2xl">
       <Content />

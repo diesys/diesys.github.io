@@ -5,7 +5,9 @@ type: personal
 role: Design & development # TODO: real role
 date: 2020-01-01 # TODO: real date
 tags: []
-cover: https://flowin.space/images/projects/symclock.png
+cover: /images/work/symclock.png
+images:
+  - /images/work/symclock.png
 url: https://flowin.space/symclock/
 featured: false
 draft: false

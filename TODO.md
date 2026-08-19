@@ -2,6 +2,8 @@
 
 - PER HEADER: https://www.reactbits.dev/components/gooey-nav
 
+- Logo FiS ma solo FS forse? con effetto sul bordo o simile o al mouse -> https://www.reactbits.dev/animations/shape-blur
+
 - slider morph
 - galaxy in hero home FARE PIU ALTO, COME UN VERO HERO (usare react-bits per lo scrolling stagged)
   - possibilmente con scroll-expand ? https://www.reactbits.dev/animations/scroll-expand

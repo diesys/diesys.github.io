@@ -5,7 +5,9 @@ type: personal
 role: Design & development # TODO: real role
 date: 2020-01-01 # TODO: real date
 tags: []
-cover: https://flowin.space/images/projects/pomelo.png
+cover: /images/work/pomelo.png
+images:
+  - /images/work/pomelo.png
 featured: false
 draft: false
 ---

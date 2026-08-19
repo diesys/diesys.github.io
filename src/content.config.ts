@@ -7,20 +7,20 @@ import { z } from 'astro/zod';
 // which becomes the URL at /work/studio-os.
 const work = defineCollection({
   loader: glob({ base: './src/content/work', pattern: '**/*.md' }),
-  schema: ({ image }) =>
-    z.object({
-      title: z.string(),
-      summary: z.string().max(160),
-      type: z.enum(['commissioned', 'personal', 'company']),
-      role: z.string(),
-      date: z.coerce.date(),
-      tags: z.array(z.string()).default([]),
-      cover: z.union([image(), z.url()]).optional(),
-      url: z.url().optional(),
-      repo: z.url().optional(),
-      featured: z.boolean().default(false),
-      draft: z.boolean().default(false),
-    }),
+  schema: z.object({
+    title: z.string(),
+    summary: z.string().max(160),
+    type: z.enum(['commissioned', 'personal', 'company']),
+    role: z.string(),
+    date: z.coerce.date(),
+    tags: z.array(z.string()).default([]),
+    cover: z.string().optional(),
+    images: z.array(z.string()).default([]),
+    url: z.url().optional(),
+    repo: z.url().optional(),
+    featured: z.boolean().default(false),
+    draft: z.boolean().default(false),
+  }),
 });
 
 // "gallery" entries live in src/content/gallery/*.md

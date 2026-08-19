@@ -1,0 +1,33 @@
+---
+import WarpText from '@/components/react/WarpText';
+
+interface Props {
+  text: string;
+  class?: string;
+  fontSize?: string;
+  fontWeight?: number | string;
+}
+
+const {
+  text,
+  class: className,
+  fontSize = 'clamp(1.875rem, 4vw, 2.5rem)',
+  fontWeight = 500,
+} = Astro.props;
+---
+
+<!--
+  h1 whose visual rendering is the WarpText WebGL island (canvas text, so it is
+  invisible to search engines and screen readers); the sr-only span carries the
+  real heading for SEO/a11y. Typography defaults match the site's h1 look.
+-->
+<h1 class:list={['font-display text-ink relative', className]}>
+  <span class="sr-only">{text}</span>
+  <WarpText
+    client:visible
+    text={text}
+    fontSize={fontSize}
+    fontWeight={fontWeight}
+    className="min-h-[3rem]"
+  />
+</h1>

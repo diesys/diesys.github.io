@@ -5,7 +5,9 @@ type: personal
 role: Design & development # TODO: real role
 date: 2020-01-01 # TODO: real date
 tags: []
-cover: https://flowin.space/images/projects/iblu.png
+cover: /images/work/iblu.png
+images:
+  - /images/work/iblu.png
 featured: false
 draft: false
 ---

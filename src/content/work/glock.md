@@ -5,7 +5,9 @@ type: personal
 role: Design & development # TODO: real role
 date: 2020-01-01 # TODO: real date
 tags: []
-cover: https://flowin.space/images/projects/glock.png
+cover: /images/work/glock.png
+images:
+  - /images/work/glock.png
 url: https://flowin.space/glock/
 featured: false
 draft: false

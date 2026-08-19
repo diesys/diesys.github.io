@@ -5,7 +5,9 @@ type: personal
 role: Design & development # TODO: real role
 date: 2020-01-01 # TODO: real date
 tags: []
-cover: https://flowin.space/images/projects/storiedoo.png
+cover: /images/work/storie-di-ordinaria-ordinaria.png
+images:
+  - /images/work/storie-di-ordinaria-ordinaria.png
 url: https://flowin.space/storiedoo/
 featured: false
 draft: false

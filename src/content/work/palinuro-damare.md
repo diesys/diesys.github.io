@@ -5,7 +5,9 @@ type: commissioned
 role: Design & development # TODO: real role
 date: 2020-01-01 # TODO: real date
 tags: []
-cover: https://flowin.space/images/projects/damare.png
+cover: /images/work/palinuro-damare.png
+images:
+  - /images/work/palinuro-damare.png
 url: https://itertour.eu/damare/loc/palinuro
 featured: false
 draft: false

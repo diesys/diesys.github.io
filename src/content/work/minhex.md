@@ -5,7 +5,9 @@ type: personal
 role: Design & development # TODO: real role
 date: 2020-01-01 # TODO: real date
 tags: []
-cover: https://flowin.space/images/projects/minhex.png
+cover: /images/work/minhex.png
+images:
+  - /images/work/minhex.png
 url: https://flowin.space/minhex/
 featured: false
 draft: false

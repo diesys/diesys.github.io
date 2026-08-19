@@ -5,7 +5,13 @@ type: personal
 role: Design & development # TODO: real role
 date: 2020-01-01 # TODO: real date
 tags: []
-cover: https://flowin.space/images/projects/vision.png
+cover: /images/work/point-of-vision.png
+images:
+  - /images/work/point-of-vision/astrophe.jpeg
+  - /images/work/point-of-vision/sonder.jpeg
+  - /images/work/point-of-vision/onism.jpeg
+  - /images/work/point-of-vision/klexos.jpeg
+  - /images/work/point-of-vision/wabi-sabi.jpeg
 url: https://flowin.space/vision/
 featured: false
 draft: false

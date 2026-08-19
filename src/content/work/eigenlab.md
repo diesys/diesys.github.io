@@ -5,7 +5,9 @@ type: commissioned
 role: Design & development # TODO: real role
 date: 2020-01-01 # TODO: real date
 tags: []
-cover: https://flowin.space/images/projects/eigen.png
+cover: /images/work/eigenlab.png
+images:
+  - /images/work/eigenlab.png
 url: https://eigenlab.org
 featured: false
 draft: false

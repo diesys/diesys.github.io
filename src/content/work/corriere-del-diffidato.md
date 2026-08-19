@@ -5,7 +5,9 @@ type: personal
 role: Design & development # TODO: real role
 date: 2020-01-01 # TODO: real date
 tags: []
-cover: https://flowin.space/images/projects/diffidato.png
+cover: /images/work/corriere-del-diffidato.png
+images:
+  - /images/work/corriere-del-diffidato.png
 url: http://flowin.space/diffidato
 featured: false
 draft: false

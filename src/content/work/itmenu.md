@@ -5,7 +5,9 @@ type: commissioned
 role: Design & development # TODO: real role
 date: 2020-01-01 # TODO: real date
 tags: []
-cover: https://flowin.space/images/projects/itmenu.png
+cover: /images/work/itmenu.png
+images:
+  - /images/work/itmenu.png
 url: https://itertour.eu/itmenu/
 featured: false
 draft: false

@@ -5,7 +5,9 @@ type: personal
 role: Design & development # TODO: real role
 date: 2020-01-01 # TODO: real date
 tags: []
-cover: https://flowin.space/images/projects/quite.png
+cover: /images/work/quite.png
+images:
+  - /images/work/quite.png
 featured: false
 draft: false
 ---
