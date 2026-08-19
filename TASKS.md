@@ -170,7 +170,7 @@ type: z.enum(["commissioned", "personal", "company"])
 > `cli-scripts/new-project.sh` (gum input / `read -p` when interactive, flags +
 > defaults when not) and extended `portfolio-cli` dispatch to forward extra args
 > (`./portfolio-cli new-project <slug> --type ...`); scaffolded projects default to
-> `draft: true` unless `--publish`. `pnpm run check` and `pnpm run build` pass, also
+> `draft: false` unless `--publish`. `pnpm run check` and `pnpm run build` pass, also
 > with a freshly scaffolded file.
 
 ---

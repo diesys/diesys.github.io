@@ -8,7 +8,7 @@ tags: [Svelte, PWA, IndexedDB]
 url: https://example.com
 repo: https://github.com/your-username/fieldnote
 featured: false
-draft: false
+draft: true
 ---
 
 A friend doing field interviews for her thesis kept losing notes to apps that silently required a connection to save. Fieldnote is the opposite: it assumes you're offline by default and syncs opportunistically when a connection shows up.

@@ -24,3 +24,22 @@ export const NAV_LINKS = [
   { label: 'About', href: '/about' },
   { label: 'Blog', href: '/blog' },
 ] as const;
+
+// ---------------------------------------------------------------------------
+// TODO: real site content extracted from the old site
+// (current_website_index.html). Replace the values above manually with these —
+// kept commented on purpose so nothing changes until you're ready.
+// ---------------------------------------------------------------------------
+// name: 'Diego Turtulici',
+// role: 'Web and Front-end Developer, UI/UX and Graphics Designer',
+// email: 'turingsbite@gmail.com',
+// tagline: 'Flow in space and get lost...',
+// description:
+//   'Born near the Iblei mountains, now based in Pisa, Toscana. Web and front-end developer, UI/UX and graphics designer; digital arts and photography.',
+// status: 'Full-time employed at Geckosoft',
+// social: [
+//   { label: 'GitHub', href: 'https://github.com/diesys' },
+//   { label: 'GitLab', href: 'https://git.eigenlab.org/sbiego' },
+//   { label: 'Instagram', href: 'https://www.instagram.com/diegoturtu/' },
+//   { label: 'Flickr', href: 'https://www.flickr.com/photos/diesys/' },
+// ],

@@ -15,7 +15,7 @@ const work = defineCollection({
       role: z.string(),
       date: z.coerce.date(),
       tags: z.array(z.string()).default([]),
-      cover: image().optional(),
+      cover: z.union([image(), z.url()]).optional(),
       url: z.url().optional(),
       repo: z.url().optional(),
       featured: z.boolean().default(false),
@@ -23,4 +23,28 @@ const work = defineCollection({
     }),
 });
 
-export const collections = { work };
+// "gallery" entries live in src/content/gallery/*.md
+// One entry per visual portfolio category (stickers, logos, posters, ...).
+// `image` is a remote URL pointing at the legacy site (https://flowin.space).
+const gallery = defineCollection({
+  loader: glob({ base: './src/content/gallery', pattern: '**/*.md' }),
+  schema: z.object({
+    title: z.string(),
+    image: z.url(),
+    alt: z.string().optional(),
+  }),
+});
+
+// "talks" entries live in src/content/talks/*.md
+// Talks/speaking engagements; `category` lets us group past vs upcoming.
+const talks = defineCollection({
+  loader: glob({ base: './src/content/talks', pattern: '**/*.md' }),
+  schema: z.object({
+    title: z.string(),
+    url: z.url(),
+    date: z.string(),
+    category: z.enum(['past', 'upcoming']).default('past'),
+  }),
+});
+
+export const collections = { work, gallery, talks };

@@ -7,7 +7,7 @@ date: 2025-11-12
 tags: [Data Visualization, React, Mapbox]
 repo: https://github.com/your-username/northwind-atlas
 featured: true
-draft: false
+draft: true
 ---
 
 Northwind's dispatch team was running routes from a paper board and a radio. Atlas gives them a live map instead, but the real work was deciding what _not_ to show.

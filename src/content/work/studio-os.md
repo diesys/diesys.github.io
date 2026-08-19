@@ -7,8 +7,8 @@ date: 2026-04-01
 tags: [Product Design, Astro, TypeScript, Design Systems]
 url: https://example.com
 repo: https://github.com/your-username/studio-os
-featured: true
-draft: false
+featured: false
+draft: true
 ---
 
 Studio OS started as a two-week audit: where was the team actually losing time? The answer was context-switching between a spreadsheet for scheduling, a spreadsheet for billing, and a Slack channel that functioned as an ad-hoc support queue.
