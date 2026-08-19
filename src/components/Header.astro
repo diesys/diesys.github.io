@@ -1,23 +1,26 @@
 ---
 import ThemeToggle from '@/components/ThemeToggle.astro';
 import MenuWheel from '@/components/react/MenuWheel';
+import GooeyNav from '@/components/react/GooeyNav';
 import { SITE, NAV_LINKS } from '@/site.config';
 
 const currentPath = Astro.url.pathname;
 
-// Same entries as the inline nav below, so the wheel menu offers the same
-// destinations without replacing the existing links.
+// Same entries as the inline nav below: the site's links plus Contact, shared
+// by the gooey nav (and the wheel menu if re-enabled). Contact is hidden on
+// small screens, matching the inline nav.
 const menuItems = [
   ...NAV_LINKS.map((link) => ({ label: link.label, href: link.href })),
-  { label: 'Contact', href: '/#contact' },
+  { label: 'Contact', href: '/#contact', className: 'hidden sm:block' },
 ];
 
-const activeIndex = Math.max(
-  0,
-  NAV_LINKS.findIndex(
-    (link) => currentPath === link.href || currentPath.startsWith(`${link.href}/`),
-  ),
+// -1 when no link matches (e.g. the homepage), mirroring the inline nav's
+// per-link isActive instead of the wheel's default-to-first behavior.
+const activeLinkIndex = NAV_LINKS.findIndex(
+  (link) => currentPath === link.href || currentPath.startsWith(`${link.href}/`),
 );
+
+const activeIndex = Math.max(0, activeLinkIndex);
 ---
 
 <header
@@ -30,33 +33,47 @@ const activeIndex = Math.max(
       {SITE.name}
     </a>
 
-    <nav class="flex items-center gap-5" aria-label="Primary">
-      {
-        NAV_LINKS.map((link) => {
-          const isActive = currentPath === link.href || currentPath.startsWith(`${link.href}/`);
-          return (
-            <a
-              href={link.href}
-              aria-current={isActive ? 'page' : undefined}
-              class:list={[
-                'font-mono text-xs tracking-wide uppercase transition-colors',
-                isActive ? 'text-signal' : 'text-ink-soft hover:text-ink',
-              ]}
-            >
-              {link.label}
-            </a>
-          );
-        })
-      }
-      <a
-        href="/#contact"
-        class="text-ink-soft hover:text-ink hidden font-mono text-xs tracking-wide uppercase transition-colors sm:inline"
-      >
-        Contact
-      </a>
-      <ThemeToggle />
+    <!--
+      Original inline nav (kept commented for reference — replaced by the
+      GooeyNav island below):
+      <nav class="flex items-center gap-5" aria-label="Primary">
+        {
+          NAV_LINKS.map((link) => {
+            const isActive = currentPath === link.href || currentPath.startsWith(`${link.href}/`);
+            return (
+              <a
+                href={link.href}
+                aria-current={isActive ? 'page' : undefined}
+                class:list={[
+                  'font-mono text-xs tracking-wide uppercase transition-colors',
+                  isActive ? 'text-signal' : 'text-ink-soft hover:text-ink',
+                ]}
+              >
+                {link.label}
+              </a>
+            );
+          })
+        }
+        <a
+          href="/#contact"
+          class="text-ink-soft hover:text-ink hidden font-mono text-xs tracking-wide uppercase transition-colors sm:inline"
+        >
+          Contact
+        </a>
+        <ThemeToggle />
+        <MenuWheel items={menuItems} defaultSelected={activeIndex} client:visible />
+      </nav>
+    -->
 
-      <!-- <MenuWheel items={menuItems} defaultSelected={activeIndex} client:visible /> -->
-    </nav>
+    <div class="flex items-center gap-5">
+      <GooeyNav
+        items={menuItems}
+        initialActiveIndex={activeLinkIndex}
+        particleCount={22}
+        timeVariance={1400}
+        client:visible
+      />
+      <ThemeToggle />
+    </div>
   </div>
 </header>
