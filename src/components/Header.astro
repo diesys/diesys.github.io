@@ -33,39 +33,37 @@ const activeIndex = Math.max(0, activeLinkIndex);
       {SITE.name}
     </a>
 
-    <!--
-      Original inline nav (kept commented for reference — replaced by the
-      GooeyNav island below):
-      <nav class="flex items-center gap-5" aria-label="Primary">
-        {
-          NAV_LINKS.map((link) => {
-            const isActive = currentPath === link.href || currentPath.startsWith(`${link.href}/`);
-            return (
-              <a
-                href={link.href}
-                aria-current={isActive ? 'page' : undefined}
-                class:list={[
-                  'font-mono text-xs tracking-wide uppercase transition-colors',
-                  isActive ? 'text-signal' : 'text-ink-soft hover:text-ink',
-                ]}
-              >
-                {link.label}
-              </a>
-            );
-          })
-        }
-        <a
-          href="/#contact"
-          class="text-ink-soft hover:text-ink hidden font-mono text-xs tracking-wide uppercase transition-colors sm:inline"
-        >
-          Contact
-        </a>
-        <ThemeToggle />
-        <MenuWheel items={menuItems} defaultSelected={activeIndex} client:visible />
-      </nav>
-    -->
+    <!-- Original inline nav (kept commented for reference — replaced by the
+      GooeyNav island below): -->
+    <nav class="flex items-center gap-5" aria-label="Primary">
+      {
+        NAV_LINKS.map((link) => {
+          const isActive = currentPath === link.href || currentPath.startsWith(`${link.href}/`);
+          return (
+            <a
+              href={link.href}
+              aria-current={isActive ? 'page' : undefined}
+              class:list={[
+                'font-mono text-xs tracking-wide uppercase transition-colors',
+                isActive ? 'text-signal' : 'text-ink-soft hover:text-ink',
+              ]}
+            >
+              {link.label}
+            </a>
+          );
+        })
+      }
+      <a
+        href="/#contact"
+        class="text-ink-soft hover:text-ink hidden font-mono text-xs tracking-wide uppercase transition-colors sm:inline"
+      >
+        Contact
+      </a>
+      <ThemeToggle />
+      <!-- <MenuWheel items={menuItems} defaultSelected={activeIndex} client:visible /> -->
+    </nav>
 
-    <div class="flex items-center gap-5">
+    <!-- <div class="flex items-center gap-5">
       <GooeyNav
         items={menuItems}
         initialActiveIndex={activeLinkIndex}
@@ -74,6 +72,6 @@ const activeIndex = Math.max(0, activeLinkIndex);
         client:visible
       />
       <ThemeToggle />
-    </div>
+    </div> -->
   </div>
 </header>
