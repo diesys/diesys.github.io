@@ -1,5 +1,8 @@
 ---
 title: banners
-image: https://flowin.space/images/portfolio/banner/aperiborda.jpg
+image: /images/portfolio/banner/aperiborda.jpg
 alt: banner
+images:
+  - /images/portfolio/banner/aperiborda.jpg
+  - /images/portfolio/banner/aperijam.jpg
 ---

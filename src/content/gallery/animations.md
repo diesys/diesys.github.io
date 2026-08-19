@@ -1,5 +1,8 @@
 ---
 title: animations
-image: https://flowin.space/images/portfolio/animazioni/flyfishLogoTransitionOPT.gif
+image: /images/portfolio/animazioni/flyfishLogoTransitionOPT_big.gif
 alt: animations
+images:
+  - /images/portfolio/animazioni/flyfishLogoTransitionOPT_big.gif
+  - /images/portfolio/animazioni/bioviiix.gif
 ---

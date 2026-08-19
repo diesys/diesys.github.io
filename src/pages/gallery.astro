@@ -1,0 +1,21 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Gallery from '@/components/react/Gallery';
+
+const categories = (await getCollection('gallery')).map((entry) => ({
+  id: entry.id,
+  title: entry.data.title,
+  image: entry.data.image,
+  images: entry.data.images,
+}));
+---
+
+<BaseLayout
+  title="Gallery"
+  description="Visual work, grouped by category — explore the sphere, then open a category to browse it full-screen."
+>
+  <section class="relative h-[70vh] overflow-hidden">
+    <Gallery categories={categories} client:visible />
+  </section>
+</BaseLayout>

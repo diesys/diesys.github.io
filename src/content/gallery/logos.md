@@ -1,5 +1,42 @@
 ---
 title: logos
-image: https://flowin.space/images/portfolio/loghi/eigenlab.jpg
+image: /images/portfolio/loghi/eigenlab.jpg
 alt: logo
+images:
+  - /images/portfolio/loghi/antipong.png
+  - /images/portfolio/loghi/aqara.png
+  - /images/portfolio/loghi/corpisqualificati.png
+  - /images/portfolio/loghi/eigenlab_icon.png
+  - /images/portfolio/loghi/eigenlab.jpg
+  - /images/portfolio/loghi/=e.png
+  - /images/portfolio/loghi/eyedye.png
+  - /images/portfolio/loghi/gaiama.png
+  - /images/portfolio/loghi/eigennet.jpg
+  - /images/portfolio/loghi/eigenwiki.jpg
+  - /images/portfolio/loghi/francoproject.png
+  - /images/portfolio/loghi/friconight.png
+  - /images/portfolio/loghi/hackit_bolo.png
+  - /images/portfolio/loghi/itertour_bicolor_darkbg.png
+  - /images/portfolio/loghi/itertour.png
+  - /images/portfolio/loghi/itmenu.png
+  - /images/portfolio/loghi/jastersind.png
+  - /images/portfolio/loghi/kelevra.jpg
+  - /images/portfolio/loghi/kinemate.png
+  - /images/portfolio/loghi/libersoft.png
+  - /images/portfolio/loghi/logo_CorriereDelDiffidato.png
+  - /images/portfolio/loghi/lumia.png
+  - /images/portfolio/loghi/mus_fil0.png
+  - /images/portfolio/loghi/mus_fil1.png
+  - /images/portfolio/loghi/mus_fil2.png
+  - /images/portfolio/loghi/nautilus.png
+  - /images/portfolio/loghi/OrdineSederiLiberi.png
+  - /images/portfolio/loghi/populalma_razza.png
+  - /images/portfolio/loghi/subacquea.jpg
+  - /images/portfolio/loghi/somec.png
+  - /images/portfolio/loghi/takeitisee.jpg
+  - /images/portfolio/loghi/vamanda_bn.jpg
+  - /images/portfolio/loghi/vamanda.jpg
+  - /images/portfolio/loghi/vettori.png
+  - /images/portfolio/loghi/vision.png
+  - /images/portfolio/loghi/vision_clr.png
 ---
