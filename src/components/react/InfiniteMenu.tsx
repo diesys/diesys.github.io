@@ -1146,7 +1146,7 @@ const InfiniteMenu: FC<InfiniteMenuProps> = ({ items = [], onSelect, scale = 1.6
   };
 
   return (
-    <div className="relative h-full w-full [mask:radial-gradient(ellipse_at_50%_25%,black_60%,transparent_69%)]">
+    <div className="relative h-full w-full bg-[radial-gradient(ellipse,#8883,transparent_70%)] [mask:radial-gradient(ellipse_at_50%_25%,black_60%,transparent_69%)]">
       <canvas
         ref={canvasRef}
         className="relative h-full w-full cursor-grab overflow-hidden outline-none active:cursor-grabbing"
