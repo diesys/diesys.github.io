@@ -252,47 +252,7 @@ type: z.enum(["commissioned", "personal", "company"])
 
 ---
 
----
-
-## Task 7 — Automatic deploy to GitHub Pages (`username.github.io`)
-
-- [ ] Verify/create the repo with the exact name `<username>.github.io` (GitHub Pages
-      requirement for a root/user site) — confirm the correct username with the user.
-- [ ] Create `.github/workflows/deploy.yml`: build with pnpm, deploy to GitHub Pages on
-      every push to `main`.
-- [ ] **Do not create** `public/CNAME` (no custom domain attached to the repo — see
-      AGENTS.md).
-- [ ] Verify the workflow uses the correct Node/pnpm versions (consistent with
-      `package.json` → `engines`).
-- [ ] Document in `README.md`, purely for informational purposes, that an optional
-      personal domain of the user's can be redirected with a permanent 301 redirect to
-      `https://<username>.github.io` at the DNS/provider level — the agent does not
-      perform this part, it's left entirely to the user.
-- [ ] Add a `cli-scripts/deploy.sh` script wired into `portfolio-cli` (`./portfolio-cli
-deploy`) that runs the pre-deploy checks (build + check) and pushes to `main`,
-      with a confirmation prompt before pushing (gum-backed if available, per
-      `AGENTS.md`).
-
-## Task 8 — Contact form (open decision)
-
-The solution for the contact form hasn't been chosen yet. Before implementing,
-**present options and let the user choose** among things like:
-
-- Formspree (requires account + form ID)
-- Web3Forms (requires access key)
-- Netlify Forms (not applicable: the site is on GitHub Pages, not Netlify)
-- Simple `mailto:` link (zero external dependencies, less "polished" UX)
-- Another service proposed by the user
-
-- [ ] Present the options (quick pros/cons) and wait for the user's decision.
-- [ ] Implement the chosen solution with placeholders for any credentials/IDs, clearly
-      commented.
-- [ ] Verify basic form accessibility (associated labels, error/success states
-      communicated not only through color).
-
----
-
-## Task 9 — Icon system (LineMD via `unplugin-icons`)
+## Task 7 — Icon system (LineMD via `unplugin-icons`)
 
 The site builds in animated icons from the LineMD set (MIT) with `unplugin-icons`
 (`compiler: 'astro'`), replacing the hand-drawn SVGs of the theme toggle and the
@@ -323,6 +283,44 @@ via CSS). See `docs/icons.md` for usage.
 > Files touched: `astro.config.mjs`, `src/env.d.ts`,
 > `src/components/BaseHead.astro`, `src/components/ThemeToggle.astro`,
 > `src/components/react/MenuWheel.tsx`, `docs/icons.md`, `README.md`.
+
+---
+
+## Task 8 — Automatic deploy to GitHub Pages (`username.github.io`)
+
+- [ ] Verify/create the repo with the exact name `<username>.github.io` (GitHub Pages
+      requirement for a root/user site) — confirm the correct username with the user.
+- [ ] Create `.github/workflows/deploy.yml`: build with pnpm, deploy to GitHub Pages on
+      every push to `main`.
+- [ ] **Do not create** `public/CNAME` (no custom domain attached to the repo — see
+      AGENTS.md).
+- [ ] Verify the workflow uses the correct Node/pnpm versions (consistent with
+      `package.json` → `engines`).
+- [ ] Document in `README.md`, purely for informational purposes, that an optional
+      personal domain of the user's can be redirected with a permanent 301 redirect to
+      `https://<username>.github.io` at the DNS/provider level — the agent does not
+      perform this part, it's left entirely to the user.
+- [ ] Add a `cli-scripts/deploy.sh` script wired into `portfolio-cli` (`./portfolio-cli
+deploy`) that runs the pre-deploy checks (build + check) and pushes to `main`,
+      with a confirmation prompt before pushing (gum-backed if available, per
+      `AGENTS.md`).
+
+## Task 9 — Contact form (open decision)
+
+The solution for the contact form hasn't been chosen yet. Before implementing,
+**present options and let the user choose** among things like:
+
+- Formspree (requires account + form ID)
+- Web3Forms (requires access key)
+- Netlify Forms (not applicable: the site is on GitHub Pages, not Netlify)
+- Simple `mailto:` link (zero external dependencies, less "polished" UX)
+- Another service proposed by the user
+
+- [ ] Present the options (quick pros/cons) and wait for the user's decision.
+- [ ] Implement the chosen solution with placeholders for any credentials/IDs, clearly
+      commented.
+- [ ] Verify basic form accessibility (associated labels, error/success states
+      communicated not only through color).
 
 ---
 
