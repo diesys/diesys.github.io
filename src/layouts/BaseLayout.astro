@@ -21,7 +21,10 @@ const { title, description = SITE.description, image = '/og-image.png' } = Astro
     <BaseHead title={title} description={description} image={image} />
   </head>
 
-  <body id="top" class="bg-paper text-ink flex h-screen w-dvw flex-col overflow-x-hidden">
+  <body
+    id="top"
+    class="bg-paper text-ink flex h-full min-h-screen w-dvw flex-col overflow-x-hidden"
+  >
     <Header />
 
     <main class="grow">
