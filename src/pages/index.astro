@@ -6,6 +6,7 @@ import WorkRow from '@/components/WorkRow.astro';
 import SectionHeading from '@/components/SectionHeading.astro';
 import { SITE } from '@/site.config';
 import Galaxy from '@/components/react/Galaxy';
+import TechLoop from '@/components/react/TechLoop';
 
 const allWork = await getCollection('work', ({ data }) => !data.draft);
 const sorted = [...allWork].sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
@@ -47,6 +48,10 @@ const selected = [...featured, ...rest].slice(0, 5);
         <Button href="#contact" variant="ghost">Say hello</Button>
       </div>
     </div>
+  </section>
+
+  <section aria-label="Tech stack" class="mx-auto max-w-4xl -translate-y-8 pb-20">
+    <TechLoop client:visible />
   </section>
 
   <section id="work" class="mx-auto max-w-3xl px-6 pb-20">

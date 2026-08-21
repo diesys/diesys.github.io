@@ -13,3 +13,69 @@ declare module '~icons/line-md/menu-to-close-alt-transition?raw' {
   const content: string;
   export default content;
 }
+
+// simple-icons (tech stack logos for TechLoop)
+declare module '~icons/simple-icons/typescript?raw' {
+  const content: string;
+  export default content;
+}
+declare module '~icons/simple-icons/angular?raw' {
+  const content: string;
+  export default content;
+}
+declare module '~icons/simple-icons/github?raw' {
+  const content: string;
+  export default content;
+}
+declare module '~icons/simple-icons/react?raw' {
+  const content: string;
+  export default content;
+}
+declare module '~icons/simple-icons/html5?raw' {
+  const content: string;
+  export default content;
+}
+declare module '~icons/simple-icons/css?raw' {
+  const content: string;
+  export default content;
+}
+declare module '~icons/simple-icons/docker?raw' {
+  const content: string;
+  export default content;
+}
+declare module '~icons/simple-icons/figma?raw' {
+  const content: string;
+  export default content;
+}
+declare module '~icons/simple-icons/tailwindcss?raw' {
+  const content: string;
+  export default content;
+}
+declare module '~icons/simple-icons/nodedotjs?raw' {
+  const content: string;
+  export default content;
+}
+declare module '~icons/simple-icons/nextdotjs?raw' {
+  const content: string;
+  export default content;
+}
+declare module '~icons/simple-icons/astro?raw' {
+  const content: string;
+  export default content;
+}
+declare module '~icons/simple-icons/sass?raw' {
+  const content: string;
+  export default content;
+}
+declare module '~icons/simple-icons/vite?raw' {
+  const content: string;
+  export default content;
+}
+declare module '~icons/simple-icons/git?raw' {
+  const content: string;
+  export default content;
+}
+declare module '~icons/simple-icons/linux?raw' {
+  const content: string;
+  export default content;
+}
