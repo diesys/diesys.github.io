@@ -3,7 +3,47 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import Button from '@/components/Button.astro';
 import { SITE } from '@/site.config';
 
-const tools = ['TypeScript', 'Astro', 'React', 'Figma', 'Tailwind CSS', 'Node.js'];
+const tools = [
+  'TypeScript',
+  'Astro',
+  'React',
+  'Figma',
+  'Tailwind CSS',
+  'Node.js',
+  'HTML',
+  'CSS',
+  'Angular',
+  'Playwright',
+  'Vue',
+  'Svelte',
+  'PrimeNG',
+  'Ant Design',
+  'GSAP',
+  'ReactPDF',
+  'Bun',
+  'Symfony',
+  'Docker',
+  'Python',
+  'Git',
+  'Shell',
+  'Lottie',
+  'Rive',
+];
+
+const coreCompetencies = [
+  'Brand',
+  'UI/UX',
+  'Design Systems',
+  'Product Design',
+  'QA',
+  'Technical Docs',
+  'Responsive Web',
+  'Client Communication',
+  'Board Management',
+  'Cross-functional Team Leadership',
+];
+
+const languages = ['Italian (native)', 'English (C1)'];
 ---
 
 <BaseLayout title="About" description={`A bit about ${SITE.name} and how they work.`}>
@@ -62,6 +102,34 @@ const tools = ['TypeScript', 'Astro', 'React', 'Figma', 'Tailwind CSS', 'Node.js
           tools.map((tool) => (
             <li class="border-line text-ink-soft rounded-full border px-3 py-1 font-mono text-xs">
               {tool}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <div class="mt-8">
+      <p class="text-ink-soft mb-3 font-mono text-xs tracking-[0.2em] uppercase">
+        Core Competencies
+      </p>
+      <ul class="flex flex-wrap gap-2">
+        {
+          coreCompetencies.map((item) => (
+            <li class="border-line text-ink-soft rounded-full border px-3 py-1 font-mono text-xs">
+              {item}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <div class="mt-8">
+      <p class="text-ink-soft mb-3 font-mono text-xs tracking-[0.2em] uppercase">Languages</p>
+      <ul class="flex flex-wrap gap-2">
+        {
+          languages.map((lang) => (
+            <li class="border-line text-ink-soft rounded-full border px-3 py-1 font-mono text-xs">
+              {lang}
             </li>
           ))
         }

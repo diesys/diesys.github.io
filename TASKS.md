@@ -339,9 +339,11 @@ Source: `src/assets/cv/CV-ridotto-light-2026-02-14.pdf` (read 2026-02-14). Const
 
 ## Task 11 — CV: merge Skills/Tools into About (append, dedupe)
 
-- [ ] Merge CV `Skills In A Brief` into `src/pages/about.astro:6` `tools` array (currently 6 items) — append missing from `Development`/`Design & Content` (Angular, Playwright, Vue, Svelte, Tailwind, PrimeNG, AntDesign, GSAP, ReactPDF, Node, Bun, Symfony, Docker, Python, Git, Shell, Figma, Lottie, Rive, etc.) deduped, keep existing order.
-- [ ] Add two pill-groups below Tools reusing same `<ul>` styling `src/pages/about.astro:36` for `Core Competencies` (Brand, UI/UX, Design Systems, Product Design, QA, Technical Docs, Responsive Web, Client Communication, Board Management, Cross-functional Team Leadership) and `Languages` (Italian native / English C1).
-- [ ] `pnpm run check && pnpm run build`
+- [x] Merge CV `Skills In A Brief` into `src/pages/about.astro:6` `tools` array (currently 6 items) — append missing from `Development`/`Design & Content` (Angular, Playwright, Vue, Svelte, Tailwind, PrimeNG, AntDesign, GSAP, ReactPDF, Bun, Symfony, Docker, Python, Git, Shell, Figma, Lottie, Rive, etc.) deduped, keep existing order.
+- [x] Add two pill-groups below Tools reusing same `<ul>` styling `src/pages/about.astro:36` for `Core Competencies` (Brand, UI/UX, Design Systems, Product Design, QA, Technical Docs, Responsive Web, Client Communication, Board Management, Cross-functional Team Leadership) and `Languages` (Italian native / English C1).
+- [x] `pnpm run check && pnpm run build`
+
+> **Done 2026-08-22**: expanded `tools` to 24 items (kept original 6 order + appended HTML/CSS/Angular/Playwright/Vue/Svelte/PrimeNG/Ant Design/GSAP/ReactPDF/Bun/Symfony/Docker/Python/Git/Shell/Lottie/Rive) deduped. Added `coreCompetencies` and `languages` pill-groups below Tools reusing `border-line` styling. `prettier --write` + `astro build` OK (25 pages).
 
 ---
 
