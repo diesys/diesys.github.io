@@ -324,6 +324,51 @@ The solution for the contact form hasn't been chosen yet. Before implementing,
 
 ---
 
+## Task 10 — CV: enrich About page (append-only, no replacement)
+
+Source: `src/assets/cv/CV-ridotto-light-2026-02-14.pdf` (read 2026-02-14). Constraints: **append, don't replace** where content already exists (e.g. `src/site.config.ts:8` tagline `You, I and UIs` stays); Geckosoft 2021–2026 terminated — `SITE.status` self-employed is correct; keep `SITE.email` as `about@flowin.space`; no phone, no privacy notice; dates in site ISO `YYYY-MM-DD` (`src/content.config.ts:15`).
+
+- [x] In `src/pages/about.astro:18` append CV intro paragraph ("full-stack creator bridging web development, design and CSS skills... started as graphic designer before studying computer science and digital humanities... curiosity-driven, detail-oriented... plan, test, iterate, refine across product lifecycle from design to QA... define design choices that produce less and cleaner code... balance usability, beauty and do-ability") **after** existing prose — do not overwrite existing bio or `SITE.tagline`/`SITE.description`.
+- [x] Keep `src/site.config.ts:8` tagline and `src/site.config.ts:9` description as-is; if extending description, append CV summary as second sentence, not replacement. Verify `src/site.config.ts:15` status remains `Currently self-employed · open to new work` and `src/site.config.ts:6` email unchanged.
+- [x] `pnpm run check && pnpm run build && pnpm run format --check`
+
+> **Done 2026-08-22**: appended CV intro as 4th `<p>` in `src/pages/about.astro:32` (kept `src/site.config.ts:8`/`9`/`15` untouched, append-only). Build `pnpm exec astro build` passes (25 pages); `astro check` pre-existing `language-server` `fileExists` bug unrelated.
+> **Follow-up 2026-08-22 (user: keep only .astro)**: merged missing `src/content/about.md:12` content (Iblei/Pisa, Digital Humanities/CS, Asa25/photography/music/theatre) as 2 extra `<p>` in `src/pages/about.astro:41`, deleting `src/content/about.md` (orphan, not a collection per `src/content.config.ts:53`). Re-formatted + rebuilt OK.
+
+---
+
+## Task 11 — CV: merge Skills/Tools into About (append, dedupe)
+
+- [ ] Merge CV `Skills In A Brief` into `src/pages/about.astro:6` `tools` array (currently 6 items) — append missing from `Development`/`Design & Content` (Angular, Playwright, Vue, Svelte, Tailwind, PrimeNG, AntDesign, GSAP, ReactPDF, Node, Bun, Symfony, Docker, Python, Git, Shell, Figma, Lottie, Rive, etc.) deduped, keep existing order.
+- [ ] Add two pill-groups below Tools reusing same `<ul>` styling `src/pages/about.astro:36` for `Core Competencies` (Brand, UI/UX, Design Systems, Product Design, QA, Technical Docs, Responsive Web, Client Communication, Board Management, Cross-functional Team Leadership) and `Languages` (Italian native / English C1).
+- [ ] `pnpm run check && pnpm run build`
+
+---
+
+## Task 12 — CV: surface key stats (append-only)
+
+- [ ] Surface stats `40k+ commits, 100k+ photo/videos, 250+ posters, 60+ logos, 20+ illustrations, animations, icons, games, cli-tools, themes, stickers, smart-cards, t-shirts...` as an appended "At a glance" row in `src/pages/about.astro` (below Tools) — not in hero/header.
+- [ ] Keep copy short, no phone/privacy notice.
+- [ ] `pnpm run check && pnpm run build`
+
+---
+
+## Task 13 — CV: integrate Selected Experience/Works into `src/content/work/` (merge, not duplicate)
+
+- [ ] Audit 23 existing files `src/content/work/` vs CV lists (Selected Experience + Selected Works). For matches (e.g. `cloch.md`, `jastersind.md`, `pomelo.md`, `transmission-ui.md`, `itmenu.md`, `imparaora.md`, `libersoft.md`, `point-of-vision.md` etc.) **merge**: enrich `summary`/`tags`/`role` with CV footnotes ³⁴⁵, append missing context to body, keep `date` in existing ISO `YYYY-MM-DD` format.
+- [ ] For missing Geckosoft/IterTour items with no file (e.g. `d-ascenzi`, `gest`, `tadan`, `bms`, `traent`, `kairos`, `imperatore-travel`, `wanderlust`, `itertours`, `documeant-theme`, `senzaparole` if absent) scaffold via `cli-scripts/new-project.sh` with `draft:true`, `date: YYYY-MM-DD`, `type: company|commissioned|personal` mapping, then fill body. For ranges like `2021–2026` write range in body, `date` = single ISO value.
+- [ ] `pnpm run check && pnpm run build`
+
+---
+
+## Task 14 — CV: expose PDF asset
+
+- [ ] Ensure `src/assets/cv/CV-ridotto-light-2026-02-14.pdf` is reachable as `/cv` download (copy or link to `public/cv.pdf` if needed for static serving), add link in `src/pages/about.astro` CTA row — no extra page required.
+- [ ] Verify no `public/CNAME`, no `base` change `astro.config.mjs:11`.
+- [ ] `pnpm run check && pnpm run build && pnpm run format --check`
+
+---
+
 ## Backlog (unordered / to be turned into tasks when needed)
 
 Ideas collected but not yet turned into concrete tasks — to be discussed when this point
