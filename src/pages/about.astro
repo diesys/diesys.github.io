@@ -44,6 +44,15 @@ const coreCompetencies = [
 ];
 
 const languages = ['Italian (native)', 'English (C1)'];
+
+const stats = [
+  { value: '40k+', label: 'commits' },
+  { value: '100k+', label: 'photo / videos' },
+  { value: '250+', label: 'posters' },
+  { value: '60+', label: 'logos' },
+  { value: '20+', label: 'illustrations' },
+  { value: '50+', label: 'animations, icons, games, cli-tools, themes, stickers, t-shirts…' },
+];
 ---
 
 <BaseLayout title="About" description={`A bit about ${SITE.name} and how they work.`}>
@@ -130,6 +139,19 @@ const languages = ['Italian (native)', 'English (C1)'];
           languages.map((lang) => (
             <li class="border-line text-ink-soft rounded-full border px-3 py-1 font-mono text-xs">
               {lang}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <div class="mt-8">
+      <p class="text-ink-soft mb-3 font-mono text-xs tracking-[0.2em] uppercase">At a glance</p>
+      <ul class="flex flex-wrap gap-2">
+        {
+          stats.map((s) => (
+            <li class="border-line text-ink-soft rounded-full border px-3 py-1 font-mono text-xs">
+              <span class="text-ink font-medium">{s.value}</span> {s.label}
             </li>
           ))
         }

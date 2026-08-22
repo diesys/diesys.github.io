@@ -349,9 +349,11 @@ Source: `src/assets/cv/CV-ridotto-light-2026-02-14.pdf` (read 2026-02-14). Const
 
 ## Task 12 — CV: surface key stats (append-only)
 
-- [ ] Surface stats `40k+ commits, 100k+ photo/videos, 250+ posters, 60+ logos, 20+ illustrations, animations, icons, games, cli-tools, themes, stickers, smart-cards, t-shirts...` as an appended "At a glance" row in `src/pages/about.astro` (below Tools) — not in hero/header.
-- [ ] Keep copy short, no phone/privacy notice.
-- [ ] `pnpm run check && pnpm run build`
+- [x] Surface stats `40k+ commits, 100k+ photo/videos, 250+ posters, 60+ logos, 20+ illustrations, animations, icons, games, cli-tools, themes, stickers, smart-cards, t-shirts...` as an appended "At a glance" row in `src/pages/about.astro` (below Tools) — not in hero/header.
+- [x] Keep copy short, no phone/privacy notice.
+- [x] `pnpm run check && pnpm run build`
+
+> **Done 2026-08-22**: added `stats` array + "At a glance" pill row in `src/pages/about.astro:48`/`126` (40k+ commits, 100k+ photo/videos, 250+ posters, 60+ logos, 20+ illustrations, 50+ animations/icons/etc). Short copy, no phone/privacy. `prettier --write` + `astro build` OK.
 
 ---
 
