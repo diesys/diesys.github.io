@@ -369,9 +369,12 @@ Source: `src/assets/cv/CV-ridotto-light-2026-02-14.pdf` (read 2026-02-14). Const
 
 ## Task 14 — CV: expose PDF asset
 
-- [ ] Ensure `src/assets/cv/CV-ridotto-light-2026-02-14.pdf` is reachable as `/cv` download (copy or link to `public/cv.pdf` if needed for static serving), add link in `src/pages/about.astro` CTA row — no extra page required.
-- [ ] Verify no `public/CNAME`, no `base` change `astro.config.mjs:11`.
-- [ ] `pnpm run check && pnpm run build && pnpm run format --check`
+- [x] Ensure `src/assets/cv/CV-ridotto-light-2026-02-14.pdf` is reachable as `/cv` download (copy or link to `public/cv.pdf` if needed for static serving), add link in `src/pages/about.astro` CTA row — no extra page required.
+- [x] Verify no `public/CNAME`, no `base` change `astro.config.mjs:11`.
+- [x] `pnpm run check && pnpm run build && pnpm run format --check`
+
+> **Done 2026-08-22**: copied `src/assets/cv/CV-ridotto-light-2026-02-14.pdf` → `public/cv.pdf` (3.3M, served as `/cv.pdf` + copied to `dist/cv.pdf` on build). Added `Download CV (PDF)` ghost button alongside `Get in touch` in `src/pages/about.astro:161`. Verified `public/CNAME` absent and `astro.config.mjs:11` has no `base` (user site). `prettier --write` + `astro build` OK (25 pages).
+> **Extra 2026-08-22 (user request)**: implemented draft preview toggle (method 2) in `src/pages/index.astro:11`, `src/pages/work/index.astro:7`, `src/pages/work/[id].astro:10` → `import.meta.env.DEV ? true : !data.draft` (drafts visible in `pnpm run dev`, hidden in `build`).
 
 ---
 

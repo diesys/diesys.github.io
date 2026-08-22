@@ -4,9 +4,9 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import WorkRow from '@/components/WorkRow.astro';
 import SectionHeading from '@/components/SectionHeading.astro';
 
-const allWork = (await getCollection('work', ({ data }) => !data.draft)).sort(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
-);
+const allWork = (
+  await getCollection('work', ({ data }) => (import.meta.env.DEV ? true : !data.draft))
+).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 
 <BaseLayout

@@ -158,6 +158,9 @@ const stats = [
       </ul>
     </div>
 
-    <Button href={`mailto:${SITE.email}`} class="mt-10">Get in touch</Button>
+    <div class="mt-10 flex flex-wrap gap-3">
+      <Button href={`mailto:${SITE.email}`}>Get in touch</Button>
+      <Button href="/cv.pdf" variant="ghost">Download CV (PDF)</Button>
+    </div>
   </section>
 </BaseLayout>

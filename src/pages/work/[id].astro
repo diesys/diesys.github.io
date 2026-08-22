@@ -7,7 +7,9 @@ import BounceCards from '@/components/react/BounceCards';
 import { formatDate } from '@/utils/formatDate';
 
 export async function getStaticPaths() {
-  const entries = await getCollection('work', ({ data }) => !data.draft);
+  const entries = await getCollection('work', ({ data }) =>
+    import.meta.env.DEV ? true : !data.draft,
+  );
   return entries.map((entry) => ({
     params: { id: entry.id },
     props: { entry },

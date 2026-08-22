@@ -8,7 +8,9 @@ import { SITE } from '@/site.config';
 import Galaxy from '@/components/react/Galaxy';
 import TechLoop from '@/components/react/TechLoop';
 
-const allWork = await getCollection('work', ({ data }) => !data.draft);
+const allWork = await getCollection('work', ({ data }) =>
+  import.meta.env.DEV ? true : !data.draft,
+);
 const sorted = [...allWork].sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 const featured = sorted.filter((entry) => entry.data.featured);
 const rest = sorted.filter((entry) => !entry.data.featured);
