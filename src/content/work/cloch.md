@@ -1,10 +1,10 @@
 ---
 title: Cloch
-summary: The modern clock
+summary: An innovative hexagonal UI clock
 type: personal
-role: Design & development # TODO: real role
-date: 2020-01-01 # TODO: real date
-tags: []
+role: Designer & Developer
+date: 2018-01-01
+tags: [Clock, Hexagonal, UI]
 cover: /images/work/cloch.png
 images:
   - /images/work/cloch.png

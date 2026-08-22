@@ -1,10 +1,10 @@
 ---
 title: Point of Vision
-summary: Digital Arts
+summary: SenzaParole — digital posters about untranslatable words
 type: personal
-role: Design & development # TODO: real role
-date: 2020-01-01 # TODO: real date
-tags: []
+role: Designer and Illustrator
+date: 2018-05-01
+tags: [Digital Art, Posters, Illustration, SenzaParole]
 cover: /images/work/point-of-vision.png
 images:
   - /images/work/point-of-vision/astrophe.jpeg

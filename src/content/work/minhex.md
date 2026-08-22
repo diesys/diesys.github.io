@@ -1,10 +1,10 @@
 ---
 title: MinHex
-summary: A revisited game
+summary: Minesweeper on an hexagonal grid
 type: personal
-role: Design & development # TODO: real role
-date: 2020-01-01 # TODO: real date
-tags: []
+role: UI and Images — with NuxTuxSux
+date: 2018-06-01
+tags: [Game, Hexagonal, UI]
 cover: /images/work/minhex.png
 images:
   - /images/work/minhex.png

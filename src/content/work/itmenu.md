@@ -1,10 +1,10 @@
 ---
 title: ITMenu
-summary: An online menu
+summary: Online ordering menu for restaurants — IterTour product
 type: commissioned
-role: Design & development # TODO: real role
-date: 2020-01-01 # TODO: real date
-tags: []
+role: Project Owner, Developer and Designer
+date: 2022-03-01
+tags: [IterTour, Product Design, Ordering]
 cover: /images/work/itmenu.png
 images:
   - /images/work/itmenu.png

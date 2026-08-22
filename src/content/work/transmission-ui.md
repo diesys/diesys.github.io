@@ -1,10 +1,10 @@
 ---
 title: Transmission UI
-summary: A web theme
+summary: Popular BitTorrent web UI — soft theme
 type: personal
-role: Design & development # TODO: real role
-date: 2020-01-01 # TODO: real date
-tags: []
+role: Designer and Developer
+date: 2007-01-01
+tags: [Theme, BitTorrent, Web]
 cover: /images/work/transmission-ui.png
 images:
   - /images/work/transmission-ui.png

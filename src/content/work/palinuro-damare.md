@@ -1,10 +1,10 @@
 ---
 title: Palinuro d'amare
-summary: Find free beaches
+summary: Municipal beach reservation system — D'Amare for IterTour
 type: commissioned
-role: Design & development # TODO: real role
-date: 2020-01-01 # TODO: real date
-tags: []
+role: Project Owner, Developer and Designer
+date: 2020-06-01
+tags: [IterTour, Beach Reservation, Product]
 cover: /images/work/palinuro-damare.png
 images:
   - /images/work/palinuro-damare.png

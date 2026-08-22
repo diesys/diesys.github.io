@@ -1,10 +1,10 @@
 ---
 title: JasterSind
-summary: Master Mind game
+summary: JavaScript Master Mind game
 type: personal
-role: Design & development # TODO: real role
-date: 2020-01-01 # TODO: real date
-tags: []
+role: Developer and Designer
+date: 2014-01-01
+tags: [Game, Master Mind, JavaScript]
 cover: /images/work/jastersind.png
 images:
   - /images/work/jastersind.png

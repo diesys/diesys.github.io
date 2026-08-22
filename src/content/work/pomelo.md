@@ -1,10 +1,10 @@
 ---
 title: Pomelo
-summary: A tournament creator
+summary: Self-hosted tournament web app with Elo ranking
 type: personal
-role: Design & development # TODO: real role
-date: 2020-01-01 # TODO: real date
-tags: []
+role: Developer and Designer
+date: 2018-09-01
+tags: [Python, Elo, Tournament, WebApp]
 cover: /images/work/pomelo.png
 images:
   - /images/work/pomelo.png

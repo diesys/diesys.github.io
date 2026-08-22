@@ -359,9 +359,11 @@ Source: `src/assets/cv/CV-ridotto-light-2026-02-14.pdf` (read 2026-02-14). Const
 
 ## Task 13 — CV: integrate Selected Experience/Works into `src/content/work/` (merge, not duplicate)
 
-- [ ] Audit 23 existing files `src/content/work/` vs CV lists (Selected Experience + Selected Works). For matches (e.g. `cloch.md`, `jastersind.md`, `pomelo.md`, `transmission-ui.md`, `itmenu.md`, `imparaora.md`, `libersoft.md`, `point-of-vision.md` etc.) **merge**: enrich `summary`/`tags`/`role` with CV footnotes ³⁴⁵, append missing context to body, keep `date` in existing ISO `YYYY-MM-DD` format.
-- [ ] For missing Geckosoft/IterTour items with no file (e.g. `d-ascenzi`, `gest`, `tadan`, `bms`, `traent`, `kairos`, `imperatore-travel`, `wanderlust`, `itertours`, `documeant-theme`, `senzaparole` if absent) scaffold via `cli-scripts/new-project.sh` with `draft:true`, `date: YYYY-MM-DD`, `type: company|commissioned|personal` mapping, then fill body. For ranges like `2021–2026` write range in body, `date` = single ISO value.
-- [ ] `pnpm run check && pnpm run build`
+- [x] Audit 23 existing files `src/content/work/` vs CV lists (Selected Experience + Selected Works). For matches (e.g. `cloch.md`, `jastersind.md`, `pomelo.md`, `transmission-ui.md`, `itmenu.md`, `imparaora.md`, `libersoft.md`, `point-of-vision.md` etc.) **merge**: enrich `summary`/`tags`/`role` with CV footnotes ³⁴⁵, append missing context to body, keep `date` in existing ISO `YYYY-MM-DD` format.
+- [x] For missing Geckosoft/IterTour items with no file (e.g. `d-ascenzi`, `gest`, `tadan`, `bms`, `traent`, `kairos`, `imperatore-travel`, `wanderlust`, `itertours`, `documeant-theme`, `senzaparole` if absent) scaffold via `cli-scripts/new-project.sh` with `draft:true`, `date: YYYY-MM-DD`, `type: company|commissioned|personal` mapping, then fill body. For ranges like `2021–2026` write range in body, `date` = single ISO value.
+- [x] `pnpm run check && pnpm run build`
+
+> **Done 2026-08-22**: merged 8 existing works (`cloch.md:3`, `itmenu.md:3`, `minhex.md:3`, `pomelo.md:3`, `transmission-ui.md:3`, `jastersind.md:3`, `point-of-vision.md:3` (SenzaParole), `palinuro-damare.md:3`) — updated `summary`, `role`, `tags`, ISO `date` per CV (e.g. `Cloch 2018-01-01`, `ITMenu 2022-03-01`, `Transmission 2007-01-01`). Scaffolded 13 missing drafts via `cli-scripts/new-project.sh` with `draft:true` + ISO dates + `type` mapping: `d-ascenzi`, `geckosoft-it`, `gest`, `tadan`, `bms`, `traent`, `kairos`, `imperatore-travel` (`company`), `wanderlust`/`itertours`/`flyfish`/`scs-consulting` (`commissioned`), `documeant-theme` (`personal`). Bodies note 2021–2026 range for Geckosoft. `astro build` OK (25 non-draft pages), `prettier --write` OK.
 
 ---
 
